@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
-import 'package:loginn/pilih_layanan.dart';
+// import 'package:loginn/pilih_layanan.dart';
 
 class ProfileAdvokat1View extends StatelessWidget {
   const ProfileAdvokat1View({super.key});
@@ -143,23 +143,23 @@ class ProfileAdvokat1View extends StatelessWidget {
                       ],
                     ),
 
-                    Container(
-                          width: double.infinity,
-                          height: 52,
-                          margin: const EdgeInsets.only(left: 26, right: 26, top: 60),
-                          child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                          backgroundColor: GlobalColors.mainColor,),
-                          onPressed: (){
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => const PilihLayananView()));
-                          }, 
-                        child: Text('Konsultasi',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: GlobalColors.btnColor,))),
-                        )
+                    // Container(
+                    //       width: double.infinity,
+                    //       height: 52,
+                    //       margin: const EdgeInsets.only(left: 26, right: 26, top: 60),
+                    //       child: ElevatedButton(
+                    //       style: ElevatedButton.styleFrom(
+                    //       backgroundColor: GlobalColors.mainColor,),
+                    //       onPressed: (){
+                    //         Navigator.push(context, 
+                    //         MaterialPageRoute(builder: (context) => const PilihLayananView()));
+                    //       }, 
+                    //     child: Text('Konsultasi',
+                    //     style: GoogleFonts.ubuntu(
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.w500,
+                    //       color: GlobalColors.btnColor,))),
+                    //     )
                   ],
                 ),
               )

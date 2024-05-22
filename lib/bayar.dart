@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
+import 'package:loginn/sambungkan_ewalet.dart';
 
 class PembayaranView extends StatefulWidget {
   const PembayaranView({super.key});
@@ -18,7 +19,7 @@ class _PembayaranViewState extends State<PembayaranView> {
           foregroundColor: Colors.white,
           backgroundColor: GlobalColors.mainColor,
           title: Text(
-            'Ringkasan Pembayaran',
+            'Checkout Pesanan',
             style: GoogleFonts.ubuntu(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -28,49 +29,49 @@ class _PembayaranViewState extends State<PembayaranView> {
         body: SafeArea(
           child: ListView(
           children: [
-            Container(
-                   margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                   padding: const EdgeInsets.all(10),
-                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: const [
-                       BoxShadow(
-                         color: Colors.black38,
-                         blurRadius: 6,
-                       ),
-                      ]
-                   ),
-                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Image.asset('assets/images/Nur.png',
-                        width: 50,
-                        height: 50,),
+            // Container(
+            //        margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            //        padding: const EdgeInsets.all(10),
+            //        decoration: BoxDecoration(
+            //           color: Colors.white,
+            //           borderRadius: BorderRadius.circular(10),
+            //           boxShadow: const [
+            //            BoxShadow(
+            //              color: Colors.black38,
+            //              blurRadius: 6,
+            //            ),
+            //           ]
+            //        ),
+            //        child: Row(
+            //           mainAxisAlignment: MainAxisAlignment.start,
+            //           children: [
+            //             Image.asset('assets/images/Nur.png',
+            //             width: 50,
+            //             height: 50,),
 
-                        const SizedBox(width: 10,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Nurmiati, S.H',
-                            style: GoogleFonts.ubuntu(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),),
+            //             const SizedBox(width: 10,),
+            //             Column(
+            //               mainAxisAlignment: MainAxisAlignment.start,
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Text('Nurmiati, S.H',
+            //                 style: GoogleFonts.ubuntu(
+            //                   fontSize: 14,
+            //                   fontWeight: FontWeight.bold,
+            //                 ),),
 
-                            const SizedBox(height: 2,),
-                            Text('Advokat',
-                            style: GoogleFonts.ubuntu(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                            ),),
-                          ],
-                        )
+            //                 const SizedBox(height: 2,),
+            //                 Text('Advokat',
+            //                 style: GoogleFonts.ubuntu(
+            //                   fontSize: 12,
+            //                   fontWeight: FontWeight.w300,
+            //                 ),),
+            //               ],
+            //             )
                         
-                        ],
-                      ),
-                ),
+            //             ],
+            //           ),
+            //     ),
 
                 Container(
                   alignment: Alignment.topLeft,
@@ -89,6 +90,12 @@ class _PembayaranViewState extends State<PembayaranView> {
                    child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text('Detail Pesanan',
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                      const SizedBox(height: 10,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -106,10 +113,16 @@ class _PembayaranViewState extends State<PembayaranView> {
                           ),
                         ],
                       ),
+                      Text('Nurmiati (Advokat)',
+                          style: GoogleFonts.ubuntu(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Biaya Layanan',
+                          Text('Biaya Admin',
                           style: GoogleFonts.ubuntu(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -126,7 +139,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Pembayaranmu',
+                          Text('Total',
                           style: GoogleFonts.ubuntu(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -179,16 +192,12 @@ class _PembayaranViewState extends State<PembayaranView> {
                         children: [
                           Image.asset('assets/images/gopay.png', width: 30, height: 30), 
                           const SizedBox(width: 2),
-                          TextButton(onPressed: (){
-                            _displayBottomSheet(context);
-                          }, 
-                          child: Text('Gopay',
+                          Text('Gopay',
                           style: GoogleFonts.ubuntu(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.black
                           ), 
-                          )
                           )
                         ],
                       ),
@@ -213,16 +222,12 @@ class _PembayaranViewState extends State<PembayaranView> {
                         children: [
                           Image.asset('assets/images/ovo.png', width: 30, height: 30), 
                           const SizedBox(width: 2),
-                          TextButton(onPressed: (){
-                            _displayBottomSheet1(context);
-                          }, 
-                          child: Text('Ovo',
+                          Text('Ovo',
                           style: GoogleFonts.ubuntu(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.black
                           ), 
-                          )
                           )
                         ],
                       ),
@@ -247,16 +252,12 @@ class _PembayaranViewState extends State<PembayaranView> {
                         children: [
                           Image.asset('assets/images/LinkAja.png', width: 30, height: 30), 
                           const SizedBox(width: 2),
-                          TextButton(onPressed: (){
-                            _displayBottomSheet2(context);
-                          }, 
-                          child: Text('LinkAja',
+                          Text('LinkAja',
                           style: GoogleFonts.ubuntu(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.black
                           ), 
-                          )
                           )
                         ],
                       ),
@@ -272,7 +273,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                    ),
                 ),
 
-                const SizedBox(height: 111,),
+                const SizedBox(height: 211,),
                 Container(
                   margin: const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
                   child: Row(
@@ -282,7 +283,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Pembayaranmu',
+                            'Total',
                             style: GoogleFonts.ubuntu(
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
@@ -298,17 +299,17 @@ class _PembayaranViewState extends State<PembayaranView> {
                         ],
                       ),
                       SizedBox(
-                        width: 100, // lebar button
-                        height: 52, // tinggi button
+                        width: 100, 
+                        height: 52, 
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: GlobalColors.mainColor,
                           ),
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(builder: (context) => const ListChatView()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const SambungEwalatView()),
+                            );
                           },
                           child: Text(
                             'Bayar',
@@ -326,334 +327,6 @@ class _PembayaranViewState extends State<PembayaranView> {
 
                 
           ],)),
-    );
-  }
-
-  Future _displayBottomSheet(BuildContext context){
-      return showModalBottomSheet(
-        context: context, 
-        builder: (context) => Container(
-          margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-          alignment: Alignment.topLeft,
-          height: 600,
-          width: 600,
-          child: Column(
-            
-            children: [
-              Text('Sambungkan Gopay ke Aplikasi',
-              style: GoogleFonts.ubuntu(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: GlobalColors.mainColor
-                ),
-              ),
-              const SizedBox(height: 5,),
-              Row(
-                children: [
-                  Image.asset('assets/images/metode pembayaran 1.png',
-                  width: 50,
-                  height: 50,),
-
-                  const SizedBox(width: 20,),
-                  Text('Masukkan no telepon yang terdaftar \nke akun gopay kamu',
-                    style: GoogleFonts.ubuntu(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                      ), 
-                ],
-              ),
-
-              const SizedBox(height: 15,),
-              Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(right: 20, top: 10),
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black38,
-                          blurRadius: 6,
-                        ),
-                      ]
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/flag.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        Text(
-                          '+62',
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    )
-                  ),
-                  const SizedBox(width: 20,),
-                  Expanded(
-                    child: TextFormField(
-                      style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        labelText: 'Nomor Gopay',
-                        labelStyle: GoogleFonts.ubuntu(),
-                        border: const UnderlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              Container(
-                  width: double.infinity,
-                  height: 52,
-                  margin: const EdgeInsets.only(left: 26, right: 26, top: 180),
-                  child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                  backgroundColor: GlobalColors.mainColor,),
-                  onPressed: (){
-                    Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const PembayaranView()));
-                  }, 
-                child: Text('Lanjut',
-                style: GoogleFonts.ubuntu(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: GlobalColors.btnColor,))),
-                )
-
-            ],
-            
-          ),
-        ));
-    }
-
-    Future _displayBottomSheet1(BuildContext context){
-      return showModalBottomSheet(
-        context: context, 
-        builder: (context) => Container(
-          margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-          alignment: Alignment.topLeft,
-          height: 600,
-          width: 600,
-          child: Column(
-            
-            children: [
-              Text('Sambungkan Ovo ke Aplikasi',
-              style: GoogleFonts.ubuntu(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: GlobalColors.mainColor
-                ),
-              ),
-              const SizedBox(height: 5,),
-              Row(
-                children: [
-                  Image.asset('assets/images/metode pembayaran 1.png',
-                  width: 50,
-                  height: 50,),
-
-                  const SizedBox(width: 20,),
-                  Text('Masukkan no telepon yang terdaftar \nke akun Ovo kamu',
-                    style: GoogleFonts.ubuntu(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                      ), 
-                ],
-              ),
-
-              const SizedBox(height: 15,),
-              Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(right: 20, top: 10),
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black38,
-                          blurRadius: 6,
-                        ),
-                      ]
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/flag.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        Text(
-                          '+62',
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    )
-                  ),
-                  const SizedBox(width: 20,),
-                  Expanded(
-                    child: TextFormField(
-                      style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        labelText: 'Nomor Ovo',
-                        labelStyle: GoogleFonts.ubuntu(),
-                        border: const UnderlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              Container(
-                  width: double.infinity,
-                  height: 52,
-                  margin: const EdgeInsets.only(left: 26, right: 26, top: 180),
-                  child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                  backgroundColor: GlobalColors.mainColor,),
-                  onPressed: (){
-                    Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const PembayaranView()));
-                  }, 
-                child: Text('Lanjut',
-                style: GoogleFonts.ubuntu(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: GlobalColors.btnColor,))),
-                )
-
-            ],
-            
-          ),
-        ));
-    }
-
-    Future _displayBottomSheet2(BuildContext context){
-      return showModalBottomSheet(
-        context: context, 
-        builder: (context) => Container(
-          margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-          alignment: Alignment.topLeft,
-          height: 600,
-          width: 600,
-          child: Column(
-            
-            children: [
-              Text('Sambungkan LinkAja ke Aplikasi',
-              style: GoogleFonts.ubuntu(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: GlobalColors.mainColor
-                ),
-              ),
-              const SizedBox(height: 5,),
-              Row(
-                children: [
-                  Image.asset('assets/images/metode pembayaran 1.png',
-                  width: 50,
-                  height: 50,),
-
-                  const SizedBox(width: 20,),
-                  Text('Masukkan no telepon yang terdaftar \nke akun LinkAja kamu',
-                    style: GoogleFonts.ubuntu(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                      ), 
-                ],
-              ),
-
-              const SizedBox(height: 15,),
-              Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(right: 20, top: 10),
-                    alignment: Alignment.topLeft,
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(2),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black38,
-                          blurRadius: 6,
-                        ),
-                      ]
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/images/flag.png',
-                          width: 30,
-                          height: 30,
-                        ),
-                        Text(
-                          '+62',
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    )
-                  ),
-                  const SizedBox(width: 20,),
-                  Expanded(
-                    child: TextFormField(
-                      style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        labelText: 'Nomor LinkAja',
-                        labelStyle: GoogleFonts.ubuntu(),
-                        border: const UnderlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              Container(
-                  width: double.infinity,
-                  height: 52,
-                  margin: const EdgeInsets.only(left: 26, right: 26, top: 180),
-                  child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                  backgroundColor: GlobalColors.mainColor,),
-                  onPressed: (){
-                    Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const PembayaranView()));
-                  }, 
-                child: Text('Lanjut',
-                style: GoogleFonts.ubuntu(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: GlobalColors.btnColor,))),
-                )
-
-            ],
-            
-          ),
-        )
     );
   }
 }

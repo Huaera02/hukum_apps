@@ -142,20 +142,20 @@ class ProfileAdvokat2View extends StatelessWidget {
                       ],
                     ),
 
-                    Container(
-                          width: double.infinity,
-                          height: 52,
-                          margin: const EdgeInsets.only(left: 26, right: 26, top: 60),
-                          child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                          backgroundColor: GlobalColors.mainColor,),
-                          onPressed: (){}, 
-                        child: Text('Konsultasi',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: GlobalColors.btnColor,))),
-                        )
+                    // Container(
+                    //       width: double.infinity,
+                    //       height: 52,
+                    //       margin: const EdgeInsets.only(left: 26, right: 26, top: 60),
+                    //       child: ElevatedButton(
+                    //       style: ElevatedButton.styleFrom(
+                    //       backgroundColor: GlobalColors.mainColor,),
+                    //       onPressed: (){}, 
+                    //     child: Text('Konsultasi',
+                    //     style: GoogleFonts.ubuntu(
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.w500,
+                    //       color: GlobalColors.btnColor,))),
+                    //     )
                   ],
                 ),
               )

@@ -39,6 +39,8 @@ dependencies:
   hexcolor: ^3.0.1 
   google_fonts: ^6.1.0
   data_filters: ^1.0.2
+  http: ^1.2.1
+  fluttertoast: ^8.2.5
  
 
 

@@ -68,7 +68,7 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                   ),
                                     Text('Rp.50.000 / 30 Menit',
                                     style: GoogleFonts.ubuntu(
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.w500,
                                       color: GlobalColors.mainColor,
                                     ),
@@ -134,7 +134,7 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                   ),
                                     Text('Rp.90.000 / 60 Menit',
                                     style: GoogleFonts.ubuntu(
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.w500,
                                       color: GlobalColors.mainColor,
                                     ),
@@ -200,7 +200,7 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                   ),
                                     Text('Rp.130.000 / 90 Menit',
                                     style: GoogleFonts.ubuntu(
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.w500,
                                       color: GlobalColors.mainColor,
                                     ),
@@ -265,7 +265,7 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                   ),
                                     Text('Rp.170.000 / 180 Menit',
                                     style: GoogleFonts.ubuntu(
-                                      fontSize: 14,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.w500,
                                       color: GlobalColors.mainColor,
                                     ),
@@ -294,7 +294,7 @@ class _PilihLayananViewState extends State<PilihLayananView> {
               Container(
                           width: double.infinity,
                           height: 52,
-                          margin: const EdgeInsets.only(left: 26, right: 26, top: 164, bottom: 20),
+                          margin: const EdgeInsets.only(left: 26, right: 26, top: 64, bottom: 20),
                           child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                           backgroundColor: GlobalColors.mainColor,),

@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 // ignore: unnecessary_import
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/kode.dart';
 import 'package:loginn/login_view.dart';
 
-class RegisterView extends StatelessWidget {
+class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
+
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView> {
+
+  var isObsecure = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -43,85 +52,109 @@ class RegisterView extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 48, right: 47, top: 50),
+            margin: const EdgeInsets.only(left: 26, right: 26, top: 50),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [     
-                 TextFormField(
-                  style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    icon: const Icon(Icons.phone),
-                    labelText: 'No Telp',
-                    labelStyle: GoogleFonts.ubuntu(
+              children: [
+                Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [     
+                      TextFormField(
+                        style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          icon: const Icon(Icons.person),
+                          labelText: 'Username',
+                          labelStyle: GoogleFonts.ubuntu(
+                          ),
+                          hintText: 'Masukkan Username',
+                          hintStyle: GoogleFonts.ubuntu(),
+                          border: const UnderlineInputBorder(),
+                          
+                        ),
+                      ),           
+                      TextFormField(
+                        style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          icon: const Icon(Icons.email),
+                          labelText: 'Email',
+                          labelStyle: GoogleFonts.ubuntu(
+                          ),
+                          hintText: 'Masukkan Email',
+                          hintStyle: GoogleFonts.ubuntu(),
+                          border: const UnderlineInputBorder(),
+                          
+                        ),
+                      ),
+                      Obx(() => TextFormField(
+                            obscureText: isObsecure.value,
+                            style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
+                            keyboardType: TextInputType.visiblePassword,
+                            decoration: InputDecoration(
+                              icon: const Icon(Icons.lock),
+                              labelText: 'Password',
+                              labelStyle: GoogleFonts.ubuntu(),
+                              hintText: 'Masukkan Password',
+                              hintStyle: GoogleFonts.ubuntu(),
+                              border: const UnderlineInputBorder(),
+                              suffixIcon: Obx(() => GestureDetector(
+                                onTap: () {
+                                  isObsecure.value = !isObsecure.value;
+                                },
+                                child: Icon(
+                                  isObsecure.value ? Icons.visibility_off : Icons.visibility
+                                ),
+                              ))
+                        ),
+                      ),),
+                      Container(
+                      width: double.infinity,
+                      height: 52,
+                      margin: const EdgeInsets.only( top: 30),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: GlobalColors.mainColor,
+                        ),
+                        onPressed: () {
+                          Navigator.push(context, 
+                          MaterialPageRoute(builder: (context) => const KodeVieww()));
+                        },
+                        child: Text('Sign Up',
+                        style: GoogleFonts.ubuntu(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: GlobalColors.btnColor,
+                        ),),
+                      ),      
                     ),
-                    hintText: 'Masukkan Nomor Telepon',
-                    hintStyle: GoogleFonts.ubuntu(),
-                    border: const UnderlineInputBorder(),
-                    
-                  ),
-                ),           
-                TextFormField(
-                  style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    icon: const Icon(Icons.email),
-                    labelText: 'Email',
-                    labelStyle: GoogleFonts.ubuntu(
-                    ),
-                    hintText: 'Masukkan Email',
-                    hintStyle: GoogleFonts.ubuntu(),
-                    border: const UnderlineInputBorder(),
-                    
-                  ),
+                  ],
                 ),
-                    TextFormField(
-                      obscureText: true,
-                      style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                      keyboardType: TextInputType.visiblePassword,
-                      decoration: InputDecoration(
-                        icon: const Icon(Icons.lock),
-                        labelText: 'Password',
-                        labelStyle: GoogleFonts.ubuntu(),
-                        hintText: 'Masukkan Password',
-                        hintStyle: GoogleFonts.ubuntu(),
-                        border: const UnderlineInputBorder(),
-                        suffix: const Icon(Icons.visibility),
-                  ),
-                ),
-                // TextButton(onPressed:  () {}, 
-                // child:    
-                // Text("forgot password",
-                // style: GoogleFonts.ubuntu(
-                //   fontSize: 14,
-                //   fontWeight: FontWeight.w500,
-                //   color: GlobalColors.mainColor,
-                // ),
-                // ),)
-            
+                )
               ],
             ),
+            
           ),
-          Container(
-            width: double.infinity,
-            height: 52,
-            margin: const EdgeInsets.only(left: 26, right: 26, top: 30),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: GlobalColors.mainColor,
-              ),
-              onPressed: () {
-                Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const KodeVieww()));
-              },
-              child: Text('Sign Up',
-              style: GoogleFonts.ubuntu(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: GlobalColors.btnColor,
-              ),),
-            ),      
-          ),
+          // Container(
+          //   width: double.infinity,
+          //   height: 52,
+          //   margin: const EdgeInsets.only(left: 26, right: 26, top: 30),
+          //   child: ElevatedButton(
+          //     style: ElevatedButton.styleFrom(
+          //       backgroundColor: GlobalColors.mainColor,
+          //     ),
+          //     onPressed: () {
+          //       Navigator.push(context, 
+          //       MaterialPageRoute(builder: (context) => const KodeVieww()));
+          //     },
+          //     child: Text('Sign Up',
+          //     style: GoogleFonts.ubuntu(
+          //       fontSize: 16,
+          //       fontWeight: FontWeight.w500,
+          //       color: GlobalColors.btnColor,
+          //     ),),
+          //   ),      
+          // ),
           
           const SizedBox(height: 83),
           Row(

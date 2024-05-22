@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loginn/global_colors.dart';
@@ -10,15 +11,16 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 2), () {
-      Get.to(const LoginView());
+      Get.to(() => const LoginView());
      });
     return Scaffold(
       backgroundColor: GlobalColors.mainColor,
-      body: Center(
-        child:
-        Image.asset('assets/images/logo.png',
-        height: 228,
-        width: 204,) ,)
-    );
+        body: Center(
+          child: Image.asset(
+            'assets/images/logo.png',
+            height: 228,
+            width: 204,
+          ),
+        ));
   }
 }
