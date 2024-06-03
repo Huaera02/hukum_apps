@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
+import 'package:loginn/profile_mitra.dart';
 
 class FormMitraView extends StatelessWidget {
   const FormMitraView({super.key});
@@ -241,8 +242,8 @@ class FormMitraView extends StatelessWidget {
                   backgroundColor: GlobalColors.mainColor,
                 ),
                 onPressed: () {
-                //   Navigator.push(context, 
-                // MaterialPageRoute(builder: (context) => const BottomNavView()));
+                  Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const ProfileMitraView()));
                 },
                 child: Text('Selesai',
                 style: GoogleFonts.ubuntu(

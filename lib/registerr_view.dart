@@ -78,10 +78,10 @@ class _RegisterViewState extends State<RegisterView> {
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           icon: const Icon(Icons.email),
-                          labelText: 'Email',
+                          labelText: 'Email / WhatsApp',
                           labelStyle: GoogleFonts.ubuntu(
                           ),
-                          hintText: 'Masukkan Email',
+                          hintText: 'Masukkan Email / WhatsApp',
                           hintStyle: GoogleFonts.ubuntu(),
                           border: const UnderlineInputBorder(),
                           
@@ -169,8 +169,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               ),
               
-              const SizedBox(height: 250),
-              // const SizedBox(height: 167),
+              const SizedBox(height: 330),
               TextButton(onPressed: () {
                 Navigator.push(context, 
                 MaterialPageRoute(builder: (context) => const LoginView()));

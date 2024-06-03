@@ -53,10 +53,10 @@ class LoginView extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       icon: const Icon(Icons.email),
-                      labelText: 'Email',
+                      labelText: 'Email / WhatsApp',
                       labelStyle: GoogleFonts.ubuntu(
                       ),
-                      hintText: 'Masukkan Email',
+                      hintText: 'Masukkan Email / WhatsApp',
                       hintStyle: GoogleFonts.ubuntu(),
                       border: const UnderlineInputBorder(),
                       
@@ -166,7 +166,7 @@ class LoginView extends StatelessWidget {
                                  
                 ),
                 ),
-                const SizedBox(height: 83),
+                const SizedBox(height: 154),
                 TextButton(onPressed: () {
                   Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const RegisterView()));

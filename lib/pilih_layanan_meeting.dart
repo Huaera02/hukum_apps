@@ -75,7 +75,7 @@ class _LayananMeetingState extends State<LayananMeeting> {
                                   )
                                 ],
                               ),
-                              const SizedBox(width: 67,),
+                              const SizedBox(width: 64,),
                               Radio(
                                 value: 1, 
                                 groupValue: _value, 
@@ -141,7 +141,7 @@ class _LayananMeetingState extends State<LayananMeeting> {
                                   )
                                 ],
                               ),
-                              const SizedBox(width: 67,),
+                              const SizedBox(width: 64,),
                               Radio(
                                 value: 2, 
                                 groupValue: _value, 
@@ -207,7 +207,7 @@ class _LayananMeetingState extends State<LayananMeeting> {
                                   )
                                 ],
                               ),
-                              const SizedBox(width: 61,),
+                              const SizedBox(width: 56,),
                               Radio(
                                 value: 3, 
                                 groupValue: _value, 
@@ -272,7 +272,7 @@ class _LayananMeetingState extends State<LayananMeeting> {
                                   )
                                 ],
                               ),
-                              const SizedBox(width: 54,),
+                              const SizedBox(width: 48,),
                               Radio(
                                 value: 4, 
                                 groupValue: _value, 
@@ -294,7 +294,7 @@ class _LayananMeetingState extends State<LayananMeeting> {
               Container(
                 width: double.infinity,
                 height: 52,
-                margin: const EdgeInsets.only(left: 26, right: 26, top: 164, bottom: 20),
+                margin: const EdgeInsets.only(left: 26, right: 26, top: 247, bottom: 20),
                 child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                 backgroundColor: GlobalColors.mainColor,),

@@ -2,6 +2,7 @@ import 'package:data_filters/data_filters.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
+import 'package:loginn/layanan_notaris.dart';
 import 'package:loginn/profile_notaris1.dart';
 
 class PilihNotarisView extends StatefulWidget {
@@ -137,12 +138,38 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
                                             ),
                                           ],
                                           ),
-                                          const SizedBox(height: 15),
-                                            Text('Free',
-                                            style: GoogleFonts.ubuntu(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500
-                                            ),)
+                                          const SizedBox(height: 20),
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Text('Free',
+                                              style: GoogleFonts.ubuntu(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500
+                                                ),
+                                              ),
+                                              const SizedBox(width: 90,),
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.push(context, 
+                                                  MaterialPageRoute(builder: (context) => const LayananNotarisView()));
+                                                },
+                                                  style: ElevatedButton.styleFrom(
+                                                    backgroundColor: GlobalColors.mainColor,
+                                                    fixedSize: const Size(90, 20), 
+                                                    shape: const RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.all(Radius.circular(5)), 
+                                                    ),
+                                                  ),
+                                                  child: Text('Pilih',
+                                                  style: GoogleFonts.ubuntu(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w300,
+                                                    color: Colors.white
+                                                  ),),
+                                                ),
+                                            ],
+                                          )
                                           ],  
                                           ),
                                     ],
@@ -227,12 +254,38 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
                                             ),
                                           ],
                                           ),
-                                          const SizedBox(height: 15),
-                                            Text('Free',
-                                            style: GoogleFonts.ubuntu(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500
-                                            ),)
+                                          const SizedBox(height: 20),
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Text('Free',
+                                              style: GoogleFonts.ubuntu(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500
+                                                ),
+                                              ),
+                                              const SizedBox(width: 90,),
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  Navigator.push(context, 
+                                                  MaterialPageRoute(builder: (context) => const LayananNotarisView()));
+                                                },
+                                                  style: ElevatedButton.styleFrom(
+                                                    backgroundColor: GlobalColors.mainColor,
+                                                    fixedSize: const Size(90, 20), 
+                                                    shape: const RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.all(Radius.circular(5)), 
+                                                    ),
+                                                  ),
+                                                  child: Text('Pilih',
+                                                  style: GoogleFonts.ubuntu(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w300,
+                                                    color: Colors.white
+                                                  ),),
+                                                ),
+                                            ],
+                                          )
                                           ],  
                                           ),
                                     ],

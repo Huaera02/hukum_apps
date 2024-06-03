@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/bayar_selesai.dart';
-import 'package:loginn/dash_view.dart';
+import 'package:loginn/bottomnav.dart';
 import 'package:loginn/global_colors.dart';
 
 class SambungEwalatView extends StatelessWidget {
@@ -37,7 +37,7 @@ class SambungEwalatView extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => const DashboardView()));
+                  MaterialPageRoute(builder: (context) => const BottomNavView()));
                   },
                   child: Text('Kembali ke Home',
                   style: GoogleFonts.ubuntu(

@@ -32,8 +32,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 20, ),
                 padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 10),
                 alignment: Alignment.centerLeft,
-                width: 500,
-                height: 110,
+                height: 136,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -55,10 +54,10 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                       children: [
                         Text('Pembuatan Akta Otentik',
                         style: GoogleFonts.ubuntu(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold),),
                         const SizedBox(height: 5),
-                        Text('Akta Otentik seperti Akta jual beli, \nhibah, waris, perjanjian sewa-menyewa, \nperjanjian kredit,perjanjian kemitraan, \ndan lain-lain.',
+                        Text('Akta Otentik seperti Akta jual\nbeli, hibah, waris, perjanjian\nmenyewa, perjanjian kredit,\nperjanjian kemitraan, dan\nlain-lain.',
                         style: GoogleFonts.ubuntu(
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
@@ -82,8 +81,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 10, ),
                 padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 10),
                 alignment: Alignment.centerLeft,
-                width: 500,
-                height: 110,
+                height: 120,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -96,7 +94,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                   children: [
                     Image.asset('assets/images/Pengesahan Dokumen Hukum.png',
                     width: 70,
-                    height: 120,),
+                    height: 140,),
                     const SizedBox(width: 10,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,11 +103,11 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                       children: [
                         Text('Pengesahan Dokumen Hukum',
                         style: GoogleFonts.ubuntu(
-                        fontSize: 13.6,
+                        fontSize: 11,
                         fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,),
                         const SizedBox(height: 5),
-                        Text('Dokumen-dokumen hukum seperti\nperjanjian,kontrak, dan surat kuasa.',
+                        Text('Dokumen-dokumen hukum\nseperti perjanjian,kontrak,\ndan surat kuasa.',
                         style: GoogleFonts.ubuntu(
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
@@ -133,8 +131,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 10, ),
                 padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 10),
                 alignment: Alignment.centerLeft,
-                width: 500,
-                height: 110,
+                height: 120,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -147,7 +144,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                   children: [
                     Image.asset('assets/images/Pendaftaran Perkara Hukum.png',
                     width: 70,
-                    height: 120,),
+                    height: 140,),
                     const SizedBox(width: 10,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +153,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                       children: [
                         Text('Pendaftaran Perkara Hukum',
                         style: GoogleFonts.ubuntu(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,),
                         const SizedBox(height: 5),
@@ -185,8 +182,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 10, ),
                 padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 10),
                 alignment: Alignment.centerLeft,
-                width: 500,
-                height: 110,
+                height: 120,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -208,11 +204,11 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                       children: [
                         Text('Pengesahan Tanda Tangan',
                         style: GoogleFonts.ubuntu(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,),
                         const SizedBox(height: 5),
-                        Text('Notaris dan PPAT dapat mengesahkan\ntanda tangan pada dokumen-dokumen\npenting.',
+                        Text('Notaris dan PPAT mengesahkan\ntanda tangan di dokumen-dokumen\npenting.',
                         style: GoogleFonts.ubuntu(
                           fontSize: 10,
                           fontWeight: FontWeight.w500,
@@ -236,8 +232,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 10, ),
                 padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 10),
                 alignment: Alignment.centerLeft,
-                width: 500,
-                height: 110,
+                height: 120,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -259,7 +254,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                       children: [
                         Text('Penyusunan Perjanjian Khusus',
                         style: GoogleFonts.ubuntu(
-                        fontSize: 13.2,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold),),
                         const SizedBox(height: 5),
                         Text('Penyusunan perjanjian khusus dibuat\nsesuai dengan kebutuhan klien,\nseperti perjanjian pra-nikah,dan\nsebagainya.',
@@ -287,8 +282,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 10, ),
                 padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 10),
                 alignment: Alignment.centerLeft,
-                width: 500,
-                height: 110,
+                height: 120,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -310,7 +304,7 @@ class _LayananNotarisViewState extends State<LayananNotarisView> {
                       children: [
                         Text('Pengurusan Akta Perusahaan',
                         style: GoogleFonts.ubuntu(
-                        fontSize: 13.7,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold),),
                         const SizedBox(height: 5),
                         Text(' Notaris juga dapat membantu dalam\npembuatan akta-akta yang berkaitan\ndengan pendirian perusahaan dan\nperubahan status perusahaan.',

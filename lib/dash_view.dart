@@ -7,6 +7,7 @@ import 'package:loginn/chatnotaris.dart';
 import 'package:loginn/chtadvokat1.dart';
 import 'package:loginn/form_mitra.dart';
 import 'package:loginn/global_colors.dart';
+import 'package:loginn/lainnya.dart';
 import 'package:loginn/layanan_notaris.dart';
 import 'package:loginn/meet_advokat.dart';
 import 'package:loginn/notif_view.dart';
@@ -95,11 +96,11 @@ class DashboardView extends StatelessWidget {
 
                           GridView.count(
                             shrinkWrap: true,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 15,
+                            // crossAxisSpacing: 3,
+                            mainAxisSpacing: 20,
                             physics: const NeverScrollableScrollPhysics(),
                             padding: const EdgeInsets.only(right: 20, top: 10),
-                            crossAxisCount: 3,
+                            crossAxisCount: 4,
                             children: [
                               InkWell(
                                 onTap: (){
@@ -112,8 +113,8 @@ class DashboardView extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Image.asset('assets/images/chat dengan advokat.png',
-                                      height: 65,
-                                      width: 65,
+                                      height: 50,
+                                      width: 50,
                                       ),
                                       Text('Chat dengan \nAdvokat',
                                       style: GoogleFonts.ubuntu(
@@ -137,8 +138,8 @@ class DashboardView extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Image.asset('assets/images/chat dengan notaris.png',
-                                      height: 65,
-                                      width: 65,
+                                      height: 50,
+                                      width: 50,
                                       ),
                                       Text('Layanan \nNotaris/PPAT',
                                       style: GoogleFonts.ubuntu(
@@ -162,8 +163,8 @@ class DashboardView extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Image.asset('assets/images/buat janji offline.png',
-                                      height: 65,
-                                      width: 65,
+                                      height: 50,
+                                      width: 50,
                                       ),
                                       Text('Buat Janji Offline',
                                       style: GoogleFonts.ubuntu(
@@ -187,8 +188,8 @@ class DashboardView extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Image.asset('assets/images/Meeting Online.png',
-                                      height: 65,
-                                      width: 65,
+                                      height: 50,
+                                      width: 50,
                                       ),
                                       Text('Buat Meeting Online',
                                       style: GoogleFonts.ubuntu(
@@ -208,11 +209,11 @@ class DashboardView extends StatelessWidget {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Image.asset('assets/images/perceraian1.png',
-                                      height: 65,
-                                      width: 65,
+                                      Image.asset('assets/images/kategori_keluarga.png',
+                                      height: 50,
+                                      width: 50,
                                       ),
-                                      Text('Perceraian',
+                                      Text('Keluarga',
                                       style: GoogleFonts.ubuntu(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w500),
@@ -230,9 +231,57 @@ class DashboardView extends StatelessWidget {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
+                                      Image.asset('assets/images/kategori_pidana.png',
+                                      height: 50,
+                                      width: 50,
+                                      ),
+                                      Text('Pidana',
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              InkWell(
+                                onTap: (){},
+                                splashColor: GlobalColors.btnColor,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Image.asset('assets/images/kategori_ti.png',
+                                      height: 50,
+                                      width: 50,
+                                      ),
+                                      Text('Teknologi Informasi',
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+
+                              InkWell(
+                                onTap: (){
+                                 Navigator.push(context, 
+                                 MaterialPageRoute(builder: (context) => const LainnyaView()));
+                                },
+                                splashColor: GlobalColors.btnColor,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
                                       Image.asset('assets/images/Lainnya.png',
-                                      height: 65,
-                                      width: 65,
+                                      height: 50,
+                                      width: 50,
                                       ),
                                       Text('Lainnya',
                                       style: GoogleFonts.ubuntu(

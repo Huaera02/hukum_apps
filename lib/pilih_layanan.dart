@@ -292,22 +292,22 @@ class _PilihLayananViewState extends State<PilihLayananView> {
               ),
 
               Container(
-                          width: double.infinity,
-                          height: 52,
-                          margin: const EdgeInsets.only(left: 26, right: 26, top: 64, bottom: 20),
-                          child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                          backgroundColor: GlobalColors.mainColor,),
-                          onPressed: (){
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
-                          }, 
-                        child: Text('Selanjutnya',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: GlobalColors.btnColor,))),
-                        )
+                width: double.infinity,
+                height: 52,
+                margin: const EdgeInsets.only(left: 26, right: 26, top: 247, bottom: 20),
+                child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                backgroundColor: GlobalColors.mainColor,),
+                onPressed: (){
+                  Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
+                }, 
+                child: Text('Selanjutnya',
+                style: GoogleFonts.ubuntu(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: GlobalColors.btnColor,))),
+              )
             ]
             )
             )

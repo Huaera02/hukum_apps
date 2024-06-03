@@ -78,7 +78,7 @@ class JanjiOfflineView extends StatelessWidget {
                                 fontWeight: FontWeight.bold
                                 ),
                                 textAlign: TextAlign.center,),
-                                const SizedBox(height: 30,),
+                                const SizedBox(height: 25,),
                                 Text('Firma Hukum',
                                 style: GoogleFonts.ubuntu(
                                 fontSize: 12,
@@ -125,7 +125,7 @@ class JanjiOfflineView extends StatelessWidget {
                                 fontWeight: FontWeight.bold
                                 ),
                                 textAlign: TextAlign.center,),
-                                const SizedBox(height: 30,),
+                                const SizedBox(height: 25,),
                                 Text('Firma Hukum',
                                 style: GoogleFonts.ubuntu(
                                 fontSize: 12,

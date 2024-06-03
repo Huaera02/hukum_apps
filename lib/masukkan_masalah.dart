@@ -3,8 +3,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/bayar.dart';
 import 'package:loginn/global_colors.dart';
 
-class MasukkanMasalahmuView extends StatelessWidget {
+class MasukkanMasalahmuView extends StatefulWidget {
   const MasukkanMasalahmuView({super.key});
+
+  @override
+  State<MasukkanMasalahmuView> createState() => _MasukkanMasalahmuViewState();
+}
+
+class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
+
+  String? valueChoose;
+  List<String> listItem = [
+    "Administrasi Negara", 
+    "Asuransi", 
+    "Bisnis dan Perusahaan",
+    "Hak Intelektual",
+    "Hutang Piutang",
+    "Keluarga",
+    "Pertanahan dan Properti",
+    "Pidana",
+    "Teknologi Informasi"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,83 +41,96 @@ class MasukkanMasalahmuView extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
             Container(
-              width: 500,
-              height: 230,
-              padding: const EdgeInsets.all(20),
-              margin: const EdgeInsets.only(left: 20, top:20, right: 20, bottom: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black38,
-                    blurRadius: 6,
-                  )
-                ]
-              ),
+              margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('informasi Konsultasi Hukum',
-                  style: GoogleFonts.ubuntu(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  ),
-                  const SizedBox(height: 20,),
                   Container(
-                    padding: const EdgeInsets.all(10),
-                    width: 300,
-                    height: 150,
+                    height: 60,
+                    padding: const EdgeInsets.only(left: 10),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      borderRadius:BorderRadius.circular(5),
                       border: Border.all(
-                        color: Colors.black38)
+                        color: Colors.grey.shade700,
+                      )
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextFormField(
-                          style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            icon: const Icon(Icons.text_fields_sharp),
-                            labelStyle: GoogleFonts.ubuntu(
-                            ),
-                            hintText: 'Masukkan Topik Masalahmu',
-                            hintStyle: GoogleFonts.ubuntu(),
-                            border: const OutlineInputBorder(), 
-                          ),
-                        ),
+                    alignment: Alignment.center,
+                    child: DropdownButton(
+                      value: valueChoose,
+                      hint: Text('Pilih Kategori Hukum', 
+                      style: GoogleFonts.ubuntu(
+                        color: Colors.black
+                      ),),
+                      icon: const Icon(Icons.arrow_drop_down),
+                      iconSize: 36,
+                      isExpanded: true,
+                      underline: const SizedBox(),
+                      style: GoogleFonts.ubuntu(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300
+                      ),
+                      onChanged: (newValue){
+                        setState(() {
+                          valueChoose = newValue;
+                        });
+                      },
+                      items: listItem.map((valueItem){
+                        return DropdownMenuItem(
+                          value: valueItem,
+                          child: Text(valueItem, 
+                          style: GoogleFonts.ubuntu(fontSize: 14),),
+                        );
+                      }).toList(),
+                      ),
+                  ),
 
-                        const SizedBox(height: 10,),
-                        TextFormField(
-                          style: TextStyle(fontSize: 13, color: GlobalColors.textColor),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            icon: const Icon(Icons.description),
-                            labelStyle: GoogleFonts.ubuntu(
-                            ),
-                            hintText: 'Deskripsikan Masalahmu',
-                            hintStyle: GoogleFonts.ubuntu(),
-                            border: const OutlineInputBorder(), 
-                          ),
+                  const SizedBox(height: 15,),
+                  TextFormField(
+                    style: const TextStyle(fontSize: 14, color: Colors.black),
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.ubuntu(
+                      ),
+                      hintText: 'Judul / Topik Masalah',
+                      hintStyle: GoogleFonts.ubuntu(
+                        color: Colors.black
+                      ),
+                      border: const OutlineInputBorder(), 
+                    ),
+                  ),
+
+                  const SizedBox(height: 15,),
+                  SizedBox(
+                    height: 200,
+                    child: TextFormField(
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                      keyboardType: TextInputType.text,
+                      textAlignVertical: TextAlignVertical.top, 
+                      decoration: InputDecoration(
+                        labelStyle: GoogleFonts.ubuntu(),
+                        hintText: 'Deskripsi Masalah',
+                        hintStyle: GoogleFonts.ubuntu(
+                          color: Colors.black
                         ),
-                      ],
+                        border: const OutlineInputBorder(), 
+                      ),
+                      maxLines: null, 
+                      expands: true,
                     ),
                   )
+
                 ],
               ),
             ),
             Container(
               width: double.infinity,
               height: 52,
-              margin: const EdgeInsets.only(left: 26, right: 26),
+              margin: const EdgeInsets.only(left: 26, right: 26, top: 285, bottom: 20),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: GlobalColors.mainColor,

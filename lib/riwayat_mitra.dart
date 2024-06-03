@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/detail_pesanan.dart';
+import 'package:loginn/detail_pesananuser.dart';
 import 'package:loginn/global_colors.dart';
 
-
-class HistoryView extends StatelessWidget {
-  const HistoryView({super.key});
+class RiwayatMitraView extends StatefulWidget {
+  const RiwayatMitraView({super.key});
 
   @override
+  State<RiwayatMitraView> createState() => _RiwayatMitraViewState();
+}
+
+class _RiwayatMitraViewState extends State<RiwayatMitraView> {
+  @override
   Widget build(BuildContext context) {
-      return DefaultTabController(
+    return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
@@ -63,7 +67,7 @@ class HistoryView extends StatelessWidget {
                       InkWell(
                         onTap: (){
                           Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) => const DetailPesananView()));
+                          MaterialPageRoute(builder: (context) => const DetailPesananUserView()));
                         },
                         splashColor: GlobalColors.btnColor,
                         child: Container(
@@ -110,7 +114,7 @@ class HistoryView extends StatelessWidget {
                               color: Colors.grey.shade400 ), 
                               Row(
                                 children: [
-                                  Image.asset('assets/images/Nur.png',
+                                  Image.asset('assets/images/profile 1.png',
                                     width: 50,
                                     height: 70,),
                                   const SizedBox(width: 10,),
@@ -118,12 +122,12 @@ class HistoryView extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('Nurmiati, S.H',
+                                      Text('Zhafira',
                                       style: GoogleFonts.ubuntu(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),),
-                                      Text('Advokat',
+                                      Text('Klien',
                                       style: GoogleFonts.ubuntu(
                                         fontWeight: FontWeight.w100,
                                         fontSize: 14,
@@ -199,8 +203,9 @@ class HistoryView extends StatelessWidget {
                               thickness:1.0,
                               color: Colors.grey.shade400 ), 
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Image.asset('assets/images/Nur.png',
+                                  Image.asset('assets/images/profile 1.png',
                                     width: 50,
                                     height: 70,),
                                   const SizedBox(width: 10,),
@@ -208,12 +213,12 @@ class HistoryView extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('Nurmiati, S.H',
+                                      Text('Zhafira',
                                       style: GoogleFonts.ubuntu(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),),
-                                      Text('Advokat',
+                                      Text('Klien',
                                       style: GoogleFonts.ubuntu(
                                         fontWeight: FontWeight.w100,
                                         fontSize: 14,
@@ -226,7 +231,7 @@ class HistoryView extends StatelessWidget {
                                       ),),
                                     ],
                                   ),
-                                  const SizedBox(width: 66,),
+                                  const SizedBox(width: 80,),
                                   ElevatedButton(
                                     onPressed: () {},
                                       style: ElevatedButton.styleFrom(
