@@ -2,7 +2,7 @@ import 'package:data_filters/data_filters.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
-import 'package:loginn/pilih_layanan.dart';
+import 'package:loginn/masukkan_masalah.dart';
 import 'package:loginn/profile_advokat1.dart';
 import 'package:loginn/profile_advokat2.dart';
 
@@ -22,17 +22,17 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
   @override
   Widget build(BuildContext context) {
     List<List> data = [
-      ['5 Tahun', '4,6', 'Makassar'],     
+      ['Pidana', '5 Tahun', 'Makassar'],     
     ];
     
-    List<String> titles = ['Pengalaman', 'Rating', 'Kabupaten/Kota'];
+    List<String> titles = ['Bidang Keahlian', 'Pengalaman', 'Kabupaten/Kota'];
 
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: GlobalColors.mainColor,
         title: Text(
-          'Pilih Advokat',
+          'Cari Advokat',
           style: GoogleFonts.ubuntu(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -156,7 +156,7 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                                             ElevatedButton(
                                               onPressed: () {
                                                 Navigator.push(context, 
-                                                MaterialPageRoute(builder: (context) => const PilihLayananView()));
+                                                MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
                                               },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: GlobalColors.mainColor,
@@ -165,7 +165,7 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                                                     borderRadius: BorderRadius.all(Radius.circular(5)), 
                                                   ),
                                                 ),
-                                                child: Text('Pilih',
+                                                child: Text('Chat',
                                                 style: GoogleFonts.ubuntu(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w300,
@@ -272,7 +272,7 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                                             ElevatedButton(
                                               onPressed: () {
                                                 Navigator.push(context, 
-                                                MaterialPageRoute(builder: (context) => const PilihLayananView()));
+                                                MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
                                               },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: GlobalColors.mainColor,
@@ -281,7 +281,7 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                                                     borderRadius: BorderRadius.all(Radius.circular(5)), 
                                                   ),
                                                 ),
-                                                child: Text('Pilih',
+                                                child: Text('Chat',
                                                 style: GoogleFonts.ubuntu(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w300,

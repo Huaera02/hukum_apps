@@ -14,15 +14,24 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
 
   String? valueChoose;
   List<String> listItem = [
-    "Administrasi Negara", 
-    "Asuransi", 
-    "Bisnis dan Perusahaan",
-    "Hak Intelektual",
-    "Hutang Piutang",
-    "Keluarga",
-    "Pertanahan dan Properti",
-    "Pidana",
-    "Teknologi Informasi"
+    "Pemerasan dan pengacaman", 
+    "Pencurian", 
+    "Penipuan",
+    "Pembunuhan",
+    "Penggelapan",
+    "Pemalsuan",
+    "Kejahatan Terhadap Kesusilaan",  
+    "Pemalsuan Uang",
+    "Perusakan",
+    "Penghinaan",
+    "Kejahatan Terhadap Ketertiban Hukum",
+    "Perjudian",
+    "Kejahatan Terhadap Asal Usul Perkawinan",
+    "Penganiayaan",
+    "Kejahatan Terhadap Kemerdekaan Orang Lain",
+    "Penadahan",
+    "Sumpah Palsu dan Keterangan Palsu",
+    "Lainnya",   
   ];
 
   @override
@@ -46,9 +55,15 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
             Container(
               margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Text('Pilih Klasifikasi Kasus',
+                    style: GoogleFonts.ubuntu(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),),
+                  const SizedBox(height: 5,),
                   Container(
                     height: 60,
                     padding: const EdgeInsets.only(left: 10),
@@ -61,7 +76,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                     alignment: Alignment.center,
                     child: DropdownButton(
                       value: valueChoose,
-                      hint: Text('Pilih Kategori Hukum', 
+                      hint: Text('Kategori Kasus', 
                       style: GoogleFonts.ubuntu(
                         color: Colors.black
                       ),),
@@ -89,14 +104,20 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                       ),
                   ),
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
+                  Text('Masukkan Topik Masalah',
+                    style: GoogleFonts.ubuntu(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),),
+                  const SizedBox(height: 5,),
                   TextFormField(
                     style: const TextStyle(fontSize: 14, color: Colors.black),
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.ubuntu(
                       ),
-                      hintText: 'Judul / Topik Masalah',
+                      hintText: 'Masukkan Topik Masalah',
                       hintStyle: GoogleFonts.ubuntu(
                         color: Colors.black
                       ),
@@ -104,7 +125,13 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                     ),
                   ),
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20),
+                  Text('Masukkan Deskripsi Masalah',
+                    style: GoogleFonts.ubuntu(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),),
+                  const SizedBox(height: 5,),
                   SizedBox(
                     height: 200,
                     child: TextFormField(
@@ -113,7 +140,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                       textAlignVertical: TextAlignVertical.top, 
                       decoration: InputDecoration(
                         labelStyle: GoogleFonts.ubuntu(),
-                        hintText: 'Deskripsi Masalah',
+                        hintText: 'Ceritakan Masalahmu..',
                         hintStyle: GoogleFonts.ubuntu(
                           color: Colors.black
                         ),
@@ -130,7 +157,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
             Container(
               width: double.infinity,
               height: 52,
-              margin: const EdgeInsets.only(left: 26, right: 26, top: 285, bottom: 20),
+              margin: const EdgeInsets.only(left: 26, right: 26, top: 215, bottom: 20),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: GlobalColors.mainColor,

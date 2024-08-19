@@ -1,239 +1,267 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/edit_profile_view.dart';
+import 'package:loginn/form_mitra.dart';
 import 'package:loginn/global_colors.dart';
-import 'package:loginn/login_view.dart';
+// import 'package:loginn/login_view.dart';
 import 'package:loginn/newpass_view.dart';
+import 'package:loginn/repository.dart';
+import 'package:loginn/splash_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  bool isLoading = false;
+  Repository repository = Repository();
+  Map<String, dynamic> listData = {};
+
+  getData() async {
+    setState(() {
+      isLoading = true;
+    });
+    Map<String, dynamic> response = await repository.getProfileAdvokat();
+
+    isLoading = false;
+
+    if (response['status'] == true) {
+      listData = response['dataPribadi'];
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Center(
+                child: Text(
+                  response['msg'],
+                  style: GoogleFonts.ubuntu(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: const Color.fromARGB(246, 240, 237, 237),
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         foregroundColor: Colors.white,
         backgroundColor: GlobalColors.mainColor,
-        title: Text('Profile',
-        style: GoogleFonts.ubuntu(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.white
-        ),),
+        title: Text(
+          'Profile',
+          style: GoogleFonts.ubuntu(
+              fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
       body: SafeArea(
-        child: ListView(
+        child: Stack(
           children: [
-            Column(
+            ListView(
               children: [
-                Container(
-                   padding: const EdgeInsets.all(20),
-                   decoration: const BoxDecoration(
-                      color: Colors.white,
-                   ),
-                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset('assets/images/profile 1.png',
-                        width: 50,
-                        height: 50,),
-                        const SizedBox(width: 10,),
-                        Text('Zhafira\n -',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),),
-                        const SizedBox(width: 150,),
-                        IconButton.filledTonal(onPressed: (){
-                          Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) => const EditProfileView()));
-                        }, 
-                        icon: Icon(Icons.edit, color: GlobalColors.mainColor,)
-                        ),
+                Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            'assets/images/profile 1.png',
+                            width: 80,
+                            height: 80,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  listData['nama'] ?? '',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  listData['email'] ?? '',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                                Text(
+                                  listData['hp'] ?? '',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 75,
+                          ),
+                          IconButton.filledTonal(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const EditProfileView()));
+                              },
+                              icon: Icon(
+                                Icons.edit,
+                                color: GlobalColors.mainColor,
+                              ))
                         ],
                       ),
-                      const SizedBox(height: 20,),
-                      Text('Email',
-                      style: GoogleFonts.ubuntu(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,)
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 500,
+                      margin: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
                       ),
-                      Text('Zhafira12@gmail.com',
-                      style: GoogleFonts.ubuntu(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w300,)
+                      child: TextButton.icon(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const FormMitraView()));
+                          },
+                          icon: Icon(
+                            Icons.group_add,
+                            color: GlobalColors.mainColor,
+                            size: 20,
+                          ),
+                          label: Text('Daftar Sebagai Mitra',
+                              style: GoogleFonts.ubuntu(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black))),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
                       ),
-                    ],
-                   )
-                ),
-
-                Container(
-                  margin: const EdgeInsets.only(top: 15),
-                   padding: const EdgeInsets.all(10),
-                   decoration: const BoxDecoration(
-                      color: Colors.white,
-                   ),
-                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextButton.icon(onPressed: (){}, icon: Icon(Icons.verified_user_rounded, color: GlobalColors.mainColor, size: 20,),  
-                      label: Text('Verifikasi Email',
-                      style: GoogleFonts.ubuntu(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black))),
-
-                      Divider(
-                        thickness: 1.0,
-                        color: Colors.grey.shade400),
-            
-                      TextButton.icon(onPressed: (){
-                        Navigator.push(context, 
-                        MaterialPageRoute(builder: (context) => const NewPassView()));
-                      }, 
-                      icon: Icon(Icons.key, color: GlobalColors.mainColor, size: 20,),  
-                      label: Text('Ubah Kata Sandi',
-                      style: GoogleFonts.ubuntu(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black))),
-
-                      Divider(
-                        thickness: 1.0,
-                        color: Colors.grey.shade400),
-            
-                      TextButton.icon(onPressed: (){}, icon: Icon(Icons.delete, color: GlobalColors.mainColor, size: 20,),  
-                      label: Text('Hapus Akun',
-                      style: GoogleFonts.ubuntu(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black))),
-                    ],
-                   ),
-                ),
-                // Container(
-                //    margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                //    padding: const EdgeInsets.all(10),
-                //    decoration: BoxDecoration(
-                //       color: Colors.white,
-                //       borderRadius: BorderRadius.circular(10),
-                //       boxShadow: const [
-                //        BoxShadow(
-                //          color: Colors.black38,
-                //          blurRadius: 6,
-                //        ),
-                //       ]
-                //    ),
-                //    child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Row(
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       children: [
-                //         Image.asset('assets/images/profile 1.png',
-                //         width: 50,
-                //         height: 50,),
-                //         const SizedBox(width: 10,),
-                //         Text('Zhafira\n -',
-                //         style: GoogleFonts.ubuntu(
-                //           fontSize: 14,
-                //           fontWeight: FontWeight.bold,
-                //         ),),
-                //         const SizedBox(width: 150,),
-                //         IconButton.filledTonal(onPressed: (){
-                //           Navigator.push(context, 
-                //           MaterialPageRoute(builder: (context) => const EditProfileView()));
-                //         }, 
-                //         icon: Icon(Icons.edit, color: GlobalColors.mainColor,)
-                //         ),
-                //         ],
-                //       ),
-                //       const SizedBox(height: 20,),
-                //       Text('Email',
-                //       style: GoogleFonts.ubuntu(
-                //       fontSize: 12,
-                //       fontWeight: FontWeight.bold,)
-                //       ),
-                //       Text('Zhafira12@gmail.com',
-                //       style: GoogleFonts.ubuntu(
-                //       fontSize: 12,
-                //       fontWeight: FontWeight.w300,)
-                //       )
-                //     ],
-                //    )
-                // ),
-                
-                
-                // Container(
-                //   width: 380,
-                //   margin: const EdgeInsets.only(left: 20, right: 20, top: 15),
-                //    padding: const EdgeInsets.all(10),
-                //    decoration: BoxDecoration(
-                //       color: Colors.white,
-                //       borderRadius: BorderRadius.circular(10),
-                //       boxShadow: const [
-                //        BoxShadow(
-                //          color: Colors.black38,
-                //          blurRadius: 6,
-                //        ),
-                //       ]
-                //    ),
-                //    child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       TextButton.icon(onPressed: (){}, icon: Icon(Icons.verified_user_rounded, color: GlobalColors.mainColor, size: 20,),  
-                //       label: Text('Verifikasi Email',
-                //       style: GoogleFonts.ubuntu(
-                //       fontSize: 16,
-                //       fontWeight: FontWeight.bold,
-                //       color: Colors.black))),
-
-                //       TextButton.icon(onPressed: (){
-                //         Navigator.push(context, 
-                // MaterialPageRoute(builder: (context) => const NewPassView()));
-                //       }, 
-                //       icon: Icon(Icons.key, color: GlobalColors.mainColor, size: 20,),  
-                //       label: Text('Ubah Kata Sandi',
-                //       style: GoogleFonts.ubuntu(
-                //       fontSize: 16,
-                //       fontWeight: FontWeight.bold,
-                //       color: Colors.black))),
-
-                //       // TextButton.icon(onPressed: (){}, icon: Icon(Icons.language, color: GlobalColors.mainColor, size: 20,),  
-                //       // label: Text('Ganti Bahasa',
-                //       // style: GoogleFonts.ubuntu(
-                //       // fontSize: 16,
-                //       // fontWeight: FontWeight.bold,
-                //       // color: Colors.black))),
-
-                //       TextButton.icon(onPressed: (){}, icon: Icon(Icons.delete, color: GlobalColors.mainColor, size: 20,),  
-                //       label: Text('Hapus Akun',
-                //       style: GoogleFonts.ubuntu(
-                //       fontSize: 16,
-                //       fontWeight: FontWeight.bold,
-                //       color: Colors.black))),
-                //     ],
-                //    ),
-                // ),
-                TextButton(onPressed: (){
-                  Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const LoginView()));
-                }, 
-                child: Text('Keluar Akun',
-                style: GoogleFonts.ubuntu(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: GlobalColors.mainColor))
-                      )
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextButton.icon(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.verified_user_rounded,
+                                color: GlobalColors.mainColor,
+                                size: 20,
+                              ),
+                              label: Text('Verifikasi Email',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black))),
+                          Divider(thickness: 1.0, color: Colors.grey.shade400),
+                          TextButton.icon(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const NewPassView()));
+                              },
+                              icon: Icon(
+                                Icons.key,
+                                color: GlobalColors.mainColor,
+                                size: 20,
+                              ),
+                              label: Text('Ubah Kata Sandi',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black))),
+                          Divider(thickness: 1.0, color: Colors.grey.shade400),
+                          TextButton.icon(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.delete,
+                                color: GlobalColors.mainColor,
+                                size: 20,
+                              ),
+                              label: Text('Hapus Akun',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black))),
+                        ],
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () async {
+                          //sebelum ke splash hapus sessionya supaya dibaca tidak login
+                          SharedPreferences pref =
+                              await SharedPreferences.getInstance();
+                          await pref.clear(); //utk hapus session
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SplashView()),
+                            (route) => false,
+                          );
+                        },
+                        child: Text('Keluar Akun',
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: GlobalColors.mainColor)))
+                  ],
+                )
               ],
-            )
+            ),
+            Visibility(
+              visible: isLoading,
+              child: const Positioned.fill(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+            ),
           ],
-        ),),
+        ),
+      ),
     );
   }
 }

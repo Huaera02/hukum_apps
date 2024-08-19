@@ -67,23 +67,23 @@ class _DetailPesananUserViewState extends State<DetailPesananUserView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Info Transaksi',
-                            style: GoogleFonts.ubuntu(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),),
-                            Text('Berhasil',
-                            style: GoogleFonts.ubuntu(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.green.shade400
-                            ),),
-                          ],
-                        ),
-                        const SizedBox(height: 10,),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     Text('Info Transaksi',
+                        //     style: GoogleFonts.ubuntu(
+                        //       fontWeight: FontWeight.bold,
+                        //       fontSize: 16,
+                        //     ),),
+                        //     Text('Berhasil',
+                        //     style: GoogleFonts.ubuntu(
+                        //       fontWeight: FontWeight.bold,
+                        //       fontSize: 16,
+                        //       color: Colors.green.shade400
+                        //     ),),
+                        //   ],
+                        // ),
+                        // const SizedBox(height: 10,),
                         Container(
                           padding: const EdgeInsets.all(10),
                           width: 500,
@@ -181,10 +181,20 @@ class _DetailPesananUserViewState extends State<DetailPesananUserView> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14,)
                                       ),
-                                      Text('Chat / 30 Menit',
-                                      style: GoogleFonts.ubuntu(
-                                        fontWeight: FontWeight.w100,
-                                        fontSize: 14,)
+                                      Row(                                       
+                                        children: [
+                                          Text('Chat / 30 Menit x1',
+                                          style: GoogleFonts.ubuntu(
+                                            fontWeight: FontWeight.w100,
+                                            fontSize: 14,)
+                                          ),
+                                          const SizedBox(width: 104,),
+                                          Text('Rp.52.000',
+                                              style: GoogleFonts.ubuntu(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,)
+                                              ),
+                                        ],
                                       ),
                                       
                                     ],
@@ -210,7 +220,7 @@ class _DetailPesananUserViewState extends State<DetailPesananUserView> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14,)
                                       ),
-                                      Text('Keluarga',
+                                      Text('Pidana',
                                       style: GoogleFonts.ubuntu(
                                         fontWeight: FontWeight.w100,
                                         fontSize: 14,)
@@ -239,7 +249,7 @@ class _DetailPesananUserViewState extends State<DetailPesananUserView> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14,)
                                       ),
-                                      Text('Perceraian',
+                                      Text('Pembunuhan',
                                       style: GoogleFonts.ubuntu(
                                         fontWeight: FontWeight.w100,
                                         fontSize: 14,)
@@ -282,24 +292,24 @@ class _DetailPesananUserViewState extends State<DetailPesananUserView> {
                           ),
                         ),
                                 
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20, bottom: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Total',
-                              style: GoogleFonts.ubuntu(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,)
-                              ),
-                              Text('52.000',
-                              style: GoogleFonts.ubuntu(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,)
-                              )
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 20, bottom: 20),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Text('Total',
+                        //       style: GoogleFonts.ubuntu(
+                        //         fontWeight: FontWeight.bold,
+                        //         fontSize: 16,)
+                        //       ),
+                        //       Text('52.000',
+                        //       style: GoogleFonts.ubuntu(
+                        //         fontWeight: FontWeight.bold,
+                        //         fontSize: 16,)
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                     ]
