@@ -2,12 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:loginn/bayar.dart';
 import 'package:loginn/global_colors.dart';
+import 'package:loginn/riwayat_mitra.dart';
 // import 'package:loginn/riwayat_mitra.dart';
 import 'package:loginn/riwayat_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class MenungguBayarView extends StatelessWidget {
+class MenungguBayarView extends StatefulWidget {
   const MenungguBayarView({super.key});
 
+  @override
+  State<MenungguBayarView> createState() => _MenungguBayarViewState();
+}
+
+class _MenungguBayarViewState extends State<MenungguBayarView> {
+  String role = '';
+  SharedPreferences? pref;
+
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  void init() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      role = pref.getString('tipeKontakAlias') ?? '';
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +81,10 @@ class MenungguBayarView extends StatelessWidget {
                   backgroundColor: GlobalColors.mainColor,
                 ),
                 onPressed: () {
+                  role == 'advokat' || role == 'notaris'?
                   Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const RiwayatMitraView()))
+                : Navigator.push(context, 
                 MaterialPageRoute(builder: (context) => const HistoryView()));
                 },
                 child: Text('Konsultasi Saya',

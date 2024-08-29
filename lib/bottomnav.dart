@@ -5,7 +5,11 @@ import 'package:loginn/dash_view.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/pesan.dart';
 import 'package:loginn/profile_mitra.dart';
+import 'package:loginn/profile_mitraNotaris.dart';
+// import 'package:loginn/profile_mitraNotaris.dart';
 import 'package:loginn/profile_view.dart';
+import 'package:loginn/riwayat_mitra.dart';
+// import 'package:loginn/riwayat_mitraNotaris.dart';
 import 'package:loginn/riwayat_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,6 +50,26 @@ class _BottomNavViewState extends State<BottomNavView> {
     super.setState(fn);
   }
 
+  Widget getProfileView() {
+    if (role == 'advokat') {
+      return const ProfileMitraView();
+    } else if (role == 'notaris') {
+      return const ProfileMitraNotarisView();
+    } else {
+      return const ProfileView();
+    }
+  }
+
+  // Widget getHistoryView() {
+  //   if (role == 'advokat') {
+  //     return const RiwayatMitraView();
+  //   } else if (role == 'notaris') {
+  //     return const RiwayatMitraNotarisView();
+  //   } else {
+  //     return const HistoryView();
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     init();
@@ -53,10 +77,20 @@ class _BottomNavViewState extends State<BottomNavView> {
       const DashboardView(),
       const CariAdvokatView(),
       const PesanView(),
-      const HistoryView(),
       role == 'advokat' || role == 'notaris'
-          ? const ProfileMitraView()
-          : const ProfileView()
+          ? const RiwayatMitraView()
+          : const HistoryView(),
+      // getHistoryView(),
+      getProfileView(),
+
+      // role == 'advokat' || role == 'notaris'
+      // role == 'advokat'
+      // ? const ProfileMitraView()
+      // : const ProfileView(),
+
+      // role == 'notaris'
+      // ? const ProfileMitraNotarisView()
+      // : const ProfileView()
     ];
 
     final bottomNavbarItems = <BottomNavigationBarItem>[

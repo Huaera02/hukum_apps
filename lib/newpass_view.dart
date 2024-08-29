@@ -84,8 +84,8 @@ class NewPassView extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                   backgroundColor: GlobalColors.mainColor,),
                   onPressed: (){
-                    Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const BottomNavView()));
+                //     Navigator.push(context, 
+                // MaterialPageRoute(builder: (context) => const BottomNavView()));
                   }, 
                 child: Text('Comfirm New Password',
                 style: GoogleFonts.ubuntu(

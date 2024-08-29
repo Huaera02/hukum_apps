@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
+import 'package:loginn/layanan_chat.dart';
 import 'package:loginn/repository.dart';
 // import 'package:loginn/ubah_data_mitra.dart';
 
@@ -33,7 +34,7 @@ postDataPendidikan() async{
       thnLulus: thnLulusController.text
     );
     isLoading = false;
-    if (response['status'] == true) {
+    if (response['status'] == true) {      
       Navigator.of(context).pop(true);
     } else {
       showDialog(

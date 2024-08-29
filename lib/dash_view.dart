@@ -11,12 +11,15 @@ import 'package:loginn/global_colors.dart';
 // import 'package:loginn/layanan_notaris.dart';
 // import 'package:loginn/meet_advokat.dart';
 import 'package:loginn/notif_view.dart';
-import 'package:loginn/pilih_layanan.dart';
-import 'package:loginn/pilih_layanan2.dart';
-import 'package:loginn/profile_advokat1.dart';
-import 'package:loginn/profile_advokat2.dart';
+import 'package:loginn/pilih_advokat.dart';
+// import 'package:loginn/pilih_layanan.dart';
+// import 'package:loginn/pilih_layanan2.dart';
+// import 'package:loginn/profile_advokat1.dart';
+// import 'package:loginn/profile_advokat2.dart';
 import 'package:loginn/cari_advokat.dart';
+import 'package:loginn/ppat.dart';
 import 'package:loginn/repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({Key? key}) : super(key: key);
@@ -34,7 +37,12 @@ class _DashboardViewState extends State<DashboardView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getProfileAdvokat();
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    var kontakId = pref.getString("id_kontak");
+    Map<String, dynamic> response =
+        await repository.getProfileAdvokat(idAdvokat: kontakId ?? '');
+
 
     isLoading = false;
 
@@ -180,7 +188,7 @@ class _DashboardViewState extends State<DashboardView> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              PilihLayananView()));
+                                              PilihAdvokatView()));
                                 },
                                 splashColor: GlobalColors.btnColor,
                                 child: Center(
@@ -210,7 +218,7 @@ class _DashboardViewState extends State<DashboardView> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const PilihLayanan2View()));
+                                              const PilihNotarisView()));
                                 },
                                 splashColor: GlobalColors.btnColor,
                                 child: Center(
@@ -434,11 +442,11 @@ class _DashboardViewState extends State<DashboardView> {
                                   //Advokat 1
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ProfileAdvokat1View()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             const ProfileAdvokat1View()));
                                     },
                                     splashColor: GlobalColors.btnColor,
                                     child: Container(
@@ -561,11 +569,11 @@ class _DashboardViewState extends State<DashboardView> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ProfileAdvokat2View()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             const ProfileAdvokat2View()));
                                     },
                                     splashColor: GlobalColors.btnColor,
                                     child: Container(
@@ -729,11 +737,11 @@ class _DashboardViewState extends State<DashboardView> {
                                   //Notaris dan PPAT Populer 1
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ProfileAdvokat1View()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             const ProfileAdvokat1View()));
                                     },
                                     splashColor: GlobalColors.btnColor,
                                     child: Container(
@@ -856,11 +864,11 @@ class _DashboardViewState extends State<DashboardView> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ProfileAdvokat2View()));
+                                      // Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             const ProfileAdvokat2View()));
                                     },
                                     splashColor: GlobalColors.btnColor,
                                     child: Container(

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,25 +8,22 @@ import 'package:loginn/pilih_metode_pembayaran.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:loginn/sambungkan_ewalet.dart';
 
-class PembayaranView extends StatefulWidget {
+class PembayaranNotarisView extends StatefulWidget {
   final Map<String, dynamic> mitra;
   final Map<String, dynamic> produk;
-  final Map<String, dynamic> klasifikasi;
-  final String judul;
-  final String deskripsi;
-  const PembayaranView(
-      {super.key,
-      required this.mitra,
-      required this.produk,
-      required this.klasifikasi,
-      required this.judul,
-      required this.deskripsi});
+  final String desc;
+  const PembayaranNotarisView({
+    super.key,
+    required this.mitra,
+    required this.produk,
+    this.desc = '',
+  });
 
   @override
-  State<PembayaranView> createState() => _PembayaranViewState();
+  State<PembayaranNotarisView> createState() => _PembayaranNotarisViewState();
 }
 
-class _PembayaranViewState extends State<PembayaranView> {
+class _PembayaranNotarisViewState extends State<PembayaranNotarisView> {
   Map<String, dynamic> metodeBayar = {};
   bool isLoading = false;
   Repository repository = Repository();
@@ -65,20 +61,19 @@ class _PembayaranViewState extends State<PembayaranView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.postDetailMasalah(
-        idMitra: widget.mitra['id'],
-        idProduk: widget.produk['id'],
-        harga: widget.produk['harga_jual'],
-        qyt: '1',
-        durasi: widget.produk['durasi'],
-        diskon: '0',
-        subtotal: widget.produk['harga_jual'],
-        total: widget.produk['harga_jual'],
-        status: '1',
-        tanggal: DateTime.now().toString(),
-        klasifikasi: widget.klasifikasi['id'],
-        judul: widget.judul,
-        deskripsi: widget.deskripsi);
+    Map<String, dynamic> response = await repository.postCheckoutNotaris(
+      idMitra: widget.mitra['id'],
+      idProduk: widget.produk['id'],
+      harga: widget.produk['harga_jual'],
+      qyt: '1',
+      durasi: widget.produk['durasi'],
+      diskon: '0',
+      subtotal: widget.produk['harga_jual'],
+      total: widget.produk['harga_jual'],
+      status: '1',
+      tanggal: DateTime.now().toString(),
+      desc: widget.desc,
+    );
     isLoading = false;
     if (response['status'] == true) {
       // Navigator.of(context).pop(true);
@@ -124,36 +119,6 @@ class _PembayaranViewState extends State<PembayaranView> {
     email = pref.getString("email") ?? '';
     isLoading = false;
     setState(() {});
-
-    // if (response['status'] == true) {
-    //   // listData = response['namaPelanggan'];
-    //   listData =
-    //       List<Map<String, dynamic>>.from(response['namaPelanggan']);
-
-    // } else {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return AlertDialog(
-    //         shape: RoundedRectangleBorder(
-    //           borderRadius: BorderRadius.circular(5),
-    //         ),
-    //         title: Padding(
-    //           padding: const EdgeInsets.all(3),
-    //           child: Center(
-    //             child: Text(
-    //               response['msg'],
-    //               style: GoogleFonts.ubuntu(
-    //                 fontSize: 16,
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
-    // }
-    //
   }
 
   @override
@@ -238,87 +203,89 @@ class _PembayaranViewState extends State<PembayaranView> {
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      email,
-                                      style: GoogleFonts.ubuntu(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        )),
-                    Container(
-                        alignment: Alignment.topLeft,
-                        margin: const EdgeInsets.only(top: 10),
-                        padding: const EdgeInsets.all(15),
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromARGB(96, 63, 35, 35),
-                                blurRadius: 6,
-                              ),
-                            ]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.cases_outlined,
-                                  color: GlobalColors.mainColor,
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'Informasi Kasus',
-                                  style: GoogleFonts.ubuntu(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
                                     Expanded(
                                       child: Text(
-                                        widget.klasifikasi['nama'],
+                                        email,
                                         style: GoogleFonts.ubuntu(
                                           fontSize: 14,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w300,
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      widget.judul,
-                                      style: GoogleFonts.ubuntu(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         )),
+                    // Container(
+                    //     alignment: Alignment.topLeft,
+                    //     margin: const EdgeInsets.only(top: 10),
+                    //     padding: const EdgeInsets.all(15),
+                    //     decoration: const BoxDecoration(
+                    //         color: Colors.white,
+                    //         boxShadow: [
+                    //           BoxShadow(
+                    //             color: Color.fromARGB(96, 63, 35, 35),
+                    //             blurRadius: 6,
+                    //           ),
+                    //         ]),
+                    //     child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       mainAxisAlignment: MainAxisAlignment.start,
+                    //       children: [
+                    //         Row(
+                    //           children: [
+                    //             Icon(
+                    //               Icons.cases_outlined,
+                    //               color: GlobalColors.mainColor,
+                    //             ),
+                    //             const SizedBox(
+                    //               width: 5,
+                    //             ),
+                    //             Text(
+                    //               'Informasi Kasus',
+                    //               style: GoogleFonts.ubuntu(
+                    //                 fontSize: 14,
+                    //                 fontWeight: FontWeight.bold,
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //         const SizedBox(
+                    //           height: 10,
+                    //         ),
+                    //         Column(
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           mainAxisAlignment: MainAxisAlignment.start,
+                    //           children: [
+                    //             Row(
+                    //               crossAxisAlignment: CrossAxisAlignment.start,
+                    //               mainAxisAlignment:
+                    //                   MainAxisAlignment.spaceBetween,
+                    //               children: [
+                    //                 Text(
+                    //                   '',
+                    //                   // widget.klasifikasi['nama'],
+                    //                   style: GoogleFonts.ubuntu(
+                    //                     fontSize: 14,
+                    //                     fontWeight: FontWeight.w500,
+                    //                   ),
+                    //                 ),
+                    //                 Text(
+                    //                   '',
+                    //                   // widget.judul,
+                    //                   style: GoogleFonts.ubuntu(
+                    //                     fontSize: 14,
+                    //                     fontWeight: FontWeight.w300,
+                    //                   ),
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ],
+                    //         )
+                    //       ],
+                    //     )),
                     Container(
                         alignment: Alignment.topLeft,
                         margin: const EdgeInsets.only(top: 10),
@@ -345,7 +312,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                   width: 5,
                                 ),
                                 Text(
-                                  'Informasi Advokat',
+                                  'Informasi Notaris',
                                   style: GoogleFonts.ubuntu(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -431,11 +398,13 @@ class _PembayaranViewState extends State<PembayaranView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      widget.produk['nama'],
-                                      style: GoogleFonts.ubuntu(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
+                                    Expanded(
+                                      child: Text(
+                                        widget.produk['nama'],
+                                        style: GoogleFonts.ubuntu(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                     // const SizedBox(height: 5),

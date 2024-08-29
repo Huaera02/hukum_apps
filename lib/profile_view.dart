@@ -25,7 +25,11 @@ class _ProfileViewState extends State<ProfileView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getProfileAdvokat();
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    var kontakId = pref.getString("id_kontak");
+    Map<String, dynamic> response =
+        await repository.getProfileAdvokat(idAdvokat: kontakId ?? '');
 
     isLoading = false;
 
@@ -160,7 +164,8 @@ class _ProfileViewState extends State<ProfileView> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const FormMitraView()));
+                                    builder: (context) =>
+                                        const FormMitraView()));
                           },
                           icon: Icon(
                             Icons.group_add,
@@ -200,7 +205,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const NewPassView()));
+                                        builder: (context) =>
+                                            const NewPassView()));
                               },
                               icon: Icon(
                                 Icons.key,

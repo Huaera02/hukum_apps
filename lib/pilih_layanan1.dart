@@ -7,7 +7,8 @@ import 'package:loginn/masukkan_masalah.dart';
 import 'package:loginn/repository.dart';
 
 class PilihLayanan1View extends StatefulWidget {
-  const PilihLayanan1View({super.key});
+  final  Map<String,dynamic> mitra;
+  const PilihLayanan1View({super.key, required this.mitra});
 
   @override
   State<PilihLayanan1View> createState() => _PilihLayanan1ViewState();
@@ -24,7 +25,9 @@ class _PilihLayanan1ViewState extends State<PilihLayanan1View> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getLayananMitra();
+    Map<String, dynamic> response = await repository.getLayananMitra(
+      idKontak: widget.mitra['id']
+    );
 
     isLoading = false;
 
@@ -185,7 +188,10 @@ class _PilihLayanan1ViewState extends State<PilihLayanan1View> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const MasukkanMasalahmuView()));
+                                 MasukkanMasalahmuView(
+                                      mitra: widget.mitra,
+                                      produk: listLayanan[_value - 1],
+                                    )));
                       },
                       child: Text('Selanjutnya',
                           style: GoogleFonts.ubuntu(

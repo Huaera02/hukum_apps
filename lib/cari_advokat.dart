@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +9,7 @@ import 'package:loginn/global_colors.dart';
 import 'package:loginn/profile_advokat1.dart';
 // import 'package:loginn/profile_advokat2.dart';
 import 'package:loginn/repository.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CariAdvokatView extends StatefulWidget {
   const CariAdvokatView({super.key});
@@ -61,6 +65,7 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
     setState(() {
       isLoading = true;
     });
+
     Map<String, dynamic> response = await repository.cariAdvokat(
       nama: cariMitraController.text,
       tipe: tag == 0 ? 'advokat' : 'notaris',
@@ -97,10 +102,23 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
     setState(() {});
   }
 
+  init() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var tipeKontak = pref.getString('tipeKontakAlias');
+    
+    if (tipeKontak == 'notaris') {
+      tag = 1;
+    } else {
+      tag = 0;
+    }
+    setState(() {});
+    getData();
+  }
+
   @override
   void initState() {
     super.initState();
-    getData();
+    init();
   }
 
   @override
@@ -485,8 +503,9 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ProfileAdvokat1View()));
+                                  builder: (context) => ProfileAdvokat1View(
+                                        idMitra: listData[index]['id'],
+                                      )));
                         },
                         splashColor: GlobalColors.btnColor,
                         child: Container(

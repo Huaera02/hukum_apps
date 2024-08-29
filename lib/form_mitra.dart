@@ -5,6 +5,7 @@ import 'package:loginn/global_colors.dart';
 // import 'package:loginn/profile_mitra.dart';
 import 'package:loginn/repository.dart';
 import 'package:loginn/ubah_data_mitra.dart';
+import 'package:loginn/ubah_data_mitraNotaris.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FormMitraView extends StatefulWidget {
@@ -15,17 +16,19 @@ class FormMitraView extends StatefulWidget {
 }
 
 class _FormMitraViewState extends State<FormMitraView> {
+  String role = '';
+  SharedPreferences? pref;
+
   int _value = 1;
   bool? isCheck = false;
 
   Repository repository = Repository();
-  final namaController = TextEditingController();  
+  final namaController = TextEditingController();
   final companyController = TextEditingController();
 
   String? nama = '';
   String? email = '';
   String? noHp = '';
-  
 
   @override
   void initState() {
@@ -39,6 +42,7 @@ class _FormMitraViewState extends State<FormMitraView> {
       nama = pref.getString('nama');
       email = pref.getString('email');
       noHp = pref.getString('noHp');
+      role = pref.getString('tipeKontakAlias') ?? '';
     });
   }
 
@@ -122,76 +126,74 @@ class _FormMitraViewState extends State<FormMitraView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [                    
+                      children: [
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Nama Lengkap',
-                              style: GoogleFonts.ubuntu(
+                                style: GoogleFonts.ubuntu(
                                   fontSize: 16,
-                              )
-                            ),
+                                )),
                             const SizedBox(height: 10),
                             Text('Email',
-                              style: GoogleFonts.ubuntu(
+                                style: GoogleFonts.ubuntu(
                                   fontSize: 16,
-                              )
-                            ),
+                                )),
                             const SizedBox(height: 10),
                             Text('No Hp',
-                              style: GoogleFonts.ubuntu(
+                                style: GoogleFonts.ubuntu(
                                   fontSize: 16,
-                              )
-                            ),
+                                )),
                           ],
                         ),
-                        const SizedBox(width: 20,),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              ': ${nama ?? ''}',
-                              style: GoogleFonts.ubuntu(
-                              fontSize: 16,
-                            )),
+                            Text(': ${nama ?? ''}',
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 16,
+                                )),
                             const SizedBox(height: 10),
-                            Text(
-                              ': ${email ?? ''}',
-                              style: GoogleFonts.ubuntu(
-                              fontSize: 16,
-                            )),
+                            Text(': ${email ?? ''}',
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 16,
+                                )),
                             const SizedBox(height: 10),
-                            Text(
-                              ': ${noHp ?? ''}',
-                              style: GoogleFonts.ubuntu(
-                              fontSize: 16,
-                            )),
+                            Text(': ${noHp ?? ''}',
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 16,
+                                )),
                           ],
                         ),
                       ],
-                    ),                
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10,),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: isCheck, 
-                      activeColor: GlobalColors.mainColor,              
-                      onChanged: (newBool){
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                      value: isCheck,
+                      activeColor: GlobalColors.mainColor,
+                      onChanged: (newBool) {
                         setState(() {
                           isCheck = newBool;
                         });
                       }),
-                      Text('Apakah Benar Anda Seorang Advokat atau Notaris/PPAT ',
-                      style: GoogleFonts.ubuntu(
-                        fontSize: 12
-                      ),)
-                  ],
-                )
+                  Text(
+                    'Apakah Benar Anda Seorang Advokat atau Notaris/PPAT ',
+                    style: GoogleFonts.ubuntu(fontSize: 12),
+                  )
+                ],
+              )
             ],
           ),
           Container(
@@ -203,9 +205,10 @@ class _FormMitraViewState extends State<FormMitraView> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: GlobalColors.mainColor,
               ),
-              onPressed: () async {                
+              onPressed: () async {
                 Map<String, dynamic> response = await repository.postDataMitra(
-                    '${namaController.text} ${companyController.text}',_value==1?'advokat':'notaris');
+                    '${namaController.text} ${companyController.text}',
+                    _value == 1 ? 'advokat' : 'notaris');
                 if (response['status'] == true) {
                   await showDialog(
                     context: context,
@@ -224,13 +227,13 @@ class _FormMitraViewState extends State<FormMitraView> {
                                   size: 100,
                                   color: Colors.green,
                                 ),
-                                Text(                                  
-                                  '${response['msg']}, Harap Melengkapi Data Diri pada Profile',      
+                                Text(
+                                  '${response['msg']}, Harap Melengkapi Data Diri pada Profile',
                                   style: GoogleFonts.ubuntu(
                                     fontSize: 16,
                                   ),
                                   textAlign: TextAlign.center,
-                                ),                                
+                                ),
                               ],
                             ),
                           ),
@@ -238,11 +241,15 @@ class _FormMitraViewState extends State<FormMitraView> {
                       );
                     },
                   );
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const UbahDataMitraView(),
-                  ));                              
+                  role == 'advokat'
+                      ? Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const UbahDataMitraView(),
+                        ))
+                      : Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) =>
+                              const UbahDataMitraNotarisView(),
+                        ));
                 } else {
-
                   showDialog(
                     context: context,
                     builder: (context) {
@@ -265,7 +272,7 @@ class _FormMitraViewState extends State<FormMitraView> {
                     },
                   );
                 }
-              },              
+              },
               child: Text(
                 'Daftar',
                 style: GoogleFonts.ubuntu(
@@ -275,7 +282,7 @@ class _FormMitraViewState extends State<FormMitraView> {
                 ),
               ),
             ),
-          ),          
+          ),
         ],
       ),
     );

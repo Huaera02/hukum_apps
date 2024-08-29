@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
 import 'package:loginn/tambah_layanan.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LayananChatView extends StatefulWidget {
   const LayananChatView({super.key});
@@ -13,15 +14,24 @@ class LayananChatView extends StatefulWidget {
 }
 
 class _LayananChatViewState extends State<LayananChatView> {
+  String role = '';
+  SharedPreferences? pref;
   bool isLoading = false;
   Repository repository = Repository();
   List<Map<String, dynamic>> listLayanan = [];
+
+  void init() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      role = pref.getString('tipeKontakAlias') ?? '';
+    });
+  }
 
   getData() async {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getLayananMitra();
+    Map<String, dynamic> response = await repository.getSemuaLayananMitra();
 
     isLoading = false;
 
@@ -92,7 +102,7 @@ class _LayananChatViewState extends State<LayananChatView> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getData();    
   }
 
   @override
@@ -102,7 +112,7 @@ class _LayananChatViewState extends State<LayananChatView> {
         foregroundColor: Colors.white,
         backgroundColor: GlobalColors.mainColor,
         title: Text(
-          'Buat Layanan Chat',
+          'Daftar Layanan',
           style: GoogleFonts.ubuntu(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -204,12 +214,13 @@ class _LayananChatViewState extends State<LayananChatView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,
                       ),
-                      onPressed: () {
-                        Navigator.push(
+                      onPressed: () async{
+                       var result = await Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
                                     const TambahLayanaView()));
+                                    if (result!=null)getData();
                       },
                       child: Text('Buat Layanan',
                           style: GoogleFonts.ubuntu(

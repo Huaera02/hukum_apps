@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/masukkan_masalah.dart';
 import 'package:loginn/profile_advokat1.dart';
-import 'package:loginn/profile_advokat2.dart';
+// import 'package:loginn/profile_advokat2.dart';
 
 class ChtAdvokat1View extends StatefulWidget {
   const ChtAdvokat1View({super.key});
@@ -69,8 +69,8 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                       children: [
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => const ProfileAdvokat1View()));
+                            // Navigator.push(context, 
+                            // MaterialPageRoute(builder: (context) => const ProfileAdvokat1View()));
                           },
                           splashColor: GlobalColors.btnColor,
                           child: Container(
@@ -155,8 +155,8 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                                             const SizedBox(width: 90,),
                                             ElevatedButton(
                                               onPressed: () {
-                                                Navigator.push(context, 
-                                                MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
+                                                // Navigator.push(context, 
+                                                // MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
                                               },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: GlobalColors.mainColor,
@@ -185,8 +185,8 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                         const SizedBox(height: 10,),
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => const ProfileAdvokat2View()));
+                            // Navigator.push(context, 
+                            // MaterialPageRoute(builder: (context) => const ProfileAdvokat2View()));
                           },
                           splashColor: GlobalColors.btnColor,
                           child: Container(
@@ -271,8 +271,8 @@ class _ChtAdvokat1ViewState extends State<ChtAdvokat1View> {
                                             const SizedBox(width: 90,),
                                             ElevatedButton(
                                               onPressed: () {
-                                                Navigator.push(context, 
-                                                MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
+                                                // Navigator.push(context, 
+                                                // MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
                                               },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: GlobalColors.mainColor,

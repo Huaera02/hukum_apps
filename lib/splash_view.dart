@@ -1,14 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
 import 'package:loginn/bottomnav.dart';
-// import 'package:loginn/bottomnav.dart';
-// import 'package:loginn/dash_view.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/login_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:loginn/login_view.dart';
+
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});

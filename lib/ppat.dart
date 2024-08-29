@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:loginn/bayar%20notarisppat.dart';
 import 'package:loginn/global_colors.dart';
+import 'package:loginn/pilih_layanan2.dart';
 // import 'package:loginn/masukkan_masalah.dart';
-import 'package:loginn/pilih_layanan.dart';
 import 'package:loginn/repository.dart';
 
-class PilihAdvokatView extends StatefulWidget {
+class PilihNotarisView extends StatefulWidget {
   // final Map<String,dynamic> produk;
-  const PilihAdvokatView({super.key});
+  const PilihNotarisView({super.key, }
+    // {super.key, required this.produk}
+    );
 
   @override
-  State<PilihAdvokatView> createState() => _PilihAdvokatViewState();
+  State<PilihNotarisView> createState() => _PilihNotarisViewState();
 }
 
-class _PilihAdvokatViewState extends State<PilihAdvokatView> {
+class _PilihNotarisViewState extends State<PilihNotarisView> {
   // List<String> bidangKeahlian = ['Perceraian', 'Sengketa', 'Gono Gini', 'Warisan'];
   // List<String> pengalaman = ['<5 tahun', '5 tahun', '> 5 tahun'];
   // List<String> kabupatenKota = ['Makassar', 'Maros', 'Bone', 'Sidrap', 'Soppeng'];
@@ -58,6 +61,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
     Map<String, dynamic> response = await repository.cariAdvokat(
       nama: cariMitraController.text,
       kabKota: tags,
+      tipe: 'notaris',
     );
 
     isLoading = false;
@@ -464,8 +468,9 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                PilihLayananView(mitra: listData[_value-1])));
-                                    // MasukkanMasalahmuView(produk: widget.produk, mitra: listData[_value-1],)));
+                                    PilihLayanan2View(
+                                      // produk: widget.produk, 
+                                      mitra: listData[_value-1],)));
                       },
                       child: Text('Selanjutnya',
                           style: GoogleFonts.ubuntu(

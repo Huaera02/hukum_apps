@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/pilih_layanan_meeting.dart';
-import 'package:loginn/profile_advokat1.dart';
-import 'package:loginn/profile_advokat2.dart';
+// import 'package:loginn/profile_advokat1.dart';
+// import 'package:loginn/profile_advokat2.dart';
 
 class MeetingAdvokatView extends StatefulWidget {
   const MeetingAdvokatView({super.key});
@@ -65,8 +65,8 @@ class _MeetingAdvokatViewState extends State<MeetingAdvokatView> {
                       children: [
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => const ProfileAdvokat1View()));
+                            // Navigator.push(context, 
+                            // MaterialPageRoute(builder: (context) => const ProfileAdvokat1View()));
                           },
                           splashColor: GlobalColors.btnColor,
                           child: Container(
@@ -181,8 +181,8 @@ class _MeetingAdvokatViewState extends State<MeetingAdvokatView> {
                       const SizedBox(height: 10,),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) => const ProfileAdvokat2View()));
+                          // Navigator.push(context, 
+                          // MaterialPageRoute(builder: (context) => const ProfileAdvokat2View()));
                         },
                         splashColor: GlobalColors.btnColor,
                         child: Container(

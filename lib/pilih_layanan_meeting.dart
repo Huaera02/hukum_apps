@@ -299,8 +299,8 @@ class _LayananMeetingState extends State<LayananMeeting> {
                 style: ElevatedButton.styleFrom(
                 backgroundColor: GlobalColors.mainColor,),
                 onPressed: (){
-                  Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
+                  // Navigator.push(context, 
+                  // MaterialPageRoute(builder: (context) => const MasukkanMasalahmuView()));
                 }, 
               child: Text('Selanjutnya',
               style: GoogleFonts.ubuntu(

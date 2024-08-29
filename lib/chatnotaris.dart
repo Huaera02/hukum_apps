@@ -5,14 +5,14 @@ import 'package:loginn/global_colors.dart';
 import 'package:loginn/layanan_notaris.dart';
 // import 'package:loginn/profile_notaris1.dart';
 
-class PilihNotarisView extends StatefulWidget {
-  const PilihNotarisView({super.key});
+class Notarisppat2View extends StatefulWidget {
+  const Notarisppat2View({super.key});
 
   @override
-  State<PilihNotarisView> createState() => _PilihNotarisViewState();
+  State<Notarisppat2View> createState() => _Notarisppat2ViewState();
 }
 
-class _PilihNotarisViewState extends State<PilihNotarisView> {
+class _Notarisppat2ViewState extends State<Notarisppat2View> {
   List<int>? filterIndex;
 
   @override
@@ -170,7 +170,7 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
                                               ),
                                               onPressed: () {
                                                 Navigator.push(context, 
-                                              MaterialPageRoute(builder: (context) => const PilihNotarisView()));
+                                              MaterialPageRoute(builder: (context) => const Notarisppat2View()));
                                               },
                                               child: Text('Terapkan',
                                               style: GoogleFonts.ubuntu(

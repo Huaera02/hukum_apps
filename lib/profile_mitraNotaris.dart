@@ -8,16 +8,17 @@ import 'package:loginn/newpass_view.dart';
 import 'package:loginn/repository.dart';
 import 'package:loginn/riwayat_mitra.dart';
 import 'package:loginn/ubah_data_mitra.dart';
+import 'package:loginn/ubah_data_mitraNotaris.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ProfileMitraView extends StatefulWidget {
-  const ProfileMitraView({super.key});
+class ProfileMitraNotarisView extends StatefulWidget {
+  const ProfileMitraNotarisView({super.key});
 
   @override
-  State<ProfileMitraView> createState() => _ProfileMitraViewState();
+  State<ProfileMitraNotarisView> createState() => _ProfileMitraNotarisViewState();
 }
 
-class _ProfileMitraViewState extends State<ProfileMitraView> {
+class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
   bool isLoading = false;
   Repository repository = Repository();
   Map<String, dynamic> listData = {};
@@ -146,7 +147,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const UbahDataMitraView()));
+                                            const UbahDataMitraNotarisView()));
                               },
                               icon: Icon(
                                 Icons.edit,
@@ -427,7 +428,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Layanan Advokat',
+                            'Layanan Notaris/PPAT',
                             style: GoogleFonts.ubuntu(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -448,7 +449,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                               size: 20,
                             ),
                             label: Text(
-                              'Layanan Hukum',
+                              'Layanan Notaris/PPAT',
                               style: GoogleFonts.ubuntu(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
