@@ -68,7 +68,7 @@ class _HistoryViewState extends State<HistoryView> {
           foregroundColor: Colors.white,
           backgroundColor: GlobalColors.mainColor,
           title: Text(
-            'Index Konsultasi',
+            'Daftar Transaksi',
             style: GoogleFonts.ubuntu(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ class _HistoryViewState extends State<HistoryView> {
                 ),
                 Tab(
                   child: Text(
-                    'Riwayat Konsultasi',
+                    'Riwayat Transaksi',
                     style: GoogleFonts.ubuntu(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -110,189 +110,183 @@ class _HistoryViewState extends State<HistoryView> {
                   // Content for the first tab
                   Stack(
                     children: [
-                      ListView(
-                        children: [
-                          ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: indexKonsultasi.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                  margin: const EdgeInsets.only(
-                                      left: 20, top: 10, right: 20),
-                                  child: Column(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      DetailPesananView(
-                                                        idPenjualan:
-                                                            indexKonsultasi[
-                                                                index]['id'],
-                                                      )));
-                                        },
-                                        splashColor: GlobalColors.btnColor,
-                                        child: Container(
-                                            padding: const EdgeInsets.all(10),
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                    color: Colors.black38,
-                                                    blurRadius: 6,
-                                                  )
-                                                ]),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Row(
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: indexKonsultasi.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                                margin: const EdgeInsets.only(
+                                    left: 20, top: 10, right: 20),
+                                child: Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailPesananView(
+                                                      idPenjualan:
+                                                          indexKonsultasi[index]
+                                                              ['id'],
+                                                    )));
+                                      },
+                                      splashColor: GlobalColors.btnColor,
+                                      child: Container(
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Colors.black38,
+                                                  blurRadius: 6,
+                                                )
+                                              ]),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        indexKonsultasi[index]
+                                                            ['produk_nama'],
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w300),
+                                                      ),
+                                                      // const SizedBox(width: 3,),
+                                                      // Text(
+                                                      //   '${indexKonsultasi[index]['durasi']} Menit',
+                                                      //   style: GoogleFonts.ubuntu(
+                                                      //       fontSize: 14,
+                                                      //       fontWeight:
+                                                      //           FontWeight.w300),
+                                                      // ),
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    indexKonsultasi[index][
+                                                                'status_payment'] ==
+                                                            '1'
+                                                        ? 'Lunas'
+                                                        : 'Belum Lunas',
+                                                    style: GoogleFonts.ubuntu(
+                                                      fontSize: 14,
+                                                      color: indexKonsultasi[
+                                                                      index][
+                                                                  'status_payment'] ==
+                                                              '1'
+                                                          ? Colors.green
+                                                          : Colors.red,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  const Icon(
+                                                    Icons.watch_later_outlined,
+                                                    size: 15,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    indexKonsultasi[index]
+                                                        ['tanggal'],
+                                                    // 'Rabu, 20 Juni 2024',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 14),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  // Text(
+                                                  //   '8:00 - 8:30 AM',
+                                                  //   style: GoogleFonts.ubuntu(
+                                                  //       fontWeight: FontWeight.normal,
+                                                  //       fontSize: 14),
+                                                  // ),
+                                                ],
+                                              ),
+                                              Divider(
+                                                  thickness: 1.0,
+                                                  color: Colors.grey.shade400),
+                                              Row(
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/images/Nur.png',
+                                                    width: 50,
+                                                    height: 70,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Text(
                                                           indexKonsultasi[index]
-                                                              ['produk_nama'],
+                                                              [
+                                                              'master_kontak_nama'],
+                                                          // 'Nurmiati, S.H',
                                                           style: GoogleFonts
                                                               .ubuntu(
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w300),
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 16,
+                                                          ),
                                                         ),
-                                                        // const SizedBox(
-                                                        //   width: 3,
-                                                        // ),
-                                                        // Text(
-                                                        //   '${indexKonsultasi[index]['durasi']} Menit',
-                                                        //   style: GoogleFonts.ubuntu(
-                                                        //       fontSize: 14,
-                                                        //       fontWeight:
-                                                        //           FontWeight.w300),
-                                                        // ),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                      indexKonsultasi[index][
-                                                                  'status_payment'] ==
-                                                              '1'
-                                                          ? 'Lunas'
-                                                          : 'Belum Lunas',
-                                                      style: GoogleFonts.ubuntu(
-                                                        fontSize: 14,
-                                                        color: indexKonsultasi[
-                                                                        index][
-                                                                    'status_payment'] ==
-                                                                '1'
-                                                            ? Colors.green
-                                                            : Colors.red,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    const Icon(
-                                                      Icons
-                                                          .watch_later_outlined,
-                                                      size: 15,
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Text(
-                                                      indexKonsultasi[index]
-                                                          ['tanggal'],
-                                                      // 'Rabu, 20 Juni 2024',
-                                                      style: GoogleFonts.ubuntu(
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                          fontSize: 14),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    // Text(
-                                                    //   '8:00 - 8:30 AM',
-                                                    //   style: GoogleFonts.ubuntu(
-                                                    //       fontWeight: FontWeight.normal,
-                                                    //       fontSize: 14),
-                                                    // ),
-                                                  ],
-                                                ),
-                                                Divider(
-                                                    thickness: 1.0,
-                                                    color:
-                                                        Colors.grey.shade400),
-                                                Row(
-                                                  children: [
-                                                    Image.asset(
-                                                      'assets/images/Nur.png',
-                                                      width: 50,
-                                                      height: 70,
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Expanded(
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            indexKonsultasi[
-                                                                    index][
-                                                                'master_kontak_nama'],
-                                                            // 'Nurmiati, S.H',
-                                                            style: GoogleFonts
-                                                                .ubuntu(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 16,
-                                                            ),
+                                                        Text(
+                                                          indexKonsultasi[index]
+                                                              [
+                                                              'master_kontak_tipe_kontak_nama'],
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                            fontWeight:
+                                                                FontWeight.w100,
+                                                            fontSize: 14,
                                                           ),
-                                                          Text(
-                                                            indexKonsultasi[
-                                                                    index][
-                                                                'master_kontak_tipe_kontak_nama'],
-                                                            style: GoogleFonts
-                                                                .ubuntu(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w100,
-                                                              fontSize: 14,
-                                                            ),
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 10,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Text(
-                                                                  indexKonsultasi[
-                                                                              index]
-                                                                          [
-                                                                          'ref_klasifikasi_pidana_nama'] ??
-                                                                      '',
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
+                                                                  '${indexKonsultasi[index]['ref_klasifikasi_pidana_nama'] ?? ''}',
                                                                   style:
                                                                       GoogleFonts
                                                                           .ubuntu(
@@ -309,62 +303,63 @@ class _HistoryViewState extends State<HistoryView> {
                                                                   overflow:
                                                                       TextOverflow
                                                                           .ellipsis),
-                                                              const SizedBox(
-                                                                width: 3,
-                                                              ),
-                                                              Text('-',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  )),
-                                                              const SizedBox(
-                                                                width: 3,
-                                                              ),
-                                                              Text(
-                                                                  indexKonsultasi[
-                                                                              index]
-                                                                          [
-                                                                          'judul'] ??
-                                                                      indexKonsultasi[
-                                                                              index]
-                                                                          [
-                                                                          'produk_nama'],
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .left,
-                                                                  // maxLines: 1,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
+                                                            ),
+                                                            // const SizedBox(
+                                                            //   width: 3,
+                                                            // ),
+                                                            // Text(
+                                                            //   '-',
+                                                            //     style:
+                                                            //         GoogleFonts
+                                                            //             .ubuntu(
+                                                            //       fontSize:
+                                                            //           14,
+                                                            //       fontWeight:
+                                                            //           FontWeight
+                                                            //               .w500,
+                                                            //     )),
+                                                            // const SizedBox(
+                                                            //   width: 3,
+                                                            // ),
+                                                            Text(
+                                                                indexKonsultasi[
+                                                                            index]
+                                                                        [
+                                                                        'judul'] ??
+                                                                    '',
+                                                                // indexKonsultasi[
+                                                                //         index]
+                                                                //     [
+                                                                //     'produk_nama'],
+                                                                style:
+                                                                    GoogleFonts
+                                                                        .ubuntu(
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                maxLines: 2,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                )
-                                              ],
-                                            )),
-                                      ),
-                                    ],
-                                  ));
-                            },
-                          ),
-                        ],
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          )),
+                                    ),
+                                  ],
+                                ));
+                          },
+                        ),
                       ),
                       Visibility(
                         visible: isLoading,
@@ -379,7 +374,10 @@ class _HistoryViewState extends State<HistoryView> {
                   ),
 
                   // Content for the second tab
-                  ListView.builder(
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: ListView.builder(
+                      shrinkWrap: true,
                       itemCount: indexKonsultasi.length,
                       itemBuilder: (context, index) {
                         return Container(
@@ -389,8 +387,15 @@ class _HistoryViewState extends State<HistoryView> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    // Navigator.push(context,
-                                    // MaterialPageRoute(builder: (context) => const DetailPesananView()));
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             DetailPesananView(
+                                    //               idPenjualan:
+                                    //                   indexKonsultasi[index]
+                                    //                       ['id'],
+                                    //             )));
                                   },
                                   splashColor: GlobalColors.btnColor,
                                   child: Container(
@@ -412,25 +417,44 @@ class _HistoryViewState extends State<HistoryView> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(
-                                                indexKonsultasi[index]
-                                                    ['produk_nama'],
-                                                // 'Chat 30 Menit',
-                                                style: GoogleFonts.ubuntu(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w300),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    indexKonsultasi[index]
+                                                        ['produk_nama'],
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w300),
+                                                  ),
+                                                  // const SizedBox(width: 3,),
+                                                  // Text(
+                                                  //   '${indexKonsultasi[index]['durasi']} Menit',
+                                                  //   style: GoogleFonts.ubuntu(
+                                                  //       fontSize: 14,
+                                                  //       fontWeight:
+                                                  //           FontWeight.w300),
+                                                  // ),
+                                                ],
                                               ),
-                                              // const SizedBox(
-                                              //   width: 3,
-                                              // ),
                                               // Text(
-                                              //   '${indexKonsultasi[index]['durasi']} Menit',
+                                              //   indexKonsultasi[index][
+                                              //               'status_payment'] ==
+                                              //           '1'
+                                              //       ? 'Lunas'
+                                              //       : 'Belum Lunas',
                                               //   style: GoogleFonts.ubuntu(
-                                              //       fontSize: 14,
-                                              //       fontWeight:
-                                              //           FontWeight.w300),
+                                              //     fontSize: 14,
+                                              //     color: indexKonsultasi[index][
+                                              //                 'status_payment'] ==
+                                              //             '1'
+                                              //         ? Colors.green
+                                              //         : Colors.red,
+                                              //     fontWeight: FontWeight.bold,
+                                              //   ),
                                               // ),
                                             ],
                                           ),
@@ -479,78 +503,101 @@ class _HistoryViewState extends State<HistoryView> {
                                               const SizedBox(
                                                 width: 10,
                                               ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    indexKonsultasi[index]
-                                                        ['master_kontak_nama'],
-                                                    // 'Nurmiati, S.H',
-                                                    style: GoogleFonts.ubuntu(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 16,
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      indexKonsultasi[index][
+                                                          'master_kontak_nama'],
+                                                      // 'Nurmiati, S.H',
+                                                      style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 16,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    indexKonsultasi[index][
-                                                        'master_kontak_tipe_kontak_nama'],
-                                                    // 'Advokat',
-                                                    style: GoogleFonts.ubuntu(
-                                                      fontWeight:
-                                                          FontWeight.w100,
-                                                      fontSize: 14,
+                                                    Text(
+                                                      indexKonsultasi[index][
+                                                          'master_kontak_tipe_kontak_nama'],
+                                                      style: GoogleFonts.ubuntu(
+                                                        fontWeight:
+                                                            FontWeight.w100,
+                                                        fontSize: 14,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        indexKonsultasi[index][
-                                                                'ref_klasifikasi_pidana_nama'] ??
-                                                            '',
-                                                        // 'Pidana',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 12,
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                              '${indexKonsultasi[index]['ref_klasifikasi_pidana_nama'] ?? ''}',
+                                                              style: GoogleFonts
+                                                                  .ubuntu(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize: 12,
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              maxLines: 2,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
                                                         ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 3,
-                                                      ),
-                                                      Text('-',
-                                                          style: GoogleFonts
-                                                              .ubuntu(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          )),
-                                                      const SizedBox(
-                                                        width: 3,
-                                                      ),
-                                                      Text(
-                                                          indexKonsultasi[index]
-                                                                  ['judul'] ??
-                                                              indexKonsultasi[
-                                                                      index][
-                                                                  'produk_nama'],
-                                                          // 'Pembunuhan',
-                                                          style: GoogleFonts
-                                                              .ubuntu(
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ],
+                                                        // const SizedBox(
+                                                        //   width: 3,
+                                                        // ),
+                                                        // Text(
+                                                        //   '-',
+                                                        //     style:
+                                                        //         GoogleFonts
+                                                        //             .ubuntu(
+                                                        //       fontSize:
+                                                        //           14,
+                                                        //       fontWeight:
+                                                        //           FontWeight
+                                                        //               .w500,
+                                                        //     )),
+                                                        // const SizedBox(
+                                                        //   width: 3,
+                                                        // ),
+                                                        Text(
+                                                            indexKonsultasi[
+                                                                        index]
+                                                                    ['judul'] ??
+                                                                '',
+                                                            // indexKonsultasi[
+                                                            //         index]
+                                                            //     [
+                                                            //     'produk_nama'],
+                                                            style: GoogleFonts
+                                                                .ubuntu(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                            textAlign:
+                                                                TextAlign.left,
+                                                            maxLines: 2,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           )
@@ -559,7 +606,190 @@ class _HistoryViewState extends State<HistoryView> {
                                 ),
                               ],
                             ));
-                      })
+                      },
+                    ),
+                  ),
+                  // ListView.builder(
+                  //     itemCount: indexKonsultasi.length,
+                  //     itemBuilder: (context, index) {
+                  //       return Container(
+                  //           margin: const EdgeInsets.only(
+                  //               left: 20, top: 10, right: 20),
+                  //           child: Column(
+                  //             children: [
+                  //               InkWell(
+                  //                 onTap: () {
+                  //                   // Navigator.push(context,
+                  //                   // MaterialPageRoute(builder: (context) => const DetailPesananView()));
+                  //                 },
+                  //                 splashColor: GlobalColors.btnColor,
+                  //                 child: Container(
+                  //                     padding: const EdgeInsets.all(10),
+                  //                     decoration: BoxDecoration(
+                  //                         color: Colors.white,
+                  //                         borderRadius:
+                  //                             BorderRadius.circular(10),
+                  //                         boxShadow: const [
+                  //                           BoxShadow(
+                  //                             color: Colors.black38,
+                  //                             blurRadius: 6,
+                  //                           )
+                  //                         ]),
+                  //                     child: Column(
+                  //                       mainAxisAlignment:
+                  //                           MainAxisAlignment.start,
+                  //                       crossAxisAlignment:
+                  //                           CrossAxisAlignment.start,
+                  //                       children: [
+                  //                         Row(
+                  //                           children: [
+                  //                             Text(
+                  //                               indexKonsultasi[index]
+                  //                                   ['produk_nama'],
+                  //                               // 'Chat 30 Menit',
+                  //                               style: GoogleFonts.ubuntu(
+                  //                                   fontSize: 14,
+                  //                                   fontWeight:
+                  //                                       FontWeight.w300),
+                  //                             ),
+                  //                             // const SizedBox(
+                  //                             //   width: 3,
+                  //                             // ),
+                  //                             // Text(
+                  //                             //   '${indexKonsultasi[index]['durasi']} Menit',
+                  //                             //   style: GoogleFonts.ubuntu(
+                  //                             //       fontSize: 14,
+                  //                             //       fontWeight:
+                  //                             //           FontWeight.w300),
+                  //                             // ),
+                  //                           ],
+                  //                         ),
+                  //                         const SizedBox(
+                  //                           height: 5,
+                  //                         ),
+                  //                         Row(
+                  //                           children: [
+                  //                             const Icon(
+                  //                               Icons.watch_later_outlined,
+                  //                               size: 15,
+                  //                             ),
+                  //                             const SizedBox(
+                  //                               width: 10,
+                  //                             ),
+                  //                             Text(
+                  //                               indexKonsultasi[index]
+                  //                                   ['tanggal'],
+                  //                               // 'Rabu, 20 Juni 2024',
+                  //                               style: GoogleFonts.ubuntu(
+                  //                                   fontWeight:
+                  //                                       FontWeight.normal,
+                  //                                   fontSize: 14),
+                  //                             ),
+                  //                             const SizedBox(
+                  //                               width: 10,
+                  //                             ),
+                  //                             // Text(
+                  //                             //   '8:00 - 8:30 AM',
+                  //                             //   style: GoogleFonts.ubuntu(
+                  //                             //       fontWeight: FontWeight.normal,
+                  //                             //       fontSize: 14),
+                  //                             // ),
+                  //                           ],
+                  //                         ),
+                  //                         Divider(
+                  //                             thickness: 1.0,
+                  //                             color: Colors.grey.shade400),
+                  //                         Row(
+                  //                           children: [
+                  //                             Image.asset(
+                  //                               'assets/images/Nur.png',
+                  //                               width: 50,
+                  //                               height: 70,
+                  //                             ),
+                  //                             const SizedBox(
+                  //                               width: 10,
+                  //                             ),
+                  //                             Column(
+                  //                               mainAxisAlignment:
+                  //                                   MainAxisAlignment.start,
+                  //                               crossAxisAlignment:
+                  //                                   CrossAxisAlignment.start,
+                  //                               children: [
+                  //                                 Text(
+                  //                                   indexKonsultasi[index]
+                  //                                       ['master_kontak_nama'],
+                  //                                   // 'Nurmiati, S.H',
+                  //                                   style: GoogleFonts.ubuntu(
+                  //                                     fontWeight:
+                  //                                         FontWeight.bold,
+                  //                                     fontSize: 16,
+                  //                                   ),
+                  //                                 ),
+                  //                                 Text(
+                  //                                   indexKonsultasi[index][
+                  //                                       'master_kontak_tipe_kontak_nama'],
+                  //                                   // 'Advokat',
+                  //                                   style: GoogleFonts.ubuntu(
+                  //                                     fontWeight:
+                  //                                         FontWeight.w100,
+                  //                                     fontSize: 14,
+                  //                                   ),
+                  //                                 ),
+                  //                                 const SizedBox(
+                  //                                   height: 10,
+                  //                                 ),
+                  //                                 Row(
+                  //                                   children: [
+                  //                                     Text(
+                  //                                       indexKonsultasi[index][
+                  //                                               'ref_klasifikasi_pidana_nama'] ??
+                  //                                           '',
+                  //                                       // 'Pidana',
+                  //                                       style:
+                  //                                           GoogleFonts.ubuntu(
+                  //                                         fontWeight:
+                  //                                             FontWeight.w500,
+                  //                                         fontSize: 12,
+                  //                                       ),
+                  //                                     ),
+                  //                                     const SizedBox(
+                  //                                       width: 3,
+                  //                                     ),
+                  //                                     Text('-',
+                  //                                         style: GoogleFonts
+                  //                                             .ubuntu(
+                  //                                           fontSize: 14,
+                  //                                           fontWeight:
+                  //                                               FontWeight.w500,
+                  //                                         )),
+                  //                                     const SizedBox(
+                  //                                       width: 3,
+                  //                                     ),
+                  //                                     Text(
+                  //                                         indexKonsultasi[index]
+                  //                                                 ['judul'] ??
+                  //                                             indexKonsultasi[
+                  //                                                     index][
+                  //                                                 'produk_nama'],
+                  //                                         // 'Pembunuhan',
+                  //                                         style: GoogleFonts
+                  //                                             .ubuntu(
+                  //                                           fontSize: 12,
+                  //                                           fontWeight:
+                  //                                               FontWeight.w500,
+                  //                                         )),
+                  //                                   ],
+                  //                                 ),
+                  //                               ],
+                  //                             ),
+                  //                           ],
+                  //                         )
+                  //                       ],
+                  //                     )),
+                  //               ),
+                  //             ],
+                  //           ));
+                  //     })
                 ],
               ),
             ),

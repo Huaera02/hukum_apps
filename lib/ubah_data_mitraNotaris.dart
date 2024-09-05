@@ -5,10 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/api/apis.dart';
 import 'package:loginn/bottomnav.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
-import 'package:loginn/tambah_keahlian.dart';
+// import 'package:loginn/tambah_keahlian.dart';
 import 'package:loginn/tambah_pendidikan.dart';
 
 class UbahDataMitraNotarisView extends StatefulWidget {
@@ -112,6 +113,12 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
         alamat: alamatController.text,
         kabKota: kabKotaController.text,
         profile: profileController.text);
+        await APIs.updateUserInfo( namaController.text).then(
+      (value) {
+        APIs.getSelfInfo();
+      },
+    );
+
 
     isLoading = false;
 
@@ -425,6 +432,8 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                                           CrossAxisAlignment.end,
                                       children: [
                                         TextFormField(
+                                          onSaved: (val) =>
+                                              APIs.me.name = val ?? '',
                                           controller: namaController,
                                           style: const TextStyle(
                                               fontSize: 16,

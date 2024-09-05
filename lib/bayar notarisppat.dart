@@ -203,13 +203,11 @@ class _PembayaranNotarisViewState extends State<PembayaranNotarisView> {
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Text(
-                                        email,
-                                        style: GoogleFonts.ubuntu(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w300,
-                                        ),
+                                    Text(
+                                      email,
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w300,
                                       ),
                                     ),
                                   ],

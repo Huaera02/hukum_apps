@@ -3,7 +3,7 @@ import 'package:loginn/cari_advokat.dart';
 // import 'package:loginn/chtadvokat1.dart';
 import 'package:loginn/dash_view.dart';
 import 'package:loginn/global_colors.dart';
-import 'package:loginn/pesan.dart';
+// import 'package:loginn/pesan.dart';
 import 'package:loginn/profile_mitra.dart';
 import 'package:loginn/profile_mitraNotaris.dart';
 // import 'package:loginn/profile_mitraNotaris.dart';
@@ -11,7 +11,9 @@ import 'package:loginn/profile_view.dart';
 import 'package:loginn/riwayat_mitra.dart';
 // import 'package:loginn/riwayat_mitraNotaris.dart';
 import 'package:loginn/riwayat_view.dart';
+import 'package:loginn/screens/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:loginn/api/apis.dart';
 
 class BottomNavView extends StatefulWidget {
   const BottomNavView({super.key});
@@ -35,6 +37,7 @@ class _BottomNavViewState extends State<BottomNavView> {
   @override
   void initState() {
     super.initState();
+    APIs.getSelfInfo();
     init();
   }
 
@@ -76,7 +79,8 @@ class _BottomNavViewState extends State<BottomNavView> {
     final listpage = <Widget>[
       const DashboardView(),
       const CariAdvokatView(),
-      const PesanView(),
+      const HomeScreen(),
+      // const PesanView(),
       role == 'advokat' || role == 'notaris'
           ? const RiwayatMitraView()
           : const HistoryView(),

@@ -7,8 +7,11 @@ import 'package:loginn/login_view.dart';
 import 'package:loginn/newpass_view.dart';
 import 'package:loginn/repository.dart';
 import 'package:loginn/riwayat_mitra.dart';
+import 'package:loginn/riwayat_view.dart';
 import 'package:loginn/ubah_data_mitra.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'api/apis.dart';
 
 class ProfileMitraView extends StatefulWidget {
   const ProfileMitraView({super.key});
@@ -463,11 +466,11 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                           TextButton.icon(
                             onPressed: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RiwayatMitraView()),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const HistoryView())
+                                  // const RiwayatMitraView()),
+                                  );
                             },
                             icon: Icon(
                               Icons.history_edu_outlined,
@@ -563,6 +566,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                     ),
                     TextButton(
                       onPressed: () {
+                        APIs.updateActiveStatus(false);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

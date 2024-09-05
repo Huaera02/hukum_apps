@@ -9,6 +9,8 @@ import 'package:loginn/repository.dart';
 import 'package:loginn/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'api/apis.dart';
+
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
@@ -240,6 +242,7 @@ class _ProfileViewState extends State<ProfileView> {
                           SharedPreferences pref =
                               await SharedPreferences.getInstance();
                           await pref.clear(); //utk hapus session
+                          APIs.updateActiveStatus(false);
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(

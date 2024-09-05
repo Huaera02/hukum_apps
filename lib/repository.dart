@@ -1941,6 +1941,64 @@ class Repository {
     }
   }
 
+  //post fitur chat
+  //Get pada halaman rincian konsultasi dari sisi mitra
+  Future<Map<String, dynamic>> editJadwalKonsultasi(
+      {required String idPenjualan,
+      required String mulaiLayanan,
+    required String selesaiLayanan,}) async {
+    try {
+      var request = http.Request(
+        'PUT', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      // SharedPreferences pref = await SharedPreferences.getInstance();
+      // var sysBranchesId = pref.getString("sys_branches_id");
+      // var kontakId = pref.getString("id_kontak");
+
+      var params = {
+        'table': 'penjualan',
+        'id':idPenjualan,
+        'mulai_layanan':mulaiLayanan,
+        'selesai_layanan':selesaiLayanan,
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true, //daftar riwayat
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
   //checkout Data Notaris
   //Tambah Data Detail Masalah
   Future<Map<String, dynamic>> postCheckoutNotaris({

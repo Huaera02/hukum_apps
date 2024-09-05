@@ -20,7 +20,8 @@ class _DetailPesananViewState extends State<DetailPesananView> {
       isLoading = true;
     });
     Map<String, dynamic> response =
-        await repository.getRincianKlien(idPenjualan: widget.idPenjualan);
+        await repository.getRincianKlien(
+          idPenjualan: widget.idPenjualan);
 
     isLoading = false;
 
@@ -251,145 +252,193 @@ class _DetailPesananViewState extends State<DetailPesananView> {
                                               const SizedBox(
                                                 width: 10,
                                               ),
+                                              Text('Nama Layanan',
+                                                  style: GoogleFonts.ubuntu(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14,
+                                                  )),
                                               // Column(
-                                              //   mainAxisAlignment:
-                                              //       MainAxisAlignment.start,
-                                              //   crossAxisAlignment:
-                                              //       CrossAxisAlignment.start,
+                                              // mainAxisAlignment:
+                                              //     MainAxisAlignment.start,
+                                              // crossAxisAlignment:
+                                              //     CrossAxisAlignment.start,
+                                              // children: [
+                                              //   Text('Tipe Layanan',
+                                              //       style:
+                                              //           GoogleFonts.ubuntu(
+                                              //         fontWeight:
+                                              //             FontWeight.bold,
+                                              //         fontSize: 14,
+                                              //       )),
+                                              // Row(
+                                              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              //   // crossAxisAlignment: CrossAxisAlignment.start,
                                               //   children: [
-                                              //     Text('Tipe Layanan',
+                                              //     Text(
+                                              //         listRincian.first[
+                                              //             'produk_nama'],
+                                              //         // 'Chat / 30 Menit x1',
                                               //         style: GoogleFonts.ubuntu(
-                                              //           fontWeight:
-                                              //               FontWeight.bold,
+                                              //           fontWeight: FontWeight.w100,
                                               //           fontSize: 14,
                                               //         )),
-                                              //     Row(
-                                              //       mainAxisAlignment:
-                                              //           MainAxisAlignment
-                                              //               .spaceBetween,
-                                              //       crossAxisAlignment:
-                                              //           CrossAxisAlignment
-                                              //               .start,
-                                              //       children: [
-                                              //         Text(
-                                              //             listRincian.first[
-                                              //                 'produk_nama'],
-                                              //             // 'Chat / 30 Menit x1',
-                                              //             style: GoogleFonts
-                                              //                 .ubuntu(
-                                              //               fontWeight:
-                                              //                   FontWeight.w100,
-                                              //               fontSize: 14,
-                                              //             )),
-                                              //         // const SizedBox(
-                                              //         //   width: 130,
-                                              //         // ),
-                                              //         Text(
-                                              //             'Rp. ${listRincian.first['produk_harga_jual']}',
-                                              //             // 'Rp.52.000',
-                                              //             style: GoogleFonts
-                                              //                 .ubuntu(
-                                              //               fontWeight:
-                                              //                   FontWeight.w500,
-                                              //               fontSize: 14,
-                                              //             )),
-                                              //       ],
-                                              //     ),
+                                              //     // const SizedBox(
+                                              //     //   width: 130,
+                                              //     // ),
+                                              //     Text(
+                                              //         'Rp. ${listRincian.first['produk_harga_jual']}',
+                                              //         // 'Rp.52.000',
+                                              //         style: GoogleFonts.ubuntu(
+                                              //           fontWeight: FontWeight.w500,
+                                              //           fontSize: 14,
+                                              //         )),
+                                              //   ],
+                                              // ),
                                               //   ],
                                               // ),
                                             ],
                                           ),
-                                          Divider(
-                                              thickness: 1.0,
-                                              color: Colors.grey.shade400),
-                                          const SizedBox(
-                                            height: 10,
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 20),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              // crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    listRincian
+                                                        .first['produk_nama'],
+                                                    // 'Chat / 30 Menit x1',
+                                                    style: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w100,
+                                                      fontSize: 14,
+                                                    )),
+                                                // const SizedBox(
+                                                //   width: 130,
+                                                // ),
+                                                Text(
+                                                    'Rp. ${listRincian.first['produk_harga_jual']}',
+                                                    // 'Rp.52.000',
+                                                    style: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 14,
+                                                    )),
+                                              ],
+                                            ),
                                           ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                Icons.category_outlined,
-                                                color: GlobalColors.mainColor,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Klasifikasi Kasus',
-                                                      style: GoogleFonts.ubuntu(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14,
-                                                      )),
-                                                  Expanded(
-                                                    child: Text(
+                                          if (listRincian.first[
+                                                  'ref_klasifikasi_pidana_nama'] !=
+                                              null)
+                                            Divider(
+                                                thickness: 1.0,
+                                                color: Colors.grey.shade400),
+                                          if (listRincian.first[
+                                                  'ref_klasifikasi_pidana_nama'] !=
+                                              null)
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                          if (listRincian.first[
+                                                  'ref_klasifikasi_pidana_nama'] !=
+                                              null)
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Icon(
+                                                  Icons.category_outlined,
+                                                  color: GlobalColors.mainColor,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text('Klasifikasi Kasus',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 14,
+                                                        )),
+                                                    Text(
                                                         listRincian.first[
                                                                 'ref_klasifikasi_pidana_nama'] ??
                                                             '',
                                                         // 'Pidana',
-                                                        style: GoogleFonts.ubuntu(
+                                                        style:
+                                                            GoogleFonts.ubuntu(
                                                           fontWeight:
                                                               FontWeight.w100,
                                                           fontSize: 14,
                                                         )),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                          Divider(
-                                              thickness: 1.0,
-                                              color: Colors.grey.shade400),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                Icons.title,
-                                                color: GlobalColors.mainColor,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Topik/Judul Masalah',
-                                                      style: GoogleFonts.ubuntu(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14,
-                                                      )),
-                                                  Text(
-                                                      listRincian
-                                                          .first['judul']??'',
-                                                      // 'Pembunuhan',
-                                                      style: GoogleFonts.ubuntu(
-                                                        fontWeight:
-                                                            FontWeight.w100,
-                                                        fontSize: 14,
-                                                      )),
-                                                ],
-                                              )
-                                            ],
-                                          ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          if (listRincian.first['judul'] !=
+                                              null)
+                                            Divider(
+                                                thickness: 1.0,
+                                                color: Colors.grey.shade400),
+                                          if (listRincian.first['judul'] !=
+                                              null)
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                          if (listRincian.first['judul'] !=
+                                              null)
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Icon(
+                                                  Icons.title,
+                                                  color: GlobalColors.mainColor,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text('Topik/Judul Masalah',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 14,
+                                                        )),
+                                                    Text(
+                                                        listRincian.first[
+                                                                'judul'] ??
+                                                            '',
+                                                        // 'Pembunuhan',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                          fontWeight:
+                                                              FontWeight.w100,
+                                                          fontSize: 14,
+                                                        )),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
                                           Divider(
                                               thickness: 1.0,
                                               color: Colors.grey.shade400),
@@ -447,7 +496,7 @@ class _DetailPesananViewState extends State<DetailPesananView> {
                               );
                             }),
                       ],
-                    ),
+                    ),                  
                     Visibility(
                       visible: isLoading,
                       child: const Positioned.fill(
@@ -461,54 +510,68 @@ class _DetailPesananViewState extends State<DetailPesananView> {
                 ),
 
                 // Tab Halaman kedua
-                Container(
-                  margin: const EdgeInsets.only(left: 20, right: 20, top: 70),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/advokat1.png',
-                        width: 100,
-                        height: 100,
-                      ),
-                      const SizedBox(
-                        height: 120,
-                      ),
-                      Text(
-                        'Berikan Waktu untuk Menghubungkan dengan',
-                        style: GoogleFonts.ubuntu(
-                            fontSize: 14, fontWeight: FontWeight.w100),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Nurmiati, S.H',
-                        style: GoogleFonts.ubuntu(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      ),
-                      Text(
-                        'Halo Zhafira, Kami sudah memberitahu Advokat tentang Permintaan',
-                        style: GoogleFonts.ubuntu(
-                            fontSize: 14, fontWeight: FontWeight.w100),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        '60 Detik',
-                        style: GoogleFonts.ubuntu(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: GlobalColors.mainColor),
-                      )
-                    ],
-                  ),
-                )
+                // if (listRincian.first['judul'] != null)
+                  Container(
+                    margin: const EdgeInsets.only(left: 20, right: 20, top: 70),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/advokat1.png',
+                          width: 200,
+                          height: 200,
+                        ),                 
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          listRincian.first['master_kontak_nama'],
+                          // 'Nurmiati, S.H',
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          listRincian.first['produk_nama'],
+                          // 'Nurmiati, S.H',
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 200,
+                        ),
+                        Text(
+                          'Konsultasi belum dimulai, Waktu mulai belum ditetapkan ',
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 14, fontWeight: FontWeight.w100),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                              height: 10,
+                            ),
+                            ElevatedButton(
+                              onPressed: (){},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: GlobalColors.mainColor,
+                                fixedSize: const Size(180, 30),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                ),
+                              ),
+                              child: Text(
+                                'Refresh',
+                                style: GoogleFonts.ubuntu(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.white),
+                              ),
+                            ),
+                      ],
+                    ),
+                  )
               ],
             ))
           ])),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/api/apis.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/layanan_chat.dart';
 import 'package:loginn/login_view.dart';
 import 'package:loginn/newpass_view.dart';
 import 'package:loginn/repository.dart';
 import 'package:loginn/riwayat_mitra.dart';
+import 'package:loginn/riwayat_view.dart';
 import 'package:loginn/ubah_data_mitra.dart';
 import 'package:loginn/ubah_data_mitraNotaris.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +17,8 @@ class ProfileMitraNotarisView extends StatefulWidget {
   const ProfileMitraNotarisView({super.key});
 
   @override
-  State<ProfileMitraNotarisView> createState() => _ProfileMitraNotarisViewState();
+  State<ProfileMitraNotarisView> createState() =>
+      _ProfileMitraNotarisViewState();
 }
 
 class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
@@ -464,11 +467,11 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                           TextButton.icon(
                             onPressed: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RiwayatMitraView()),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const HistoryView())
+                                  // const RiwayatMitraView()),
+                                  );
                             },
                             icon: Icon(
                               Icons.history_edu_outlined,
@@ -564,6 +567,7 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                     ),
                     TextButton(
                       onPressed: () {
+                        APIs.updateActiveStatus(false);
                         Navigator.push(
                           context,
                           MaterialPageRoute(

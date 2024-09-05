@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/api/apis.dart';
 import 'package:loginn/bottomnav.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
@@ -112,6 +113,11 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
         alamat: alamatController.text,
         kabKota: kabKotaController.text,
         profile: profileController.text);
+    await APIs.updateUserInfo( namaController.text).then(
+      (value) {
+        APIs.getSelfInfo();
+      },
+    );
 
     isLoading = false;
 
@@ -413,18 +419,19 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                             child: TabBarView(
                               children: [
                                 //Tab 1
-                                ListView(
-                                  children: [
+                                ListView(children: [
                                   Container(
                                     margin: const EdgeInsets.only(
                                       left: 10,
-                                      right: 10,                                  
+                                      right: 10,
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
                                         TextFormField(
+                                          onSaved: (val) =>
+                                              APIs.me.name = val ?? '',
                                           controller: namaController,
                                           style: const TextStyle(
                                               fontSize: 16,
@@ -646,8 +653,7 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                               const EdgeInsets.only(left: 10),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -720,8 +726,8 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                       await deleteData(i);
                                                     }
                                                   },
-                                                  icon: const Icon(
-                                                      Icons.delete))
+                                                  icon:
+                                                      const Icon(Icons.delete))
                                             ],
                                           ),
                                         );
@@ -840,7 +846,8 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                 Expanded(
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     children: [
@@ -886,8 +893,8 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                       Text(
                                                           listDataPengalaman[i]
                                                               ['nokasus'],
-                                                          style:
-                                                              GoogleFonts.ubuntu(
+                                                          style: GoogleFonts
+                                                              .ubuntu(
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w300,
@@ -895,8 +902,8 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                       Text(
                                                           listDataPengalaman[i]
                                                               ['pengadilan'],
-                                                          style:
-                                                              GoogleFonts.ubuntu(
+                                                          style: GoogleFonts
+                                                              .ubuntu(
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w300,
@@ -904,8 +911,8 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                       Text(
                                                           listDataPengalaman[i]
                                                               ['tahun'],
-                                                          style:
-                                                              GoogleFonts.ubuntu(
+                                                          style: GoogleFonts
+                                                              .ubuntu(
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w300,
@@ -933,8 +940,7 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                         },
                                         separatorBuilder: ((context, index) {
                                           return const Divider();
-                                        }
-                                        ),
+                                        }),
                                         itemCount: listDataPengalaman.length,
                                       ),
                                     ),
