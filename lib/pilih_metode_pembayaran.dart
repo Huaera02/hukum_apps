@@ -5,7 +5,8 @@ import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
 
 class MetodePembayaranView extends StatefulWidget {
-  const MetodePembayaranView({super.key});
+  final String branchId;
+  const MetodePembayaranView({super.key, required this.branchId});
 
   @override
   State<MetodePembayaranView> createState() => _MetodePembayaranViewState();
@@ -15,18 +16,22 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
   int _selectedValue = 0;
   bool isLoading = false;
   Repository repository = Repository();
-  List<Map<String, dynamic>> listMetodePembayaran = [];
+  // List<Map<String, dynamic>> listMetodePembayaran = [];
+
+  List<Map<String, dynamic>> listBank = [];
+
   getData() async {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getMetodeBayar();
+    Map<String, dynamic> response = await repository.getSemuaRekeningMitra(
+      branchId: widget.branchId
+    );
 
     isLoading = false;
 
     if (response['status'] == true) {
-      listMetodePembayaran =
-          List<Map<String, dynamic>>.from(response['metodePembayaran']);
+      listBank = List<Map<String, dynamic>>.from(response['rekening']);
     } else {
       showDialog(
         context: context,
@@ -52,6 +57,45 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
     }
     setState(() {});
   }
+
+  // getData() async {
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+  //   Map<String, dynamic> response = await repository.getMetodeBayar();
+
+  //   isLoading = false;
+
+  //   if (response['status'] == true) {
+  //     listMetodePembayaran =
+  //         List<Map<String, dynamic>>.from(response['metodePembayaran']);
+  //   } else {
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) {
+  //         return AlertDialog(
+  //           shape: RoundedRectangleBorder(
+  //             borderRadius: BorderRadius.circular(5),
+  //           ),
+  //           title: Padding(
+  //             padding: const EdgeInsets.all(3),
+  //             child: Center(
+  //               child: Text(
+  //                 response['msg'],
+  //                 style: GoogleFonts.ubuntu(
+  //                   fontSize: 16,
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         );
+  //       },
+  //     );
+  //   }
+  //   setState(() {});
+  // }
+
+
 
   @override
   void initState() {
@@ -95,7 +139,7 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
                         ),
                         ListView.builder(
                             shrinkWrap: true,
-                            itemCount: listMetodePembayaran.length,
+                            itemCount: listBank.length,
                             itemBuilder: (context, index) {
                               return RadioListTile(
                                 contentPadding:
@@ -114,7 +158,7 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
                                     // Image.asset('assets/images/bca.png',
                                     //     width: 30, height: 30),                                 
                                     Text(
-                                      listMetodePembayaran[index]['nama'],
+                                      listBank[index]['ref_bank_nama']??'',
                                       style: GoogleFonts.ubuntu(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
@@ -137,7 +181,7 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
                       backgroundColor: GlobalColors.mainColor,
                     ),
                     onPressed: () {
-                      Navigator.pop(context, listMetodePembayaran[_selectedValue-1]);
+                      Navigator.pop(context, listBank[_selectedValue-1]);
                     //   Navigator.push(context,
                     // MaterialPageRoute(builder: (context) => const PembayaranView()));
                     },

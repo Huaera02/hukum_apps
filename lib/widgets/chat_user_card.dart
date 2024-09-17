@@ -37,77 +37,82 @@ class _ChatUserCardState extends State<ChatUserCard> {
       margin: EdgeInsets.symmetric(horizontal: mq.width * .04, vertical: 4),
       elevation: 0.5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      child: InkWell(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => ChatScreen(user: widget.user)));
-          },
-          child: StreamBuilder(
-            stream: APIs.getLastMessage(widget.user),
-            builder: (context, snapshot) {
-              final data = snapshot.data?.docs;
-              final list =
-                  data?.map((e) => Message.fromJson(e.data())).toList() ?? [];
-              if (list.isNotEmpty) _message = list[0];
+      child: StreamBuilder(
+        stream: APIs.getLastMessage(widget.user),
+        builder: (context, snapshot) {
+          final data = snapshot.data?.docs;
+          final list =
+              data?.map((e) => Message.fromJson(e.data())).toList() ?? [];
+          if (list.isEmpty) {
+            return Container();
+          }
 
-              return ListTile(
-                //user profile picture
-                leading: InkWell(
-                  onTap: () {
-                    // showDialog(
-                    // context: context,
-                    // builder: (_) => ProfileDialog(user: widget.user));
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(mq.height * .03),
-                    child: CachedNetworkImage(
-                      width: mq.height * .055,
-                      height: mq.height * .055,
-                      imageUrl: widget.user.image,
-                      fit: BoxFit.cover,
-                      errorWidget: (context, url, error) =>
-                          const CircleAvatar(child: Icon(Icons.person)),
-                    ),
+          _message = list[0];
+
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => ChatScreen(user: widget.user)));
+            },
+            child: ListTile(
+              //user profile picture
+              leading: InkWell(
+                onTap: () {
+                  // showDialog(
+                  // context: context,
+                  // builder: (_) => ProfileDialog(user: widget.user));
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(mq.height * .03),
+                  child: CachedNetworkImage(
+                    width: mq.height * .055,
+                    height: mq.height * .055,
+                    imageUrl: widget.user.image,
+                    fit: BoxFit.cover,
+                    errorWidget: (context, url, error) =>
+                        const CircleAvatar(child: Icon(Icons.person)),
                   ),
                 ),
+              ),
 
-                //user name
-                title: Text(widget.user.name),
+              //user name
+              title: Text(widget.user.name),
 
-                //last message
-                subtitle: Text(
-                    _message != null
-                        ? _message!.type == Type.image
-                            ? 'image'
-                            : _message!.msg
-                        : widget.user.about,
-                    maxLines: 1),
+              //last message
+              subtitle: Text(
+                  _message != null
+                      ? _message!.type == Type.image
+                          ? 'image'
+                          : _message!.msg
+                      : widget.user.about,
+                  maxLines: 1),
 
-                //last message time
-                trailing: _message == null
-                    ? null //show nothing when no message is sent
-                    : _message!.read.isEmpty && _message!.fromId != idKontak
-                        ?
-                        //show for unread message
-                        Container(
-                            width: 15,
-                            height: 15,
-                            decoration: BoxDecoration(
-                                color: Colors.greenAccent.shade400,
-                                borderRadius: BorderRadius.circular(10)),
-                          )
-                        :
-                        //message sent time
-                        Text(
-                            MyDateUtil.getLastMessageTime(
-                                context: context, time: _message!.sent),
-                            style: const TextStyle(color: Colors.black54),
-                          ),
-              );
-            },
-          )),
+              //last message time
+              trailing: _message == null
+                  ? null //show nothing when no message is sent
+                  : _message!.read.isEmpty && _message!.fromId != idKontak
+                      ?
+                      //show for unread message
+                      Container(
+                          width: 15,
+                          height: 15,
+                          decoration: BoxDecoration(
+                              color: Colors.greenAccent.shade400,
+                              borderRadius: BorderRadius.circular(10)),
+                        )
+                      :
+                      //message sent time
+                      Text(
+                          MyDateUtil.getLastMessageTime(
+                              context: context, time: _message!.sent),
+                          style: const TextStyle(color: Colors.black54),
+                        ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

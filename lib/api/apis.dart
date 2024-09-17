@@ -15,20 +15,17 @@ class APIs {
   static FirebaseStorage storage = FirebaseStorage.instance;
 
   static late ChatUser me;
+  static late SharedPreferences prefx;
   // for checking if user exists or not?
   static Future<bool> userExists() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String idKontak = pref.getString('id_kontak') ?? '';
-    return (await firestore
-            .collection('users')
-            .doc(idKontak)
-            .get())
-        .exists;
+    prefx = await SharedPreferences.getInstance();
+    String idKontak = prefx.getString('id_kontak') ?? '';
+    return (await firestore.collection('users').doc(idKontak).get()).exists;
   }
 
   static Future<void> getSelfInfo() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String idKontak = pref.getString('id_kontak') ?? '';
+    prefx = await SharedPreferences.getInstance();
+    String idKontak = prefx.getString('id_kontak') ?? '';
     await firestore.collection('users').doc(idKontak).get().then((user) async {
       if (user.exists) {
         me = ChatUser.fromJson(user.data()!);
@@ -68,7 +65,6 @@ class APIs {
   }
 
   static Stream<QuerySnapshot<Map<String, dynamic>>> getAllUsers(param0) {
-
     return firestore
         .collection('users')
         //because empty list throws an error
@@ -97,8 +93,7 @@ class APIs {
 
   // update online or last active status of user
   static Future<void> updateActiveStatus(bool isOnline) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String idKontak = pref.getString('id_kontak') ?? '';
+    String idKontak = prefx.getString('id_kontak') ?? '';
     firestore.collection('users').doc(idKontak).update({
       'is_online': isOnline,
       'last_active': DateTime.now().millisecondsSinceEpoch.toString(),
@@ -129,7 +124,6 @@ class APIs {
 //   }
 // }
 
-
   // update profile picture of user
   static Future<void> updateProfilePicture(File file) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -152,10 +146,9 @@ class APIs {
   ///************** Chat Screen Related APIs **************
 
   // useful for getting conversation id
-  static Future<String> getConversationID(String id) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String idKontak = pref.getString('id_kontak') ?? '';
-    return idKontak.hashCode <= id.hashCode
+  static String getConversationID(String id) {
+    String idKontak = prefx.getString('id_kontak') ?? '';
+    return int.parse(idKontak) < int.parse(id)
         ? '${idKontak}_$id'
         : '${id}_$idKontak';
   }
@@ -170,25 +163,35 @@ class APIs {
         .snapshots();
   }
 
+  static Stream<QuerySnapshot<Map<String, dynamic>>> getAllMessagesFromId(
+      String id) {
+    return firestore
+        // .collection('chats//messages/')
+        // .snapshots();
+        .collection('chats/${getConversationID(id)}/messages/')
+        .orderBy('sent', descending: true)
+        .snapshots();
+  }
+
   // for sending message
-  static Future<void> sendMessage(
-      ChatUser chatUser, String msg, Type type) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String idKontak = pref.getString('id_kontak') ?? '';
+  static Future<void> sendMessage(String toId, String msg, Type type) async {
+    String idKontak = prefx.getString('id_kontak') ?? '';
     //message sending time (also used as id)
     final time = DateTime.now().millisecondsSinceEpoch.toString();
 
     //message to send
     final Message message = Message(
-        toId: chatUser.id,
+        toId: toId,
         msg: msg,
         read: '',
         type: type,
         fromId: idKontak,
         sent: time);
 
-    final ref = firestore
-        .collection('chats/${getConversationID(chatUser.id)}/messages/');
+    var chatRoomId = getConversationID(toId);
+    print(chatRoomId);
+
+    final ref = firestore.collection('chats/$chatRoomId/messages/');
     await ref.doc(time).set(message.toJson());
     // await ref.doc(time).set(message.toJson()).then((value) =>
     //     sendPushNotification(chatUser, type == Type.text ? msg : 'image'));
@@ -196,8 +199,9 @@ class APIs {
 
   //update read status of message
   static Future<void> updateMessageReadStatus(Message message) async {
-    firestore
-        .collection('chats/${getConversationID(message.fromId)}/messages/')
+    var chatRoomId = getConversationID(message.fromId);
+    await firestore
+        .collection('chats/$chatRoomId/messages/')
         .doc(message.sent)
         .update({'read': DateTime.now().millisecondsSinceEpoch.toString()});
   }
@@ -213,13 +217,14 @@ class APIs {
   }
 
   //send chat image
-  static Future<void> sendChatImage(ChatUser chatUser, File file) async {
+  static Future<void> sendChatImage(String toId, File file) async {
     //getting image file extension
     final ext = file.path.split('.').last;
 
     //storage file ref with path
+    var chatRoomId = getConversationID(toId);
     final ref = storage.ref().child(
-        'images/${getConversationID(chatUser.id)}/${DateTime.now().millisecondsSinceEpoch}.$ext');
+        'images/$chatRoomId/${DateTime.now().millisecondsSinceEpoch}.$ext');
 
     //uploading image
     await ref
@@ -230,6 +235,6 @@ class APIs {
 
     //updating image in firestore database
     final imageUrl = await ref.getDownloadURL();
-    await sendMessage(chatUser, imageUrl, Type.image);
+    await sendMessage(toId, imageUrl, Type.image);
   }
 }

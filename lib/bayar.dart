@@ -21,7 +21,8 @@ class PembayaranView extends StatefulWidget {
       required this.produk,
       required this.klasifikasi,
       required this.judul,
-      required this.deskripsi});
+      required this.deskripsi,
+      });
 
   @override
   State<PembayaranView> createState() => _PembayaranViewState();
@@ -74,7 +75,7 @@ class _PembayaranViewState extends State<PembayaranView> {
         diskon: '0',
         subtotal: widget.produk['harga_jual'],
         total: widget.produk['harga_jual'],
-        status: '1',
+        status: '0',
         tanggal: DateTime.now().toString(),
         klasifikasi: widget.klasifikasi['id'],
         judul: widget.judul,
@@ -83,7 +84,12 @@ class _PembayaranViewState extends State<PembayaranView> {
     if (response['status'] == true) {
       // Navigator.of(context).pop(true);
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const VirtualAccountView(),
+        builder: (context) => VirtualAccountView(
+          total: widget.produk['harga_jual'],
+          createdAt:  DateTime.now(),
+          branchId:widget.mitra['sys_branches_id'],
+          bankId: metodeBayar['ref_bank_id'], 
+          ),
       ));
     } else {
       showDialog(
@@ -115,45 +121,13 @@ class _PembayaranViewState extends State<PembayaranView> {
     setState(() {
       isLoading = true;
     });
-    // Map<String, dynamic> response = await repository.getNamaPelanggan(
-
-    // );
+      
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     nama = pref.getString("nama") ?? '';
     email = pref.getString("email") ?? '';
     isLoading = false;
     setState(() {});
-
-    // if (response['status'] == true) {
-    //   // listData = response['namaPelanggan'];
-    //   listData =
-    //       List<Map<String, dynamic>>.from(response['namaPelanggan']);
-
-    // } else {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return AlertDialog(
-    //         shape: RoundedRectangleBorder(
-    //           borderRadius: BorderRadius.circular(5),
-    //         ),
-    //         title: Padding(
-    //           padding: const EdgeInsets.all(3),
-    //           child: Center(
-    //             child: Text(
-    //               response['msg'],
-    //               style: GoogleFonts.ubuntu(
-    //                 fontSize: 16,
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //       );
-    //     },
-    //   );
-    // }
-    //
   }
 
   @override
@@ -270,7 +244,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                             Row(
                               children: [
                                 Icon(
-                                  Icons.cases_outlined,
+                                  Icons.description_outlined,
                                   color: GlobalColors.mainColor,
                                 ),
                                 const SizedBox(
@@ -495,7 +469,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const MetodePembayaranView()),
+                                                MetodePembayaranView(branchId:widget.mitra['sys_branches_id'])),
                                       );
                                       if (result != null) {
                                         setState(() {
@@ -513,7 +487,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                             ),
                             Text(
                                 metodeBayar.isNotEmpty
-                                    ? metodeBayar['nama']
+                                    ? metodeBayar['ref_bank_nama']
                                     : 'Belum memilih metode Pembayaran',
                                 style: GoogleFonts.ubuntu(
                                   fontSize: 14,

@@ -25,6 +25,8 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
   final namaController = TextEditingController();
   final nikController = TextEditingController();
   final niaController = TextEditingController();
+  final noNotarisController = TextEditingController();
+  final noPpatController = TextEditingController();
   final emailController = TextEditingController();
   final nohpController = TextEditingController();
   final alamatController = TextEditingController();
@@ -56,6 +58,8 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
       namaController.text = response['data']['nama'] ?? '';
       nikController.text = response['data']['ktp'] ?? '';
       niaController.text = response['data']['nia'] ?? '';
+      noNotarisController.text = response['data']['no_notaris'] ?? '';
+      noPpatController.text = response['data']['no_ppat'] ?? '';
       emailController.text = response['data']['email'] ?? '';
       nohpController.text = response['data']['hp'] ?? '';
       alamatController.text = response['data']['alamat'] ?? '';
@@ -108,6 +112,8 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
         nama: namaController.text,
         nik: nikController.text,
         nia: niaController.text,
+        noNotaris: noNotarisController.text,
+        noPpat: noPpatController.text,
         tempatLahir: tempatlahirController.text,
         tglLahir: tglahirController.text,
         alamat: alamatController.text,
@@ -466,7 +472,7 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                                           ),
                                         ),
                                         TextFormField(
-                                          controller: niaController,
+                                          controller: noNotarisController,
                                           style: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black),
@@ -482,7 +488,7 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                                           ),
                                         ),
                                         TextFormField(
-                                          // controller: niaController,
+                                          controller: noPpatController,
                                           style: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black),

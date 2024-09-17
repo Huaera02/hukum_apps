@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/widgets.dart';
@@ -10,9 +12,11 @@ import 'package:loginn/repository.dart';
 
 class PilihNotarisView extends StatefulWidget {
   // final Map<String,dynamic> produk;
-  const PilihNotarisView({super.key, }
-    // {super.key, required this.produk}
-    );
+  const PilihNotarisView({
+    super.key,
+  }
+      // {super.key, required this.produk}
+      );
 
   @override
   State<PilihNotarisView> createState() => _PilihNotarisViewState();
@@ -27,7 +31,8 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
   // List<String> selectedPengalaman = [];
   // List<String> selectedKabupatenKota = [];
 
-  List<String> tags = [];
+  // List<String> tags = [];
+  String? tagKabkota;
 
   List<String> kabupatenKota = [
     'Makassar',
@@ -58,16 +63,18 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.cariAdvokat(
+    Map<String, dynamic> response = await repository.cariNotaris(
       nama: cariMitraController.text,
-      kabKota: tags,
+      kabKota: tagKabkota,
       tipe: 'notaris',
     );
 
     isLoading = false;
 
     if (response['status'] == true) {
-      listData = List<Map<String, dynamic>>.from(response['data']);
+      print(response['data'].length.toString());
+      listData = List<Map<String, dynamic>>.from(response['data']?? []);
+      print(listData.length.toString());
     } else {
       showDialog(
         context: context,
@@ -227,11 +234,17 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
                                                           fontWeight:
                                                               FontWeight.bold)),
 
-                                                  ChipsChoice<String>.multiple(
-                                                    value: tags,
-                                                    onChanged: (val) =>
-                                                        setState(
-                                                            () => tags = val),
+                                                  ChipsChoice<String>.single(
+                                                    value: tagKabkota ?? '',
+                                                    onChanged: (val) {
+                                                      if (val == tagKabkota) {
+                                                         setState(() =>
+                                                            tagKabkota = null);
+                                                      } else {
+                                                        setState(() =>
+                                                            tagKabkota = val);
+                                                      }
+                                                    },
                                                     choiceItems:
                                                         C2Choice.listFrom(
                                                       source: kabupatenKota,
@@ -315,11 +328,14 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    itemCount: listData.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        padding: const EdgeInsets.all(
-                            20), // Menambahkan padding di sekitar TextFormField
+                        padding: const EdgeInsets.only(top: 10, left: 20, right: 20
+                            ), // Menambahkan padding di sekitar TextFormField
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             InkWell(
                               onTap: () {
@@ -435,14 +451,20 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
                                         ],
                                       ),
                                     ),
-                                    Radio(
-                                        value: index+1,
-                                        groupValue: _value,
-                                        onChanged: (value) {
-                                          setState(() {
-                                            _value = value as int;
-                                          });
-                                        })
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Radio(
+                                            value: index + 1,
+                                            groupValue: _value,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                _value = value as int;
+                                              });
+                                            }),
+                                      ],
+                                    )
                                   ],
                                 ),
                               ),
@@ -451,14 +473,13 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
                         ),
                       );
                     },
-                    itemCount: listData.length,
                   ),
                 ),
                 Container(
                   width: double.infinity,
                   height: 52,
                   margin: const EdgeInsets.only(
-                      left: 26, right: 26, top: 334, bottom: 20),
+                      left: 26, right: 26, top: 10, bottom: 20),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,
@@ -467,10 +488,10 @@ class _PilihNotarisViewState extends State<PilihNotarisView> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    PilihLayanan2View(
-                                      // produk: widget.produk, 
-                                      mitra: listData[_value-1],)));
+                                builder: (context) => PilihLayanan2View(
+                                      // produk: widget.produk,
+                                      mitra: listData[_value - 1],
+                                    )));
                       },
                       child: Text('Selanjutnya',
                           style: GoogleFonts.ubuntu(

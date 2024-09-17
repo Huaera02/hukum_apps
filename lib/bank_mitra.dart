@@ -3,40 +3,35 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
-import 'package:loginn/tambah_layanan.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:loginn/tambah_layanan.dart';
+import 'package:loginn/tambah_rekening.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
-class LayananChatView extends StatefulWidget {
-  const LayananChatView({super.key});
+class RekeningView extends StatefulWidget {
+  final String branchId;
+  const RekeningView({super.key, required this.branchId});
 
   @override
-  State<LayananChatView> createState() => _LayananChatViewState();
+  State<RekeningView> createState() => _RekeningViewState();
 }
 
-class _LayananChatViewState extends State<LayananChatView> {
-  String role = '';
-  SharedPreferences? pref;
+class _RekeningViewState extends State<RekeningView> {
   bool isLoading = false;
   Repository repository = Repository();
-  List<Map<String, dynamic>> listLayanan = [];
-
-  void init() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    setState(() {
-      role = pref.getString('tipeKontakAlias') ?? '';
-    });
-  }
+  List<Map<String, dynamic>> listBank = [];
 
   getData() async {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getSemuaLayananMitra();
+    Map<String, dynamic> response = await repository.getSemuaRekeningMitra(
+      branchId: widget.branchId
+    );
 
     isLoading = false;
 
     if (response['status'] == true) {
-      listLayanan = List<Map<String, dynamic>>.from(response['kategori']);
+      listBank = List<Map<String, dynamic>>.from(response['rekening']);
     } else {
       showDialog(
         context: context,
@@ -69,7 +64,7 @@ class _LayananChatViewState extends State<LayananChatView> {
       isLoading = true;
     });
     Map<String, dynamic> response =
-        await repository.deleteLayananMitra(id: listLayanan[index]['id']);
+        await repository.deleteRekening(id: listBank[index]['id']);
     isLoading = false;
     if (response['status'] == true) {
       getData();
@@ -102,7 +97,7 @@ class _LayananChatViewState extends State<LayananChatView> {
   @override
   void initState() {
     super.initState();
-    getData();    
+    getData();
   }
 
   @override
@@ -112,7 +107,7 @@ class _LayananChatViewState extends State<LayananChatView> {
         foregroundColor: Colors.white,
         backgroundColor: GlobalColors.mainColor,
         title: Text(
-          'Daftar Layanan',
+          'Daftar Rekening',
           style: GoogleFonts.ubuntu(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -129,7 +124,7 @@ class _LayananChatViewState extends State<LayananChatView> {
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: listLayanan.length,
+                    itemCount: listBank.length,
                     itemBuilder: (context, index) {
                       return Container(
                           margin: const EdgeInsets.only(
@@ -145,7 +140,7 @@ class _LayananChatViewState extends State<LayananChatView> {
                           child: Row(
                             children: [
                               Icon(
-                                Icons.gavel_rounded,
+                                Icons.card_membership,
                                 color: GlobalColors.mainColor,
                                 size: 30,
                               ),
@@ -158,45 +153,28 @@ class _LayananChatViewState extends State<LayananChatView> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // Text(listLayanan[index]['nama'],
-                                    Text(listLayanan[index]['nama'],
+                                    Text(listBank[index]['ref_bank_nama']??'',
                                         // 'Chat',
                                         style: GoogleFonts.ubuntu(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
                                         )),
-                                        if (listLayanan[index]['deskripsi'] !=
-                                            null)
-                                          Text(
-                                            listLayanan[index]['deskripsi'],                                        
-                                            style: GoogleFonts.ubuntu(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w500,
-                                              // color: GlobalColors.mainColor,
-                                            ),
-                                          ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Rp.${listLayanan[index]['harga_jual']}',
-                                          // listLayanan[index]['harga_jual'],
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w500,
-                                            color: GlobalColors.mainColor,
-                                          ),
-                                        ),                                     
-                                        if (listLayanan[index]['durasi'] !=
-                                            null)
-                                          Text(
-                                            '/ ${listLayanan[index]['durasi']} Menit',                                        
-                                            style: GoogleFonts.ubuntu(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500,
-                                              color: GlobalColors.mainColor,
-                                            ),
-                                          ),
-                                      ],
-                                    )
+                                    Text(
+                                      listBank[index]['norek']??'',
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        // color: GlobalColors.mainColor,
+                                      ),
+                                    ),
+                                    Text(
+                                      listBank[index]['atas_nama']??'',
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        // color: GlobalColors.mainColor,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -205,7 +183,7 @@ class _LayananChatViewState extends State<LayananChatView> {
                                   onPressed: () async {
                                     if (index != null &&
                                         index >= 0 &&
-                                        index < listLayanan.length) {
+                                        index < listBank.length) {
                                       await deleteDataLayanan(index);
                                     }
                                   },
@@ -225,15 +203,15 @@ class _LayananChatViewState extends State<LayananChatView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,
                       ),
-                      onPressed: () async{
-                       var result = await Navigator.push(
+                      onPressed: () async {
+                        var result = await Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    const TambahLayanaView()));
-                                    if (result!=null)getData();
+                                    const AddRekening()));
+                        if (result != null) getData();
                       },
-                      child: Text('Buat Layanan',
+                      child: Text('Buat Metode Pembayaran',
                           style: GoogleFonts.ubuntu(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,

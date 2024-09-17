@@ -17,28 +17,26 @@ class PilihLayanan2View extends StatefulWidget {
 }
 
 class _PilihLayanan2ViewState extends State<PilihLayanan2View> {
-
   int _value = 1;
   bool isLoading = false;
   Repository repository = Repository();
   List<Map<String, dynamic>> listLayanan = [];
 
-
   getData() async {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getLayananMitraNotaris(
-      idKontak: widget.mitra['id']
-        // isJudulKasus: '1'
-    //      if (role == 'advokat') {
-    //   return const ProfileMitraView();
-    // } else if (role == 'notaris') {
-    //   return const ProfileMitraNotarisView();
-    // } else {
-    //   return const ProfileView();
-    // }
-        );
+    Map<String, dynamic> response =
+        await repository.getLayananMitraNotaris(idKontak: widget.mitra['id']
+            // isJudulKasus: '1'
+            //      if (role == 'advokat') {
+            //   return const ProfileMitraView();
+            // } else if (role == 'notaris') {
+            //   return const ProfileMitraNotarisView();
+            // } else {
+            //   return const ProfileView();
+            // }
+            );
 
     isLoading = false;
 
@@ -128,7 +126,7 @@ class _PilihLayanan2ViewState extends State<PilihLayanan2View> {
                                       child: Row(
                                         children: [
                                           Icon(
-                                            Icons.chat_sharp,
+                                            Icons.gavel_rounded,
                                             color: GlobalColors.mainColor,
                                             size: 30,
                                           ),
@@ -148,6 +146,19 @@ class _PilihLayanan2ViewState extends State<PilihLayanan2View> {
                                                       fontWeight:
                                                           FontWeight.w500,
                                                     )),
+                                                if (listLayanan[index]
+                                                        ['deskripsi'] !=
+                                                    null)
+                                                  Text(
+                                                    listLayanan[index]
+                                                        ['deskripsi'],
+                                                    style: GoogleFonts.ubuntu(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      // color: GlobalColors.mainColor,
+                                                    ),
+                                                  ),
                                                 Text(
                                                   '${listLayanan[index]['durasi']} Menit',
                                                   style: GoogleFonts.ubuntu(

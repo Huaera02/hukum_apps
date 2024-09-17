@@ -113,7 +113,7 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                       child: Row(
                                         children: [
                                           Icon(
-                                            Icons.chat_sharp,
+                                            Icons.gavel_rounded,
                                             color: GlobalColors.mainColor,
                                             size: 30,
                                           ),

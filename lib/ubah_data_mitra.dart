@@ -25,6 +25,8 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
   final namaController = TextEditingController();
   final nikController = TextEditingController();
   final niaController = TextEditingController();
+  final noNotarisController = TextEditingController();
+  final noPpatController = TextEditingController();
   final emailController = TextEditingController();
   final nohpController = TextEditingController();
   final alamatController = TextEditingController();
@@ -56,6 +58,9 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
       namaController.text = response['data']['nama'] ?? '';
       nikController.text = response['data']['ktp'] ?? '';
       niaController.text = response['data']['nia'] ?? '';
+      niaController.text = response['data']['nia'] ?? '';
+      // noNotarisController = response['data']['no_notaris'] ?? '';
+      // noPpatController = response['data']['no_ppat'] ?? '';
       emailController.text = response['data']['email'] ?? '';
       nohpController.text = response['data']['hp'] ?? '';
       alamatController.text = response['data']['alamat'] ?? '';
@@ -108,6 +113,8 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
         nama: namaController.text,
         nik: nikController.text,
         nia: niaController.text,
+        noNotaris: noNotarisController.text,
+        noPpat: noPpatController.text,
         tempatLahir: tempatlahirController.text,
         tglLahir: tglahirController.text,
         alamat: alamatController.text,

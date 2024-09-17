@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/bottomnav.dart';
+// import 'package:loginn/bottomnav.dart';
 import 'package:loginn/detail_pesananuser.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
@@ -16,16 +16,24 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
   bool isLoading = false;
   Repository repository = Repository();
   List<Map<String, dynamic>> indexKonsultasi = [];
+  List<Map<String, dynamic>> listRiwayat = [];
+
   getData() async {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getRiwayatTransaksiMitra();
+    Map<String, dynamic> response = await repository.riwayatTransaksiMitra();
+    // getRiwayatTransaksiMitra();
 
     isLoading = false;
 
-    if (response['status'] == true) {
-      indexKonsultasi = List<Map<String, dynamic>>.from(response['riwayat']);
+    if (response['status'] == true) {  
+      indexKonsultasi = List<Map<String, dynamic>>.from(response['riwayat'])
+          .where((element) => element['status'] == '0')
+          .toList();
+      listRiwayat = List<Map<String, dynamic>>.from(response['riwayat'])
+          .where((element) => element['status'] == '1')
+          .toList();
     } else {
       showDialog(
         context: context,
@@ -169,7 +177,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                     children: [
                                                       Text(
                                                         indexKonsultasi[index]
-                                                            ['produk_nama'],
+                                                            ['produk_nama']??'',
                                                         style:
                                                             GoogleFonts.ubuntu(
                                                                 fontSize: 14,
@@ -189,7 +197,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                   ),
                                                   Text(
                                                     indexKonsultasi[index][
-                                                                'status_payment'] ==
+                                                                'status_payment']??'' ==
                                                             '1'
                                                         ? 'Lunas'
                                                         : 'Belum Lunas',
@@ -197,7 +205,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                       fontSize: 14,
                                                       color: indexKonsultasi[
                                                                       index][
-                                                                  'status_payment'] ==
+                                                                  'status_payment']??'' ==
                                                               '1'
                                                           ? Colors.green
                                                           : Colors.red,
@@ -221,7 +229,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                   ),
                                                   Text(
                                                     indexKonsultasi[index]
-                                                        ['tanggal'],
+                                                        ['tanggal']??'',
                                                     // 'Rabu, 20 Juni 2024',
                                                     style: GoogleFonts.ubuntu(
                                                         fontWeight:
@@ -264,7 +272,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                         Text(
                                                           indexKonsultasi[index]
                                                               [
-                                                              'master_kontak_nama'],
+                                                              'master_kontak_nama']?? '',
                                                           // 'Nurmiati, S.H',
                                                           style: GoogleFonts
                                                               .ubuntu(
@@ -276,7 +284,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                         Text(
                                                           indexKonsultasi[index]
                                                               [
-                                                              'master_kontak_tipe_kontak_nama'],
+                                                              'master_kontak_tipe_kontak_nama']??'',
                                                           style: GoogleFonts
                                                               .ubuntu(
                                                             fontWeight:
@@ -387,7 +395,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: indexKonsultasi.length,
+                      itemCount: listRiwayat.length,
                       itemBuilder: (context, index) {
                         return Container(
                             margin: const EdgeInsets.only(
@@ -402,7 +410,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                     //         builder: (context) =>
                                     //             DetailPesananUserView(
                                     //               idPenjualan:
-                                    //                   indexKonsultasi[index]
+                                    //                   listRiwayat[index]
                                     //                       ['id'],
                                     //             )));
                                   },
@@ -432,39 +440,15 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                               Row(
                                                 children: [
                                                   Text(
-                                                    indexKonsultasi[index]
-                                                        ['produk_nama'],
+                                                    listRiwayat[index]
+                                                        ['produk_nama'] ?? '',
                                                     style: GoogleFonts.ubuntu(
                                                         fontSize: 14,
                                                         fontWeight:
                                                             FontWeight.w300),
-                                                  ),
-                                                  // const SizedBox(width: 3,),
-                                                  // Text(
-                                                  //   '${indexKonsultasi[index]['durasi']} Menit',
-                                                  //   style: GoogleFonts.ubuntu(
-                                                  //       fontSize: 14,
-                                                  //       fontWeight:
-                                                  //           FontWeight.w300),
-                                                  // ),
+                                                  ),                                              
                                                 ],
-                                              ),
-                                              // Text(
-                                              //   indexKonsultasi[index][
-                                              //               'status_payment'] ==
-                                              //           '1'
-                                              //       ? 'Lunas'
-                                              //       : 'Belum Lunas',
-                                              //   style: GoogleFonts.ubuntu(
-                                              //     fontSize: 14,
-                                              //     color: indexKonsultasi[index][
-                                              //                 'status_payment'] ==
-                                              //             '1'
-                                              //         ? Colors.green
-                                              //         : Colors.red,
-                                              //     fontWeight: FontWeight.bold,
-                                              //   ),
-                                              // ),
+                                              ),                                            
                                             ],
                                           ),
                                           const SizedBox(
@@ -480,8 +464,8 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                 width: 10,
                                               ),
                                               Text(
-                                                indexKonsultasi[index]
-                                                    ['tanggal'],
+                                                listRiwayat[index]
+                                                    ['tanggal']??'',
                                                 // 'Rabu, 20 Juni 2024',
                                                 style: GoogleFonts.ubuntu(
                                                     fontWeight:
@@ -490,13 +474,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                               ),
                                               const SizedBox(
                                                 width: 10,
-                                              ),
-                                              // Text(
-                                              //   '8:00 - 8:30 AM',
-                                              //   style: GoogleFonts.ubuntu(
-                                              //       fontWeight: FontWeight.normal,
-                                              //       fontSize: 14),
-                                              // ),
+                                              ),                
                                             ],
                                           ),
                                           Divider(
@@ -520,8 +498,8 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      indexKonsultasi[index][
-                                                          'master_kontak_nama'],
+                                                      listRiwayat[index][
+                                                          'master_kontak_nama']??'',
                                                       // 'Nurmiati, S.H',
                                                       style: GoogleFonts.ubuntu(
                                                         fontWeight:
@@ -530,8 +508,8 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      indexKonsultasi[index][
-                                                          'master_kontak_tipe_kontak_nama'],
+                                                      listRiwayat[index][
+                                                          'master_kontak_tipe_kontak_nama']??'',
                                                       style: GoogleFonts.ubuntu(
                                                         fontWeight:
                                                             FontWeight.w100,
@@ -548,7 +526,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                       children: [
                                                         Expanded(
                                                           child: Text(
-                                                              '${indexKonsultasi[index]['ref_klasifikasi_pidana_nama'] ?? ''}',
+                                                              '${listRiwayat[index]['ref_klasifikasi_pidana_nama'] ?? ''}',
                                                               style: GoogleFonts
                                                                   .ubuntu(
                                                                 fontWeight:
@@ -582,11 +560,11 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                         //   width: 3,
                                                         // ),
                                                         Text(
-                                                            indexKonsultasi[
+                                                            listRiwayat[
                                                                         index]
                                                                     ['judul'] ??
                                                                 '',
-                                                            // indexKonsultasi[
+                                                            // listRiwayat[
                                                             //         index]
                                                             //     [
                                                             //     'produk_nama'],

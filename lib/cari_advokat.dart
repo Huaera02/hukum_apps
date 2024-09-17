@@ -27,7 +27,7 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
   // ];
   // List<String> pengalaman = ['<5 tahun', '5 tahun', '> 5 tahun'];
   int tag = 0;
-  List<String> tags = [];
+  // List<String> tagKabkota = [];
   List<String> mitra = [
     'Advokat',
     'Notaris/PPAT',
@@ -61,21 +61,23 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
   //utk mencari mitra pada kolom
   final cariMitraController = TextEditingController();
 
+  String? tagKabkota;
+
   getData() async {
     setState(() {
       isLoading = true;
     });
 
-    Map<String, dynamic> response = await repository.cariAdvokat(
+    Map<String, dynamic> response = await repository.cariNotaris(
       nama: cariMitraController.text,
       tipe: tag == 0 ? 'advokat' : 'notaris',
-      kabKota: tags,
+      kabKota: tagKabkota,
     );
 
     isLoading = false;
 
     if (response['status'] == true) {
-      listData = List<Map<String, dynamic>>.from(response['data']);
+      listData = List<Map<String, dynamic>>.from(response['data']?? []);
     } else {
       showDialog(
         context: context,
@@ -105,7 +107,7 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
   init() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     var tipeKontak = pref.getString('tipeKontakAlias');
-    
+
     if (tipeKontak == 'notaris') {
       tag = 1;
     } else {
@@ -347,11 +349,17 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                                                           fontWeight:
                                                               FontWeight.bold)),
 
-                                                  ChipsChoice<String>.multiple(
-                                                    value: tags,
-                                                    onChanged: (val) =>
-                                                        setState(
-                                                            () => tags = val),
+                                                  ChipsChoice<String>.single(
+                                                    value: tagKabkota ?? '',
+                                                    onChanged: (val) {
+                                                      if (val == tagKabkota) {
+                                                         setState(() =>
+                                                            tagKabkota = null);
+                                                      } else {
+                                                        setState(() =>
+                                                            tagKabkota = val);
+                                                      }
+                                                    },
                                                     choiceItems:
                                                         C2Choice.listFrom(
                                                       source: kabupatenKota,
@@ -494,8 +502,11 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
             ListView.builder(
               itemBuilder: (context, index) {
                 return Container(
-                  padding: const EdgeInsets.all(
-                      20), // Menambahkan padding di sekitar TextFormField
+                  padding: const EdgeInsets.only(
+                      top: 10,
+                      left: 20,
+                      right:
+                          20), // Menambahkan padding di sekitar TextFormField
                   child: Column(
                     children: [
                       InkWell(

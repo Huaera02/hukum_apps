@@ -24,8 +24,8 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
   // List<String> selectedPengalaman = [];
   // List<String> selectedKabupatenKota = [];
 
-  List<String> tags = [];
-
+  // List<String> tags = [];
+  String? tagKabkota;
   List<String> kabupatenKota = [
     'Makassar',
     'Maros',
@@ -55,15 +55,16 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.cariAdvokat(
+    Map<String, dynamic> response = await repository.cariNotaris(
       nama: cariMitraController.text,
-      kabKota: tags,
+      kabKota: tagKabkota,
+      // tipe: 'advokat',
     );
 
     isLoading = false;
 
     if (response['status'] == true) {
-      listData = List<Map<String, dynamic>>.from(response['data']);
+      listData = List<Map<String, dynamic>>.from(response['data'] ?? []);
     } else {
       showDialog(
         context: context,
@@ -222,12 +223,17 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                                           fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.bold)),
-
-                                                  ChipsChoice<String>.multiple(
-                                                    value: tags,
-                                                    onChanged: (val) =>
-                                                        setState(
-                                                            () => tags = val),
+                                                  ChipsChoice<String>.single(
+                                                    value: tagKabkota ?? '',
+                                                    onChanged: (val) {
+                                                      if (val == tagKabkota) {
+                                                        setState(() =>
+                                                            tagKabkota = null);
+                                                      } else {
+                                                        setState(() =>
+                                                            tagKabkota = val);
+                                                      }
+                                                    },
                                                     choiceItems:
                                                         C2Choice.listFrom(
                                                       source: kabupatenKota,
@@ -259,6 +265,43 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                                     textDirection:
                                                         TextDirection.ltr,
                                                   ),
+
+                                                  // ChipsChoice<String>.multiple(
+                                                  //   value: tags,
+                                                  //   onChanged: (val) =>
+                                                  //       setState(
+                                                  //           () => tags = val),
+                                                  //   choiceItems:
+                                                  //       C2Choice.listFrom(
+                                                  //     source: kabupatenKota,
+                                                  //     value: (i, v) => v,
+                                                  //     label: (i, v) => v,
+                                                  //   ),
+                                                  //   choiceActiveStyle: C2ChoiceStyle(
+                                                  //       color: GlobalColors
+                                                  //           .mainColor,
+                                                  //       borderColor:
+                                                  //           GlobalColors
+                                                  //               .mainColor,
+                                                  //       borderRadius:
+                                                  //           const BorderRadius
+                                                  //               .all(
+                                                  //               Radius.circular(
+                                                  //                   5))),
+                                                  //   choiceStyle:
+                                                  //       const C2ChoiceStyle(
+                                                  //           color: Colors.black,
+                                                  //           borderColor:
+                                                  //               Colors.black38,
+                                                  //           borderRadius:
+                                                  //               BorderRadius
+                                                  //                   .all(Radius
+                                                  //                       .circular(
+                                                  //                           5))),
+                                                  //   wrapped: true,
+                                                  //   textDirection:
+                                                  //       TextDirection.ltr,
+                                                  // ),
                                                 ],
                                               ),
                                             ),
@@ -313,8 +356,11 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                   child: ListView.builder(
                     itemBuilder: (context, index) {
                       return Container(
-                        padding: const EdgeInsets.all(
-                            20), // Menambahkan padding di sekitar TextFormField
+                        padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right:
+                                20), // Menambahkan padding di sekitar TextFormField
                         child: Column(
                           children: [
                             InkWell(
@@ -432,7 +478,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                       ),
                                     ),
                                     Radio(
-                                        value: index+1,
+                                        value: index + 1,
                                         groupValue: _value,
                                         onChanged: (value) {
                                           setState(() {
@@ -454,7 +500,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                   width: double.infinity,
                   height: 52,
                   margin: const EdgeInsets.only(
-                      left: 26, right: 26, top: 334, bottom: 20),
+                      left: 26, right: 26, top: 10, bottom: 20),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,
@@ -463,9 +509,9 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                PilihLayananView(mitra: listData[_value-1])));
-                                    // MasukkanMasalahmuView(produk: widget.produk, mitra: listData[_value-1],)));
+                                builder: (context) => PilihLayananView(
+                                    mitra: listData[_value - 1])));
+                        // MasukkanMasalahmuView(produk: widget.produk, mitra: listData[_value-1],)));
                       },
                       child: Text('Selanjutnya',
                           style: GoogleFonts.ubuntu(

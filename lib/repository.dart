@@ -247,6 +247,8 @@ class Repository {
     required String email,
     required String nik,
     required String nia,
+    required String noNotaris,
+    required String noPpat,
     required String nohp,
     required String tempatLahir,
     required String tglLahir,
@@ -279,7 +281,10 @@ class Repository {
         'tempat_lahir': tempatLahir,
         'tanggal_lahir': tglLahir,
         'profil': profile,
-        'kabkota': kabKota
+        'kabkota': kabKota,
+        'nia': nia,
+        'no_notaris': noNotaris,
+        'no_ppat': noPpat
       };
 
       request.body = jsonEncode(params);
@@ -921,6 +926,58 @@ class Repository {
     }
   }
 
+  Future<Map<String, dynamic>> cariNotaris(
+      {String? nama, String tipe = 'advokat', String? kabKota}) async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/mitra"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      var params = {
+        'where': {
+          "tipe_kontak_alias": tipe,
+          if (kabKota != null) "kabkota": kabKota
+        },
+        'like': {'nama': nama},
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'data': responseBody['mitra'], //daftar pendidikan
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
 //untuk profile mitra
   Future<Map<String, dynamic>> getProfileAdvokat(
       {required String idAdvokat}) async {
@@ -1395,7 +1452,7 @@ class Repository {
         if (responseBody['status'] == true) {
           return {
             'status': true,
-            'data': responseBody['data'].toString(),
+            'data': responseBody['data'].toString(), //id penjualan
             'msg': responseBody['msg'],
           };
         } else {
@@ -1550,7 +1607,8 @@ class Repository {
         'join': {
           'master_kontak': 'master_kontak.id=penjualan.id_mitra',
           'produk': 'produk.id=penjualan.id_produk',
-        }
+        },
+        "order": {"penjualan.created_at": "desc"}
       };
 
       request.body = jsonEncode(params);
@@ -1608,7 +1666,8 @@ class Repository {
               .indexWhere((elx) => elx['id'] == el['id_klasifikasi']);
           if (idx != -1) {
             //kalo ada klasifikasinya ambil nama klasifikasi dari data situ
-            el['ref_klasifikasi_pidana_nama'] = responseBody2['data'][idx]['nama'];
+            el['ref_klasifikasi_pidana_nama'] =
+                responseBody2['data'][idx]['nama'];
           }
         }
       }
@@ -1617,6 +1676,113 @@ class Repository {
       return {
         'status': true,
         'riwayat': riwayat, //daftar riwayat
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  //Get pada halaman riwayat konsultasi klien
+  Future<Map<String, dynamic>> riwayatTransaksi() async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/penjualan"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      // var sysBranchesId = pref.getString("sys_branches_id");
+      var kontakId = pref.getString("id_kontak");
+
+      var params = {
+        'table': 'penjualan',
+        'where': {
+          //id.mitra
+          //id.pelanggan
+          'id_pelanggan': kontakId
+        },
+        'join': {
+          "master_kontak":"master_kontak.id=penjualan.id_mitra",
+          "produk":"produk.id=penjualan.id_produk",
+          // 'master_kontak': 'master_kontak.id=penjualan.id_mitra',
+          // 'produk': 'produk.id=penjualan.id_produk',
+        },
+        "order": {"id": "desc"}
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {'status': false, 'msg': responseBody['error']};
+      }
+
+      //get klasifikasi pidana
+      var request2 = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      request2.body = jsonEncode({'table': 'ref_klasifikasi_pidana'});
+      var response2 = await http.Response.fromStream(await request2.send());
+      var responseBody2 = jsonDecode(response2.body);
+      //request ke 2 gagal
+      if (response2.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody2['error'] ??
+              responseBody2['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody2['status'] != true) {
+        return {'status': false, 'msg': responseBody2['error']};
+      }
+
+      //kalo ada refklasifikasi idnya ambil namanya dari request ke 2
+      List riwayat = responseBody['data'];
+      
+
+      for (var el in riwayat) {
+        if (el['id_klasifikasi'] != null) {
+          //cari data klasifikasi
+          int idx = responseBody2['data']
+              .indexWhere((elx) => elx['id'] == el['id_klasifikasi']);
+          if (idx != -1) {
+            //kalo ada klasifikasinya ambil nama klasifikasi dari data situ
+            el['ref_klasifikasi_pidana_nama'] =
+                responseBody2['data'][idx]['nama'];
+          }
+        }
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'riwayat': riwayat, //daftar riwayat
+        
       };
     } catch (e) {
       print('Exception: $e');
@@ -1651,8 +1817,10 @@ class Repository {
         'join': {
           'master_kontak': 'master_kontak.id=penjualan.id_pelanggan',
           'produk': 'produk.id=penjualan.id_produk',
+          // "order":{ "penjualan.created_at": "desc"}
           // 'ref_klasifikasi_pidana':'ref_klasifikasi_pidana.id=penjualan.id_klasifikasi'
-        }
+        },
+        "order": {"penjualan.created_at": "desc"}
       };
 
       request.body = jsonEncode(params);
@@ -1711,7 +1879,114 @@ class Repository {
               .indexWhere((elx) => elx['id'] == el['id_klasifikasi']);
           if (idx != -1) {
             //kalo ada klasifikasinya ambil nama klasifikasi dari data situ
-            el['ref_klasifikasi_pidana_nama'] = responseBody2['data'][idx]['nama'];
+            el['ref_klasifikasi_pidana_nama'] =
+                responseBody2['data'][idx]['nama'];
+          }
+        }
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'riwayat': riwayat, //daftar riwayat
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+//Get pada halaman riwayat konsultasi mitra
+  Future<Map<String, dynamic>> riwayatTransaksiMitra() async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/penjualan"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      // var sysBranchesId = pref.getString("sys_branches_id");
+      var kontakId = pref.getString("id_kontak");
+
+      var params = {
+        'table': 'penjualan',
+        'where': {
+          //id.mitra
+          //id.pelanggan
+          'id_mitra': kontakId
+        },
+        'join': {
+          'master_kontak': 'master_kontak.id=penjualan.id_pelanggan',
+          'produk': 'produk.id=penjualan.id_produk',
+          // "order":{ "penjualan.created_at": "desc"}
+          // 'ref_klasifikasi_pidana':'ref_klasifikasi_pidana.id=penjualan.id_klasifikasi'
+        },
+        "order": {"id": "desc"}
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {'status': false, 'msg': responseBody['error']};
+      }
+
+      //get klasifikasi pidana
+      var request2 = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      request2.body = jsonEncode({'table': 'ref_klasifikasi_pidana'});
+      var response2 = await http.Response.fromStream(await request2.send());
+      var responseBody2 = jsonDecode(response2.body);
+
+      //request ke 2 gagal
+      if (response2.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody2['error'] ??
+              responseBody2['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody2['status'] != true) {
+        return {'status': false, 'msg': responseBody2['error']};
+      }
+
+      //kalo ada refklasifikasi idnya ambil namanya dari request ke 2
+      List riwayat = responseBody['data'];
+
+      for (var el in riwayat) {
+        if (el['id_klasifikasi'] != null) {
+          //cari data klasifikasi
+          int idx = responseBody2['data']
+              .indexWhere((elx) => elx['id'] == el['id_klasifikasi']);
+          if (idx != -1) {
+            //kalo ada klasifikasinya ambil nama klasifikasi dari data situ
+            el['ref_klasifikasi_pidana_nama'] =
+                responseBody2['data'][idx]['nama'];
           }
         }
       }
@@ -1733,7 +2008,7 @@ class Repository {
     try {
       var request = http.Request(
         'GET', // Mengubah metode permintaan menjadi POST
-        Uri.parse("$baseUrl/api/ws"),
+        Uri.parse("$baseUrl/api/penjualan"),
       )..headers.addAll({
           'Content-Type': 'application/json',
           'HUKUMONLINE-API-KEY': 'r2398hr2h9',
@@ -1742,13 +2017,13 @@ class Repository {
         });
 
       SharedPreferences pref = await SharedPreferences.getInstance();
-      var sysBranchesId = pref.getString("sys_branches_id");
+      // var sysBranchesId = pref.getString("sys_branches_id");
       var kontakId = pref.getString("id_kontak");
 
       var params = {
         'table': 'penjualan',
         'where': {
-          'penjualan.sys_branches_id': sysBranchesId,
+          // 'penjualan.sys_branches_id': sysBranchesId,
           //idmitra
           'id_pelanggan': kontakId,
           'penjualan.id': idPenjualan,
@@ -1757,6 +2032,7 @@ class Repository {
           "master_kontak": "master_kontak.id=penjualan.id_mitra",
           //id.pelanggan
           "produk": "produk.id=penjualan.id_produk",
+          "produk_kategori": "produk_kategori.id=produk.id_kategori"
         }
       };
 
@@ -1818,7 +2094,8 @@ class Repository {
               .indexWhere((elx) => elx['id'] == el['id_klasifikasi']);
           if (idx != -1) {
             //kalo ada klasifikasinya ambil nama klasifikasi dari data situ
-            el['ref_klasifikasi_pidana_nama'] = responseBody2['data'][idx]['nama'];
+            el['ref_klasifikasi_pidana_nama'] =
+                responseBody2['data'][idx]['nama'];
           }
         }
       }
@@ -1840,7 +2117,7 @@ class Repository {
     try {
       var request = http.Request(
         'GET', // Mengubah metode permintaan menjadi POST
-        Uri.parse("$baseUrl/api/ws"),
+        Uri.parse("$baseUrl/api/penjualan"),
       )..headers.addAll({
           'Content-Type': 'application/json',
           'HUKUMONLINE-API-KEY': 'r2398hr2h9',
@@ -1849,13 +2126,13 @@ class Repository {
         });
 
       SharedPreferences pref = await SharedPreferences.getInstance();
-      var sysBranchesId = pref.getString("sys_branches_id");
+      // var sysBranchesId = pref.getString("sys_branches_id");
       var kontakId = pref.getString("id_kontak");
 
       var params = {
         'table': 'penjualan',
         'where': {
-          'penjualan.sys_branches_id': sysBranchesId,
+          // 'penjualan.sys_branches_id': sysBranchesId,
           //idmitra
           'id_mitra': kontakId,
           'penjualan.id': idPenjualan,
@@ -1864,6 +2141,7 @@ class Repository {
           "master_kontak": "master_kontak.id=penjualan.id_pelanggan",
           //id.pelanggan
           "produk": "produk.id=penjualan.id_produk",
+          "produk_kategori": "produk_kategori.id=produk.id_kategori"
         }
       };
 
@@ -1925,7 +2203,8 @@ class Repository {
               .indexWhere((elx) => elx['id'] == el['id_klasifikasi']);
           if (idx != -1) {
             //kalo ada klasifikasinya ambil nama klasifikasi dari data situ
-            el['ref_klasifikasi_pidana_nama'] = responseBody2['data'][idx]['nama'];
+            el['ref_klasifikasi_pidana_nama'] =
+                responseBody2['data'][idx]['nama'];
           }
         }
       }
@@ -1943,10 +2222,12 @@ class Repository {
 
   //post fitur chat
   //Get pada halaman rincian konsultasi dari sisi mitra
-  Future<Map<String, dynamic>> editJadwalKonsultasi(
-      {required String idPenjualan,
-      required String mulaiLayanan,
-    required String selesaiLayanan,}) async {
+  Future<Map<String, dynamic>> editJadwalKonsultasi({
+    required String idPenjualan,
+    required String mulaiLayanan,
+    required String selesaiLayanan,
+    String tipe = 'mulai',
+  }) async {
     try {
       var request = http.Request(
         'PUT', // Mengubah metode permintaan menjadi POST
@@ -1964,9 +2245,10 @@ class Repository {
 
       var params = {
         'table': 'penjualan',
-        'id':idPenjualan,
-        'mulai_layanan':mulaiLayanan,
-        'selesai_layanan':selesaiLayanan,
+        'id': idPenjualan,
+        if (tipe == 'mulai') 'mulai_layanan': mulaiLayanan,
+        if (tipe != 'mulai') 'selesai_layanan': selesaiLayanan,
+        if (tipe != 'mulai') 'status': "1",
       };
 
       request.body = jsonEncode(params);
@@ -2054,7 +2336,7 @@ class Repository {
         if (responseBody['status'] == true) {
           return {
             'status': true,
-            'data': responseBody['data'].toString(),
+            'data': responseBody['data'].toString(), //id penjualan
             'msg': responseBody['msg'],
           };
         } else {
@@ -2076,7 +2358,278 @@ class Repository {
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
+
+  //tambah rekening
+  Future<Map<String, dynamic>> postRekeningMitra({
+    required String noRek,
+    required String atasNama,
+    required String idBank,
+  }) async {
+    try {
+      var request = http.Request(
+        'POST', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      var sysBranchesId = pref.getString("sys_branches_id");
+      // var kontakId = pref.getString("id_kontak");
+
+      var params = {
+        'id_bank': idBank,
+        'sys_branches_id': sysBranchesId,
+        'table': 'ref_rekening',
+        'norek': noRek,
+        'atas_nama': atasNama,
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        if (responseBody['status'] == true) {
+          return {
+            'status': true,
+            'msg': responseBody['msg'],
+          };
+        } else {
+          return {
+            'status': false,
+            'msg': responseBody['error'] ?? responseBody['msg']
+          };
+        }
+      } else {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  //Get Pilih bank pada dropdown
+  Future<Map<String, dynamic>> getBankMitra() async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      var params = {'table': 'ref_bank'};
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'bank': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  //Get Layanan yang telah dibuat ole mitra
+  Future<Map<String, dynamic>> getSemuaRekeningMitra(
+      {required String branchId}) async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      var params = {
+        'table': 'ref_rekening',
+        "where": {"ref_rekening.sys_branches_id": branchId},
+        "join": {"ref_bank": "ref_bank.id=ref_rekening.id_bank"}
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'rekening': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  // Menghapus Layanan Mitra
+  Future<Map<String, dynamic>> deleteRekening({
+    required String id,
+  }) async {
+    try {
+      var request = http.Request(
+        'DELETE', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      var sysBranchesId = pref.getString("sys_branches_id");
+
+      var params = {
+        'table': 'ref_rekening',
+        'where': {
+          'sys_branches_id': sysBranchesId,
+          'id': id,
+        }
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        if (responseBody['status'] == true) {
+          return {
+            'status': true,
+            'msg': responseBody['msg'],
+          };
+        } else {
+          return {
+            'status': false,
+            'msg': responseBody['error'] ?? responseBody['msg']
+          };
+        }
+      } else {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  //Get Layanan yang telah dibuat ole mitra
+  Future<Map<String, dynamic>> getDetailRekening(
+      {required String branchId, 
+      required String bankId}) async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      var params = {
+        "table": "ref_rekening",
+        "join": {
+          "ref_bank": "ref_bank.id=ref_rekening.id_bank"
+        },
+        "where": {
+          "ref_bank.id":bankId,
+          "ref_rekening.sys_branches_id": branchId,
+        }
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'rekening': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
 }
+
+
+//tambah rekening
+
 
 // informasi user
 // _emailindormasi noKasus

@@ -103,135 +103,142 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
         body: SafeArea(
           child: Stack(
             children: [
-              ListView(
+              Column(
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                  Expanded(
+                    child: ListView(
                       children: [
-                        // if (widget.produk['is_judulkasus'] == '1')
-                        Text(
-                          'Pilih Klasifikasi Kasus',
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        // if (widget.produk['is_judulkasus'] == '1')
                         Container(
-                          height: 60,
-                          padding: const EdgeInsets.only(left: 10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                color: Colors.grey.shade700,
-                              )),
-                          alignment: Alignment.center,
-                          child: DropdownButton<Map<String, dynamic>>(
-                            value: valuePilih,
-                            hint: Text(
-                              'Bidang Keahlian',
-                              style: GoogleFonts.ubuntu(
-                                  // color: Colors.black
-                                  ),
-                            ),
-                            icon: const Icon(Icons.arrow_drop_down),
-                            iconSize: 36,
-                            isExpanded: true,
-                            underline: const SizedBox(),
-                            style: GoogleFonts.ubuntu(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300),
-                            onChanged: (newValue1) {
-                              setState(() {
-                                valuePilih = newValue1;
-                              });
-                            },
-                            items: dataKlasifikasi.map((valueItem1) {
-                              return DropdownMenuItem(
-                                value: valueItem1,
-                                child: Text(
-                                  valueItem1['nama'],
-                                  style: GoogleFonts.ubuntu(fontSize: 14),
+                          margin: const EdgeInsets.only(
+                              top: 20, right: 20, left: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              // if (widget.produk['is_judulkasus'] == '1')
+                              Text(
+                                'Pilih Klasifikasi Kasus',
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                              );
-                            }).toList(),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              // if (widget.produk['is_judulkasus'] == '1')
+                              Container(
+                                height: 60,
+                                padding: const EdgeInsets.only(left: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    border: Border.all(
+                                      color: Colors.grey.shade700,
+                                    )),
+                                alignment: Alignment.center,
+                                child: DropdownButton<Map<String, dynamic>>(
+                                  value: valuePilih,
+                                  hint: Text(
+                                    'Bidang Keahlian',
+                                    style: GoogleFonts.ubuntu(
+                                        // color: Colors.black
+                                        ),
+                                  ),
+                                  icon: const Icon(Icons.arrow_drop_down),
+                                  iconSize: 36,
+                                  isExpanded: true,
+                                  underline: const SizedBox(),
+                                  style: GoogleFonts.ubuntu(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300),
+                                  onChanged: (newValue1) {
+                                    setState(() {
+                                      valuePilih = newValue1;
+                                    });
+                                  },
+                                  items: dataKlasifikasi.map((valueItem1) {
+                                    return DropdownMenuItem(
+                                      value: valueItem1,
+                                      child: Text(
+                                        valueItem1['nama'],
+                                        style: GoogleFonts.ubuntu(fontSize: 14),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              // if (widget.produk['is_judulkasus'] == '1')
+                              Text(
+                                'Masukkan Topik Masalah',
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              // if (widget.produk['is_judulkasus'] == '1')
+                              Form(
+                                key: _formState,
+                                child: TextFormField(
+                                  validator: (value) {
+                                    if (value == '') {
+                                      return "Kolom topik masalah tidak boleh kosong";
+                                    }
+                                  },
+                                  controller: judulController,
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    labelStyle: GoogleFonts.ubuntu(),
+                                    hintText: 'Masukkan Topik Masalah',
+                                    hintStyle:
+                                        GoogleFonts.ubuntu(color: Colors.black),
+                                    border: const OutlineInputBorder(),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              //  if (widget.produk['is_judulkasus'] == '1')
+                              Text(
+                                'Masukkan Deskripsi Masalah',
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              // if (widget.produk['is_judulkasus'] == '1')
+                              SizedBox(
+                                height: 200,
+                                child: TextFormField(
+                                  controller: deskripsiController,
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                  keyboardType: TextInputType.text,
+                                  textAlignVertical: TextAlignVertical.top,
+                                  decoration: InputDecoration(
+                                    labelStyle: GoogleFonts.ubuntu(),
+                                    hintText: 'Ceritakan Masalahmu..',
+                                    hintStyle:
+                                        GoogleFonts.ubuntu(color: Colors.black),
+                                    border: const OutlineInputBorder(),
+                                  ),
+                                  maxLines: null,
+                                  expands: true,
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        // if (widget.produk['is_judulkasus'] == '1')
-                          Text(
-                            'Masukkan Topik Masalah',
-                            style: GoogleFonts.ubuntu(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        // if (widget.produk['is_judulkasus'] == '1')
-                        Form(
-                          key: _formState,
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value == '') {
-                                return "Kolom topik masalah tidak boleh kosong";
-                              }
-                            },
-                            controller: judulController,
-                            style: const TextStyle(
-                                fontSize: 14, color: Colors.black),
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              labelStyle: GoogleFonts.ubuntu(),
-                              hintText: 'Masukkan Topik Masalah',
-                              hintStyle:
-                                  GoogleFonts.ubuntu(color: Colors.black),
-                              border: const OutlineInputBorder(),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        //  if (widget.produk['is_judulkasus'] == '1')
-                        Text(
-                          'Masukkan Deskripsi Masalah',
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        // if (widget.produk['is_judulkasus'] == '1')
-                        SizedBox(
-                          height: 200,
-                          child: TextFormField(
-                            controller: deskripsiController,
-                            style: const TextStyle(
-                                fontSize: 14, color: Colors.black),
-                            keyboardType: TextInputType.text,
-                            textAlignVertical: TextAlignVertical.top,
-                            decoration: InputDecoration(
-                              labelStyle: GoogleFonts.ubuntu(),
-                              hintText: 'Ceritakan Masalahmu..',
-                              hintStyle:
-                                  GoogleFonts.ubuntu(color: Colors.black),
-                              border: const OutlineInputBorder(),
-                            ),
-                            maxLines: null,
-                            expands: true,
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -239,7 +246,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                     width: double.infinity,
                     height: 52,
                     margin: const EdgeInsets.only(
-                        left: 26, right: 26, top: 215, bottom: 20),
+                        left: 26, right: 26, top: 10, bottom: 20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/bank_mitra.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/layanan_chat.dart';
 import 'package:loginn/login_view.dart';
@@ -24,6 +25,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
   bool isLoading = false;
   Repository repository = Repository();
   Map<String, dynamic> listData = {};
+  var sys_branches_id;
 
   getData() async {
     setState(() {
@@ -32,6 +34,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     var kontakId = pref.getString("id_kontak");
+    sys_branches_id = pref.getString("sys_branches_id");
     Map<String, dynamic> response =
         await repository.getProfileAdvokat(idAdvokat: kontakId ?? '');
 
@@ -452,6 +455,33 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                             ),
                             label: Text(
                               'Layanan Hukum',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Divider(
+                            thickness: 1.0,
+                            color: Colors.grey.shade400,
+                          ),
+                          TextButton.icon(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RekeningView(branchId: sys_branches_id,))
+                                  // const RiwayatMitraView()),
+                                  );
+                            },
+                            icon: Icon(
+                              Icons.card_membership,
+                              color: GlobalColors.mainColor,
+                              size: 20,
+                            ),
+                            label: Text(
+                              'Rekening Saya',
                               style: GoogleFonts.ubuntu(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
