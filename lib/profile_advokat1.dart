@@ -170,7 +170,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
-                        margin: const EdgeInsets.only(bottom: 10, top: 10),
+                        margin: const EdgeInsets.only(top: 10),
                         child: Column(
                           children: [
                             Row(
@@ -202,12 +202,14 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                         ),
                       ),
 
-                      //Bidang Keahlian
+                      //Bidang Keahlian               
+                      if ((listData['tipe_kontak_nama'] ??'') !='Notaris')
                       Container(                        
                         padding: const EdgeInsets.only(bottom: 10),
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
+                        margin: const EdgeInsets.only(top: 10),
                         child: Column(
                           children: [
                             Container(
@@ -259,6 +261,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                       ),
 
                       // Bagian Pengalaman
+                      if ((listData['tipe_kontak_nama'] ??'') !='Notaris')
                       Container(
                         margin: const EdgeInsets.only(top: 10),
                         padding: const EdgeInsets.only(bottom: 10),

@@ -1708,8 +1708,8 @@ class Repository {
           'id_pelanggan': kontakId
         },
         'join': {
-          "master_kontak":"master_kontak.id=penjualan.id_mitra",
-          "produk":"produk.id=penjualan.id_produk",
+          "master_kontak": "master_kontak.id=penjualan.id_mitra",
+          "produk": "produk.id=penjualan.id_produk",
           // 'master_kontak': 'master_kontak.id=penjualan.id_mitra',
           // 'produk': 'produk.id=penjualan.id_produk',
         },
@@ -1763,7 +1763,6 @@ class Repository {
 
       //kalo ada refklasifikasi idnya ambil namanya dari request ke 2
       List riwayat = responseBody['data'];
-      
 
       for (var el in riwayat) {
         if (el['id_klasifikasi'] != null) {
@@ -1782,7 +1781,6 @@ class Repository {
       return {
         'status': true,
         'riwayat': riwayat, //daftar riwayat
-        
       };
     } catch (e) {
       print('Exception: $e');
@@ -2571,8 +2569,7 @@ class Repository {
 
   //Get Layanan yang telah dibuat ole mitra
   Future<Map<String, dynamic>> getDetailRekening(
-      {required String branchId, 
-      required String bankId}) async {
+      {required String branchId, required String bankId}) async {
     try {
       var request = http.Request(
         'GET', // Mengubah metode permintaan menjadi POST
@@ -2586,13 +2583,70 @@ class Repository {
 
       var params = {
         "table": "ref_rekening",
-        "join": {
-          "ref_bank": "ref_bank.id=ref_rekening.id_bank"
-        },
+        "join": {"ref_bank": "ref_bank.id=ref_rekening.id_bank"},
         "where": {
-          "ref_bank.id":bankId,
+          if(bankId.isNotEmpty)"ref_bank.id": bankId,
           "ref_rekening.sys_branches_id": branchId,
         }
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'rekening': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      print('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+//post bukti pembayaran oleh pelanggan
+  Future<Map<String, dynamic>> postBuktiPembayaran({
+    required String idPenjualan,
+    required String idRekening,
+    required String gambar,
+  }) async {
+    try {
+      var request = http.Request(
+        'POST', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/konfirmasipembayaran/create"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      var sysBranchesId = pref.getString("sys_branches_id");
+      // var kontakId = pref.getString("id_kontak");
+
+      var params = {
+        "penjualan": idPenjualan,
+        "rekening": idRekening,
+        "cabang": sysBranchesId,
+        "gambar": gambar,
       };
 
       request.body = jsonEncode(params);

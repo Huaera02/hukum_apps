@@ -13,18 +13,17 @@ class TambahLayanaView extends StatefulWidget {
   State<TambahLayanaView> createState() => _TambahLayanaViewState();
 }
 
-class _TambahLayanaViewState extends State<TambahLayanaView> {  
+class _TambahLayanaViewState extends State<TambahLayanaView> {
   bool? isCheck = false;
   bool isLoading = false;
   Repository repository = Repository();
   final namaController = TextEditingController();
   final durasiController = TextEditingController();
-  final hargaController = TextEditingController(); 
-  final deskripsiController = TextEditingController();  
+  final hargaController = TextEditingController();
+  final deskripsiController = TextEditingController();
 
   Map<String, dynamic>? valuePilih1;
-  List<Map<String, dynamic>> kategori = [];  
-  
+  List<Map<String, dynamic>> kategori = [];
 
   postProdukLayanan() async {
     setState(() {
@@ -39,7 +38,7 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
         isJudulKasus: isCheck == false ? '0' : '1');
     isLoading = false;
     if (response['status'] == true) {
-      Navigator.of(context).pop(true); 
+      Navigator.of(context).pop(true);
     } else {
       showDialog(
         context: context,
@@ -127,13 +126,14 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
       body: SafeArea(
           child: Stack(
         children: [
-          ListView(
+          Column(
             children: [
               Expanded(
-                child: Column(
+                child: ListView(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                      margin:
+                          const EdgeInsets.only(left: 20, right: 20, top: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -292,18 +292,20 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                                 fontSize: 14, color: Colors.black),
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                                labelStyle: GoogleFonts.ubuntu(),
-                                hintText: 'Masukkan Deskripsi Layanan',
-                                hintStyle:
-                                    GoogleFonts.ubuntu(color: Colors.black),
-                                border: const OutlineInputBorder(),
-                                ),
-                          ),                          
+                              labelStyle: GoogleFonts.ubuntu(),
+                              hintText: 'Masukkan Deskripsi Layanan',
+                              hintStyle:
+                                  GoogleFonts.ubuntu(color: Colors.black),
+                              border: const OutlineInputBorder(),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(left: 10,),
+                      margin: const EdgeInsets.only(
+                        left: 10,
+                      ),
                       child: Row(
                         children: [
                           Checkbox(
@@ -319,8 +321,9 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                               'Centang jika Membutuhkan Informasi Penjelasan Permasalahan dari Klien',
                               style: GoogleFonts.ubuntu(
                                 fontSize: 12,
-                                fontWeight: FontWeight.w500,),
-                                textAlign: TextAlign.left,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
                           )
                         ],

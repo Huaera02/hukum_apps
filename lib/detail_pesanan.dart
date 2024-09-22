@@ -22,7 +22,7 @@ class DetailPesananView extends StatefulWidget {
   State<DetailPesananView> createState() => _DetailPesananViewState();
 }
 
-class _DetailPesananViewState extends State<DetailPesananView> {  
+class _DetailPesananViewState extends State<DetailPesananView> {
   bool isLoading = false;
   Repository repository = Repository();
   final mulaiLayananController = TextEditingController();
@@ -149,7 +149,9 @@ urutan if
                         ),
                       ),
                       if (_withChat)
-                        if ((listRincian.first['produk_id_kategori'] ?? '') !='6')
+                        if (listRincian.isNotEmpty &&
+                            (listRincian.first['produk_id_kategori'] ?? '') !=
+                                '6')
                           Tab(
                             child: Text(
                               'Chat',
@@ -247,9 +249,9 @@ urutan if
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                  listRincian
-                                                                          .first['mitra'][
-                                                                      'nama'],
+                                                                  listRincian.first[
+                                                                          'mitra']
+                                                                      ['nama'],
                                                                   // listRincian.first[''] 'Nurmiati, S.H',
                                                                   style:
                                                                       GoogleFonts
@@ -261,8 +263,9 @@ urutan if
                                                                         14,
                                                                   )),
                                                               Text(
-                                                                  listRincian
-                                                                          .first['mitra'][
+                                                                  listRincian.first[
+                                                                          'mitra']
+                                                                      [
                                                                       'tipe_kontak_nama'],
                                                                   // 'Advokat',
                                                                   style:
@@ -320,9 +323,9 @@ urutan if
                                                                         14,
                                                                   )),
                                                               Text(
-                                                                  listRincian
-                                                                          .first[
-                                                                      'master_kontak_email'],
+                                                                  listRincian.first[
+                                                                          'mitra']
+                                                                      ['email'],
                                                                   // 'Senin, 20 Jun 2022',
                                                                   style:
                                                                       GoogleFonts
@@ -379,10 +382,9 @@ urutan if
                                                                         14,
                                                                   )),
                                                               Text(
-                                                                  listRincian
-                                                                          .first[
-                                                                      'master_kontak_hp'],
-                                                                  // 'Senin, 20 Jun 2022',
+                                                                  listRincian.first[
+                                                                          'mitra']
+                                                                      ['hp'],
                                                                   style:
                                                                       GoogleFonts
                                                                           .ubuntu(
@@ -438,9 +440,10 @@ urutan if
                                                                         14,
                                                                   )),
                                                               Text(
-                                                                  listRincian
-                                                                          .first[
-                                                                      'master_kontak_alamat'],
+                                                                  listRincian.first[
+                                                                          'mitra']
+                                                                      [
+                                                                      'alamat'],
                                                                   // 'Senin, 20 Jun 2022',
                                                                   style:
                                                                       GoogleFonts
@@ -856,90 +859,96 @@ urutan if
                                               (_jamSelesai!.isBefore(
                                                       DateTime.now()) &&
                                                   !lanjut))
-                                          ? Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20,
-                                                  right: 20,
-                                                  top: 120),
-                                              child: ListView(
-                                                // crossAxisAlignment:
-                                                // CrossAxisAlignment.center,
-                                                children: [
-                                                  Center(
-                                                    child: Icon(
-                                                      Icons.check_circle,
-                                                      size: 160,
-                                                      color: GlobalColors
-                                                          .mainColor,
-                                                    ),
-                                                  ),
-                                                  // const SizedBox(
-                                                  //   height: 50,
-                                                  // ),
-                                                  Center(
-                                                    child: Text('Selesai',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: GlobalColors
-                                                                .mainColor)),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 50,
-                                                  ),
-                                                  Center(
-                                                    child: Text(
-                                                      'Konsultasi anda telah berakhir, Silahkan kembali ke Beranda',
-                                                      style: GoogleFonts.ubuntu(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: GlobalColors
-                                                              .mainColor),
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    width: double.infinity,
-                                                    height: 52,
-                                                    margin:
+                                          ? Column(
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
                                                         const EdgeInsets.only(
-                                                            left: 26,
-                                                            right: 26,
-                                                            top: 210,
-                                                            bottom: 20),
-                                                    child: ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        backgroundColor:
-                                                            GlobalColors
+                                                            left: 20,
+                                                            right: 20,
+                                                            top: 120),
+                                                    child: ListView(
+                                                      // crossAxisAlignment:
+                                                      // CrossAxisAlignment.center,
+                                                      children: [
+                                                        Center(
+                                                          child: Icon(
+                                                            Icons.check_circle,
+                                                            size: 160,
+                                                            color: GlobalColors
                                                                 .mainColor,
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        const BottomNavView()));
-                                                      },
-                                                      child: Text(
-                                                        'Kembali ke Beranda',
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: GlobalColors
-                                                              .btnColor,
+                                                          ),
                                                         ),
+                                                        // const SizedBox(
+                                                        //   height: 50,
+                                                        // ),
+                                                        Center(
+                                                          child: Text('Selesai',
+                                                              style: GoogleFonts.ubuntu(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: GlobalColors
+                                                                      .mainColor)),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 50,
+                                                        ),
+                                                        Center(
+                                                          child: Text(
+                                                            'Konsultasi anda telah berakhir, Silahkan kembali ke Beranda',
+                                                            style: GoogleFonts.ubuntu(
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                color: GlobalColors
+                                                                    .mainColor),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: double.infinity,
+                                                  height: 52,
+                                                  margin: const EdgeInsets.only(
+                                                      left: 26,
+                                                      right: 26,
+                                                      top: 10,
+                                                      bottom: 20),
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                          GlobalColors
+                                                              .mainColor,
+                                                    ),
+                                                    onPressed: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  const BottomNavView()));
+                                                    },
+                                                    child: Text(
+                                                      'Kembali ke Beranda',
+                                                      style: GoogleFonts.ubuntu(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: GlobalColors
+                                                            .btnColor,
                                                       ),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             )
                                           : (listRincian.first[
                                                       'selesai_layanan'] ==
@@ -966,8 +975,8 @@ urutan if
                                                       ),
                                                       Center(
                                                         child: Text(
-                                                          listRincian.first['mitra'][
-                                                              'nama'],
+                                                          listRincian.first[
+                                                              'mitra']['nama'],
                                                           // 'Nurmiati, S.H',
                                                           style: GoogleFonts
                                                               .ubuntu(

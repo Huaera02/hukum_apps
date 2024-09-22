@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
 import 'package:loginn/riwayat_mitra.dart';
@@ -9,8 +13,9 @@ import 'package:loginn/riwayat_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VirtualAccountView extends StatefulWidget {
+  final String idPenjualan;
   final String branchId;
-  final String bankId;
+  final String? bankId;
   final String total;
   final DateTime createdAt;
   const VirtualAccountView({
@@ -19,6 +24,8 @@ class VirtualAccountView extends StatefulWidget {
     required this.bankId,
     required this.total,
     required this.createdAt,
+    required this.idPenjualan,
+    // required this.idPenjualan,
   });
 
   @override
@@ -33,6 +40,8 @@ class _VirtualAccountViewState extends State<VirtualAccountView> {
   String role = '';
   SharedPreferences? pref;
 
+  List<File?> imageFiles = [];
+
   void init() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     setState(() {
@@ -45,12 +54,89 @@ class _VirtualAccountViewState extends State<VirtualAccountView> {
       isLoading = true;
     });
     Map<String, dynamic> response = await repository.getDetailRekening(
-        bankId: widget.bankId, branchId: widget.branchId);
+        bankId: widget.bankId ?? '', branchId: widget.branchId);
 
     isLoading = false;
 
     if (response['status'] == true) {
       listDetailBank = List<Map<String, dynamic>>.from(response['rekening']);
+      for (var i = 0; i < listDetailBank.length; i++) {
+        imageFiles.add(null);
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Center(
+                child: Text(
+                  response['msg'],
+                  style: GoogleFonts.ubuntu(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
+    setState(() {});
+  }
+
+  postDataRekening({required int index}) async {
+    if (imageFiles[index] == null) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Center(
+                child: Text(
+                  'Upload gambar terlebih dahulu',
+                  style: GoogleFonts.ubuntu(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+      return;
+    }
+    setState(() {
+      isLoading = true;
+    });
+
+    String base64 = base64Encode(imageFiles[index]!.readAsBytesSync());
+
+    Map<String, dynamic> response = await repository.postBuktiPembayaran(
+      idPenjualan: widget.idPenjualan,
+      idRekening: listDetailBank[index]['id'],
+      gambar: base64,
+    );
+    isLoading = false;
+    if (response['status'] == true) {
+      role == 'advokat' || role == 'notaris'
+          ?
+          // Navigator.popUntil(
+          //     context,
+          //     ModalRoute.withName('/RiwayatMitraView'),
+          //   );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const RiwayatMitraView()))
+          : Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HistoryView()));
     } else {
       showDialog(
         context: context,
@@ -262,61 +348,51 @@ class _VirtualAccountViewState extends State<VirtualAccountView> {
                           ),
                           Center(
                             child: InkWell(
+                              onTap: () => selectImage(index),
                               child: Container(
                                 height: 200,
                                 width: 200,
                                 decoration: BoxDecoration(
                                     border: Border.all(color: Colors.black38)),
-                                child: Center(
-                                    child: Text(
-                                  'Upload Bukti Pembayaran',
-                                  style: GoogleFonts.ubuntu(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14),
-                                  textAlign: TextAlign.center,
-                                )),
+                                child: imageFiles[index] != null
+                                    ? Image.file(imageFiles[index]!)
+                                    : Center(
+                                        child: Text(
+                                        'Upload Bukti Pembayaran',
+                                        style: GoogleFonts.ubuntu(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 14),
+                                        textAlign: TextAlign.center,
+                                      )),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: 52,
+                            margin: const EdgeInsets.only(
+                                left: 26, right: 26, bottom: 20, top: 40),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: GlobalColors.mainColor,
+                              ),
+                              onPressed: () {
+                                postDataRekening(index: index);
+                              },
+                              child: Text(
+                                'Konfirmasi Pembayaran',
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: GlobalColors.btnColor,
+                                ),
                               ),
                             ),
                           ),
                         ],
                       );
                     }),
-              ),
-              Container(
-                width: double.infinity,
-                height: 52,
-                margin: const EdgeInsets.only(
-                    left: 26, right: 26, bottom: 20, top: 40),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalColors.mainColor,
-                  ),
-                  onPressed: () {
-                    role == 'advokat' || role == 'notaris'
-                        ?
-                        // Navigator.popUntil(
-                        //     context,
-                        //     ModalRoute.withName('/RiwayatMitraView'),
-                        //   );
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const RiwayatMitraView()))
-                        : Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HistoryView()));
-                  },
-                  child: Text(
-                    'Konfirmasi Pembayaran',
-                    style: GoogleFonts.ubuntu(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: GlobalColors.btnColor,
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
@@ -331,6 +407,103 @@ class _VirtualAccountViewState extends State<VirtualAccountView> {
           ),
         ],
       )),
+    );
+  }
+
+  selectImage(int i) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              onTap: () async {
+                final ImagePicker picker = ImagePicker();
+                XFile? image =
+                    await picker.pickImage(source: ImageSource.camera);
+                if (image != null) {
+                  imageFiles[i] = File(image.path);
+                  setState(() {});
+                  // uploadImageFile();
+                }
+                Navigator.of(context).pop();
+              },
+              dense: true,
+              leading: Icon(Icons.camera, color: GlobalColors.mainColor),
+              title: const Text(
+                'Kamera',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            //   onTap: () async {
+            //     await ImagePicker.camera(context).then((XFile? image) {
+            //       if (image != null) {
+            //         imageFile = File(image.path);
+            //         uploadImageFile();
+            //       }
+            //       Navigator.of(context).pop();
+            //     });
+            //   },
+            //   dense: true,
+            //   leading: Icon(Icons.camera, color: Colors.grey.shade700),
+            //   title: Text(
+            //     'Kamera',
+            //     style: TextStyle(
+            //       fontSize: 16,
+            //     ),
+            //   ),
+            // ),
+
+            ListTile(
+              onTap: () async {
+                final ImagePicker picker =
+                    ImagePicker(); // Initialize the ImagePicker
+                XFile? image =
+                    await picker.pickImage(source: ImageSource.gallery);
+                if (image != null) {
+                  imageFiles[i] = File(image.path);
+                  setState(() {});
+                  // uploadImageFile();
+                }
+                Navigator.of(context).pop();
+              },
+              dense: true,
+              leading: Icon(Icons.image, color: GlobalColors.mainColor),
+              title: const Text(
+                'Galeri',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            // ListTile(
+            //   onTap: () async {
+            //     await ImagePicker.gallery().then((XFile? image) {
+            //       if (image != null) {
+            //         imageFile = File(image.path);
+            //         uploadImageFile();
+            //       }
+            //       Navigator.of(context).pop();
+            //     });
+            //   },
+            //   dense: true,
+            //   leading: Icon(Icons.image, color: Colors.grey.shade700),
+            //   title: Text(
+            //     'Galeri',
+            //     style: TextStyle(
+            //       fontSize: 16,
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
     );
   }
 }

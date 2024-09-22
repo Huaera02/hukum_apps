@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
@@ -28,7 +29,6 @@ class _AddRekeningState extends State<AddRekening> {
       idBank: valuePilih?['id'],
       noRek: noRekController.text,
       atasNama: atasNamaController.text,
-      
     );
     isLoading = false;
     if (response['status'] == true) {
@@ -68,8 +68,7 @@ class _AddRekeningState extends State<AddRekening> {
     isLoading = false;
 
     if (response['status'] == true) {
-      dataBank =
-          List<Map<String, dynamic>>.from(response['bank']);
+      dataBank = List<Map<String, dynamic>>.from(response['bank']);
     } else {
       showDialog(
         context: context,
@@ -119,118 +118,149 @@ class _AddRekeningState extends State<AddRekening> {
       body: SafeArea(
         child: Stack(
           children: [
-            ListView(
+            Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                Expanded(
+                  child: ListView(
                     children: [
-                      // const SizedBox(height: 20),
-                      Text(
-                        'Pilih Transfer Bank',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
                       Container(
-                        height: 60,
-                        padding: const EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: Colors.grey.shade700,
-                            )),
-                        alignment: Alignment.center,
-                        child: DropdownButton<Map<String, dynamic>>(
-                          value: valuePilih,
-                          hint: Text(
-                            'Nama Bank',
-                            style: GoogleFonts.ubuntu(
-                                // color: Colors.black
+                        margin:
+                            const EdgeInsets.only(top: 20, right: 20, left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            // const SizedBox(height: 20),
+                            Text(
+                              'Pilih Transfer Bank',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              height: 60,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: Colors.grey.shade700,
+                                  )),
+                              alignment: Alignment.center,
+                              child: DropdownButton<Map<String, dynamic>>(
+                                value: valuePilih,
+                                hint: Text(
+                                  'Nama Bank',
+                                  style: GoogleFonts.ubuntu(
+                                      // color: Colors.black
+                                      ),
                                 ),
-                          ),
-                          icon: const Icon(Icons.arrow_drop_down),
-                          iconSize: 36,
-                          isExpanded: true,
-                          underline: const SizedBox(),
-                          style: GoogleFonts.ubuntu(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w300),
-                          onChanged: (newValue1) {
-                            setState(() {
-                              valuePilih = newValue1;
-                            });
-                          },
-                          items: dataBank.map((valueItem1) {
-                            return DropdownMenuItem(
-                              value: valueItem1,
-                              child: Text(
-                                valueItem1['nama'],
-                                style: GoogleFonts.ubuntu(fontSize: 14),
+                                icon: const Icon(Icons.arrow_drop_down),
+                                iconSize: 36,
+                                isExpanded: true,
+                                underline: const SizedBox(),
+                                style: GoogleFonts.ubuntu(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300),
+                                onChanged: (newValue1) {
+                                  setState(() {
+                                    valuePilih = newValue1;
+                                  });
+                                },
+                                items: dataBank.map((valueItem1) {
+                                  return DropdownMenuItem(
+                                    value: valueItem1,
+                                    child: Text(
+                                      valueItem1['nama'],
+                                      style: GoogleFonts.ubuntu(fontSize: 14),
+                                    ),
+                                  );
+                                }).toList(),
                               ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
+                            ),
 
-                      const SizedBox(height: 20),
-                      Text(
-                        'Masukkan No Rekening',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        controller: noRekController,
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.black),
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          labelStyle: GoogleFonts.ubuntu(),
-                          hintText: 'Contoh: 73098765455689',
-                          hintStyle: GoogleFonts.ubuntu(
-                              // color: Colors.black
+                            const SizedBox(height: 20),
+                            Text(
+                              'Masukkan No Rekening',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextFormField(
+                              controller: noRekController,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelStyle: GoogleFonts.ubuntu(),
+                                hintText: 'Contoh: 73098765455689',
+                                hintStyle: GoogleFonts.ubuntu(
+                                    // color: Colors.black
+                                    ),
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
 
-                      const SizedBox(height: 20),
-                      Text(
-                        'Masukkan Nama Pemilik Rekening',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        controller: atasNamaController,
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.black),
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          labelStyle: GoogleFonts.ubuntu(),
-                          hintText: 'Contoh: Huaera',
-                          hintStyle: GoogleFonts.ubuntu(
-                              // color: Colors.black
+                            const SizedBox(height: 20),
+                            Text(
+                              'Masukkan Nama Pemilik Rekening',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
-                          border: const OutlineInputBorder(),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextFormField(
+                              controller: atasNamaController,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelStyle: GoogleFonts.ubuntu(),
+                                hintText: 'Contoh: Huaera',
+                                hintStyle: GoogleFonts.ubuntu(
+                                    // color: Colors.black
+                                    ),
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),                      
+                      ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   height: 52,
+                      //   margin: const EdgeInsets.only(
+                      //       left: 26, right: 26, top: 125, bottom: 20),
+                      //   child: ElevatedButton(
+                      //     style: ElevatedButton.styleFrom(
+                      //       backgroundColor: GlobalColors.mainColor,
+                      //     ),
+                      //     onPressed: postDataRekening,
+                      //     // () {
+                      //     //   Navigator.push(context,
+                      //     // MaterialPageRoute(builder: (context) => const UbahDataMitraView()));
+                      //     // },
+                      //     child: Text(
+                      //       'Simpan',
+                      //       style: GoogleFonts.ubuntu(
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.w500,
+                      //         color: GlobalColors.btnColor,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -238,7 +268,7 @@ class _AddRekeningState extends State<AddRekening> {
                   width: double.infinity,
                   height: 52,
                   margin: const EdgeInsets.only(
-                      left: 26, right: 26, top: 125, bottom: 20),
+                      left: 26, right: 26, top: 10, bottom: 20),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: GlobalColors.mainColor,

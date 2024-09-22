@@ -85,6 +85,7 @@ class _PembayaranViewState extends State<PembayaranView> {
       // Navigator.of(context).pop(true);
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => VirtualAccountView(
+          idPenjualan: response['data'],
           total: widget.produk['harga_jual'],
           createdAt:  DateTime.now(),
           branchId:widget.mitra['sys_branches_id'],

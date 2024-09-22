@@ -94,13 +94,17 @@ urutan if
                         ),
                       ),
                     ),
-                    content: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Center(
-                        child: Text(
-                          'Apakah anda ingin tetap melanjutkan sesi konsultasi ini?',
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 14,
+                    content: SizedBox(
+                      height: 100,
+                      width: 200,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Center(
+                          child: Text(
+                            'Apakah anda ingin tetap melanjutkan sesi konsultasi ini?',
+                            style: GoogleFonts.ubuntu(
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ),
@@ -371,8 +375,9 @@ urutan if
                         ),
                       ),
                       if (_withChat)
-                        if ((listRincian.first['produk_id_kategori'] ?? '') !=
-                            '6')
+                        if (listRincian.isNotEmpty &&
+                            (listRincian.first['produk_id_kategori'] ?? '') !=
+                                '6')
                           Tab(
                             child: Text(
                               'Chat',

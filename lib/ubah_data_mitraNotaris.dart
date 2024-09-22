@@ -16,7 +16,8 @@ class UbahDataMitraNotarisView extends StatefulWidget {
   const UbahDataMitraNotarisView({super.key});
 
   @override
-  State<UbahDataMitraNotarisView> createState() => _UbahDataMitraNotarisViewState();
+  State<UbahDataMitraNotarisView> createState() =>
+      _UbahDataMitraNotarisViewState();
 }
 
 class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
@@ -119,12 +120,11 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
         alamat: alamatController.text,
         kabKota: kabKotaController.text,
         profile: profileController.text);
-        await APIs.updateUserInfo( namaController.text).then(
+    await APIs.updateUserInfo(namaController.text).then(
       (value) {
         APIs.getSelfInfo();
       },
     );
-
 
     isLoading = false;
 
@@ -350,19 +350,22 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                           width: 150,
                           height: 150,
                         ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Ganti Foto profil',
-                            style: GoogleFonts.ubuntu(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: GlobalColors.mainColor,
-                            ),
-                          ),
-                        ),
+                        // TextButton(
+                        //   onPressed: () {},
+                        //   child: Text(
+                        //     'Ganti Foto profil',
+                        //     style: GoogleFonts.ubuntu(
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.bold,
+                        //       color: GlobalColors.mainColor,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
+                  ),
+                  const SizedBox(
+                    height: 30,
                   ),
                   Expanded(
                     child: DefaultTabController(
@@ -426,223 +429,288 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                             child: TabBarView(
                               children: [
                                 //Tab 1
-                                ListView(
+                                Column(
                                   children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                      left: 10,
-                                      right: 10,                                  
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        TextFormField(
-                                          onSaved: (val) =>
-                                              APIs.me.name = val ?? '',
-                                          controller: namaController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.name,
-                                          decoration: InputDecoration(
-                                            labelText: 'Nama Lengkap',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan Nama Lengkap',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: nikController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'NIK',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan NIK',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: noNotarisController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'Nomor SK Notaris',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Contoh: AHU-0039.AH.02.01-Tahun 2014',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: noPpatController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'Nomor SK PPAT',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Contoh: 2/KEP-17.3/I/2015',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: emailController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          decoration: InputDecoration(
-                                            labelText: 'Email',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan Email',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: nohpController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.phone,
-                                          decoration: InputDecoration(
-                                            labelText: 'No HP',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan No HP',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: tempatlahirController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'Tempat Lahir',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan Tempat Lahir',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: tglahirController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'Tanggal Lahir',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan Tanggal Lahir',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: alamatController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'Alamat',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan Alamat',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: kabKotaController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'Kab/Kota',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText: 'Masukkan Kab/Kota Anda',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
-                                        TextFormField(
-                                          controller: profileController,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            labelText: 'Profile Singkat',
-                                            labelStyle: GoogleFonts.ubuntu(),
-                                            hintText:
-                                                'Contoh: Saya Seorang Advokat Profesional',
-                                            hintStyle: GoogleFonts.ubuntu(
-                                                fontWeight: FontWeight.w500),
-                                            border:
-                                                const UnderlineInputBorder(),
-                                          ),
-                                        ),
+                                    Expanded(
+                                      child: ListView(children: [
                                         Container(
-                                          width: double.infinity,
-                                          height: 52,
                                           margin: const EdgeInsets.only(
-                                              left: 26,
-                                              right: 26,
-                                              top: 25,
-                                              bottom: 20),
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    GlobalColors.mainColor,
-                                              ),
-                                              onPressed: postData,
-                                              child: Text('Simpan',
-                                                  style: GoogleFonts.ubuntu(
+                                            left: 10,
+                                            right: 10,
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              TextFormField(
+                                                onSaved: (val) =>
+                                                    APIs.me.name = val ?? '',
+                                                controller: namaController,
+                                                style: const TextStyle(
                                                     fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                    color:
-                                                        GlobalColors.btnColor,
-                                                  ))),
-                                        )
-                                      ],
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.name,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Nama Lengkap',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText:
+                                                      'Masukkan Nama Lengkap',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: nikController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'NIK',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText: 'Masukkan NIK',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: noNotarisController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Nomor SK Notaris',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText:
+                                                      'Contoh: AHU-0039.AH.02.01-Tahun 2014',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: noPpatController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Nomor SK PPAT',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText:
+                                                      'Contoh: 2/KEP-17.3/I/2015',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: emailController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.emailAddress,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Email',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText: 'Masukkan Email',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: nohpController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.phone,
+                                                decoration: InputDecoration(
+                                                  labelText: 'No HP',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText: 'Masukkan No HP',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller:
+                                                    tempatlahirController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Tempat Lahir',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText:
+                                                      'Masukkan Tempat Lahir',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: tglahirController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Tanggal Lahir',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText:
+                                                      'Masukkan Tanggal Lahir',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: alamatController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Alamat',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText: 'Masukkan Alamat',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: kabKotaController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Kab/Kota',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText:
+                                                      'Masukkan Kab/Kota Anda',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              TextFormField(
+                                                controller: profileController,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                keyboardType:
+                                                    TextInputType.text,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Profile Singkat',
+                                                  labelStyle:
+                                                      GoogleFonts.ubuntu(),
+                                                  hintText:
+                                                      'Contoh: Saya Seorang Advokat Profesional',
+                                                  hintStyle: GoogleFonts.ubuntu(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  border:
+                                                      const UnderlineInputBorder(),
+                                                ),
+                                              ),
+                                              // Container(
+                                              //   width: double.infinity,
+                                              //   height: 52,
+                                              //   margin: const EdgeInsets.only(
+                                              //       left: 26,
+                                              //       right: 26,
+                                              //       top: 10,
+                                              //       bottom: 20),
+                                              //   child: ElevatedButton(
+                                              //       style: ElevatedButton.styleFrom(
+                                              //         backgroundColor:
+                                              //             GlobalColors.mainColor,
+                                              //       ),
+                                              //       onPressed: postData,
+                                              //       child: Text('Simpan',
+                                              //           style: GoogleFonts.ubuntu(
+                                              //             fontSize: 16,
+                                              //             fontWeight: FontWeight.w500,
+                                              //             color:
+                                              //                 GlobalColors.btnColor,
+                                              //           ))),
+                                              // )
+                                            ],
+                                          ),
+                                        ),
+                                      ]),
                                     ),
-                                  ),
-                                ]),
+                                    Container(
+                                      width: double.infinity,
+                                      height: 52,
+                                      margin: const EdgeInsets.only(
+                                          left: 26,
+                                          right: 26,
+                                          top: 10,
+                                          bottom: 20),
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                GlobalColors.mainColor,
+                                          ),
+                                          onPressed: postData,
+                                          child: Text('Simpan',
+                                              style: GoogleFonts.ubuntu(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                                color: GlobalColors.btnColor,
+                                              ))),
+                                    )
+                                  ],
+                                ),
 
                                 //Tab2
                                 Column(
@@ -677,8 +745,7 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                                               const EdgeInsets.only(left: 10),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -751,8 +818,8 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                                                       await deleteData(i);
                                                     }
                                                   },
-                                                  icon: const Icon(
-                                                      Icons.delete))
+                                                  icon:
+                                                      const Icon(Icons.delete))
                                             ],
                                           ),
                                         );
@@ -805,7 +872,7 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                                 //                   }
                                 //                 });
                                 //           }),
-                                //     ),                                
+                                //     ),
                                 //   ],
                                 // ),
 
@@ -950,7 +1017,7 @@ class _UbahDataMitraNotarisViewState extends State<UbahDataMitraNotarisView> {
                                 //       ),
                                 //     ),
                                 //   ],
-                                // ),                               
+                                // ),
                               ],
                             ),
                           ),

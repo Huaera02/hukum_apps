@@ -3,9 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:loginn/bayar.dart';
 import 'package:loginn/detail_pesanan.dart';
 import 'package:loginn/global_colors.dart';
-import 'package:loginn/pilih_layanan.dart';
+// import 'package:loginn/pilih_layanan.dart';
 import 'package:loginn/pilih_layanan1.dart';
 import 'package:loginn/repository.dart';
+import 'package:loginn/va.dart';
 // import 'package:loginn/va.dart';
 
 class HistoryView extends StatefulWidget {
@@ -35,8 +36,7 @@ class _HistoryViewState extends State<HistoryView> {
           .toList();
       listRiwayat = List<Map<String, dynamic>>.from(response['riwayat'])
           .where((element) => element['status'] == '1')
-          .toList();   
-      
+          .toList();
     } else {
       showDialog(
         context: context,
@@ -133,15 +133,47 @@ class _HistoryViewState extends State<HistoryView> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    DetailPesananView(
-                                                      idPenjualan:
-                                                          indexKonsultasi[index]
-                                                              ['id'],
-                                                    )));
+                                        indexKonsultasi[index]
+                                                    ['status_payment'] ==
+                                                '1'
+                                            ? Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        DetailPesananView(
+                                                          idPenjualan:
+                                                              indexKonsultasi[
+                                                                  index]['id'],
+                                                        )))
+                                            : Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        VirtualAccountView(
+                                                          total:
+                                                              indexKonsultasi[
+                                                                      index]
+                                                                  ['total'],
+                                                          createdAt: DateTime.parse(
+                                                              indexKonsultasi[
+                                                                      index][
+                                                                  'created_at']),
+                                                          bankId:
+                                                              indexKonsultasi[
+                                                                      index]
+                                                                  ['id_bank'],
+                                                          branchId: indexKonsultasi[
+                                                                  index]['mitra'][
+                                                              'sys_branches_id'],
+                                                          idPenjualan:
+                                                              indexKonsultasi[
+                                                                  index]['id'],
+                                                        )));
+                                        // DetailPesananView(
+                                        //   idPenjualan:
+                                        //       indexKonsultasi[
+                                        //           index]['id'],
+                                        // )));
                                       },
                                       splashColor: GlobalColors.btnColor,
                                       child: Container(
@@ -265,9 +297,10 @@ class _HistoryViewState extends State<HistoryView> {
                                                       children: [
                                                         Text(
                                                           // listMitra['nama'] ?? '',
-                                                          indexKonsultasi[index]['mitra']
-                                                              [
-                                                              'nama']??'',
+                                                          indexKonsultasi[index]
+                                                                      ['mitra']
+                                                                  ['nama'] ??
+                                                              '',
                                                           // // 'Nurmiati, S.H',
                                                           style: GoogleFonts
                                                               .ubuntu(
@@ -278,9 +311,10 @@ class _HistoryViewState extends State<HistoryView> {
                                                         ),
                                                         Text(
                                                           // listMitra['tipe_kontak_nama'] ?? '',
-                                                          indexKonsultasi[index]['mitra']
-                                                              [
-                                                              'tipe_kontak_nama']??'',
+                                                          indexKonsultasi[index]
+                                                                      ['mitra'][
+                                                                  'tipe_kontak_nama'] ??
+                                                              '',
                                                           style: GoogleFonts
                                                               .ubuntu(
                                                             fontWeight:
@@ -398,15 +432,15 @@ class _HistoryViewState extends State<HistoryView> {
                             child: Column(
                               children: [
                                 InkWell(
-                                  // onTap: () {
-                                  //   Navigator.push(
-                                  //       context,
-                                  //       MaterialPageRoute(
-                                  //           builder: (context) =>
-                                  //               PilihLayanan1View(
-                                  //                 mitra: listRiwayat.first                                                 
-                                  //               )));
-                                  // },
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                PilihLayanan1View(
+                                                    mitra: listRiwayat[index]
+                                                        ['mitra'])));
+                                  },
                                   splashColor: GlobalColors.btnColor,
                                   child: Container(
                                       padding: const EdgeInsets.all(10),
@@ -481,8 +515,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                 width: 10,
                                               ),
                                               Text(
-                                                listRiwayat[index]
-                                                    ['tanggal'],
+                                                listRiwayat[index]['tanggal'],
                                                 // 'Rabu, 20 Juni 2024',
                                                 style: GoogleFonts.ubuntu(
                                                     fontWeight:
@@ -521,8 +554,10 @@ class _HistoryViewState extends State<HistoryView> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      listRiwayat[index]['mitra'][
-                                                          'nama']??'',
+                                                      listRiwayat[index]
+                                                                  ['mitra']
+                                                              ['nama'] ??
+                                                          '',
                                                       // 'Nurmiati, S.H',
                                                       style: GoogleFonts.ubuntu(
                                                         fontWeight:
@@ -531,8 +566,10 @@ class _HistoryViewState extends State<HistoryView> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      listRiwayat[index]['mitra'][
-                                                          'tipe_kontak_nama']??'',
+                                                      listRiwayat[index]
+                                                                  ['mitra'][
+                                                              'tipe_kontak_nama'] ??
+                                                          '',
                                                       style: GoogleFonts.ubuntu(
                                                         fontWeight:
                                                             FontWeight.w100,
@@ -583,8 +620,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                         //   width: 3,
                                                         // ),
                                                         Text(
-                                                            listRiwayat[
-                                                                        index]
+                                                            listRiwayat[index]
                                                                     ['judul'] ??
                                                                 '',
                                                             // listRiwayat[

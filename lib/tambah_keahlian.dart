@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/repository.dart';
@@ -122,172 +123,180 @@ class _AddKeahlianState extends State<AddKeahlian> {
       body: SafeArea(
         child: Stack(
           children: [
-            ListView(
+            Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                Expanded(
+                  child: ListView(
                     children: [
-                      // const SizedBox(height: 20),
-                      Text(
-                        'Pilih Bidang Keahlian',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
                       Container(
-                        height: 60,
-                        padding: const EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: Colors.grey.shade700,
-                            )),
-                        alignment: Alignment.center,
-                        child: DropdownButton<Map<String, dynamic>>(
-                          value: valuePilih,
-                          hint: Text(
-                            'Bidang Keahlian',
-                            style: GoogleFonts.ubuntu(
-                                // color: Colors.black
+                        margin:
+                            const EdgeInsets.only(top: 20, right: 20, left: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            // const SizedBox(height: 20),
+                            Text(
+                              'Pilih Bidang Keahlian',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              height: 60,
+                              padding: const EdgeInsets.only(left: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                    color: Colors.grey.shade700,
+                                  )),
+                              alignment: Alignment.center,
+                              child: DropdownButton<Map<String, dynamic>>(
+                                value: valuePilih,
+                                hint: Text(
+                                  'Bidang Keahlian',
+                                  style: GoogleFonts.ubuntu(
+                                      // color: Colors.black
+                                      ),
                                 ),
-                          ),
-                          icon: const Icon(Icons.arrow_drop_down),
-                          iconSize: 36,
-                          isExpanded: true,
-                          underline: const SizedBox(),
-                          style: GoogleFonts.ubuntu(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w300),
-                          onChanged: (newValue1) {
-                            setState(() {
-                              valuePilih = newValue1;
-                            });
-                          },
-                          items: dataKlasifikasi.map((valueItem1) {
-                            return DropdownMenuItem(
-                              value: valueItem1,
-                              child: Text(
-                                valueItem1['nama'],
-                                style: GoogleFonts.ubuntu(fontSize: 14),
+                                icon: const Icon(Icons.arrow_drop_down),
+                                iconSize: 36,
+                                isExpanded: true,
+                                underline: const SizedBox(),
+                                style: GoogleFonts.ubuntu(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300),
+                                onChanged: (newValue1) {
+                                  setState(() {
+                                    valuePilih = newValue1;
+                                  });
+                                },
+                                items: dataKlasifikasi.map((valueItem1) {
+                                  return DropdownMenuItem(
+                                    value: valueItem1,
+                                    child: Text(
+                                      valueItem1['nama'],
+                                      style: GoogleFonts.ubuntu(fontSize: 14),
+                                    ),
+                                  );
+                                }).toList(),
                               ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
+                            ),
 
-                      const SizedBox(height: 20),
-                      Text(
-                        'Masukkan catatan Permasalahan yang berkaitan dengan Bidang Keahlian',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        controller: catatanController,
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.black),
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          labelStyle: GoogleFonts.ubuntu(),
-                          hintText: 'Contoh: Pembunuhan Berencana',
-                          hintStyle: GoogleFonts.ubuntu(
-                              // color: Colors.black
+                            const SizedBox(height: 20),
+                            Text(
+                              'Masukkan catatan Permasalahan yang berkaitan dengan Bidang Keahlian',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextFormField(
+                              controller: catatanController,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelStyle: GoogleFonts.ubuntu(),
+                                hintText: 'Contoh: Pembunuhan Berencana',
+                                hintStyle: GoogleFonts.ubuntu(
+                                    // color: Colors.black
+                                    ),
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
 
-                      const SizedBox(height: 20),
-                      Text(
-                        'Masukkan No Kasus',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        controller: noKasusController,
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.black),
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          labelStyle: GoogleFonts.ubuntu(),
-                          hintText: 'Contoh: Nomor: 89/Pid.Sus-FPK/2018/PN.Mks',
-                          hintStyle: GoogleFonts.ubuntu(
-                              // color: Colors.black
+                            const SizedBox(height: 20),
+                            Text(
+                              'Masukkan No Kasus',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextFormField(
+                              controller: noKasusController,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelStyle: GoogleFonts.ubuntu(),
+                                hintText:
+                                    'Contoh: Nomor: 89/Pid.Sus-FPK/2018/PN.Mks',
+                                hintStyle: GoogleFonts.ubuntu(
+                                    // color: Colors.black
+                                    ),
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
 
-                      const SizedBox(height: 20),
-                      Text(
-                        'Masukkan Nama Pengadilan yang Menangani Kasus',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        controller: pengadilanController,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          // color: Colors.black
-                        ),
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          labelStyle: GoogleFonts.ubuntu(),
-                          hintText: 'Contoh: Pengadilan Negeri Makassar',
-                          hintStyle: GoogleFonts.ubuntu(
-                              // color: Colors.black
+                            const SizedBox(height: 20),
+                            Text(
+                              'Masukkan Nama Pengadilan yang Menangani Kasus',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextFormField(
+                              controller: pengadilanController,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                // color: Colors.black
+                              ),
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                labelStyle: GoogleFonts.ubuntu(),
+                                hintText: 'Contoh: Pengadilan Negeri Makassar',
+                                hintStyle: GoogleFonts.ubuntu(
+                                    // color: Colors.black
+                                    ),
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
 
-                      const SizedBox(height: 20),
-                      Text(
-                        'Masukkan Tahun Kasus',
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFormField(
-                        controller: tahunController,
-                        style:
-                            const TextStyle(fontSize: 14, color: Colors.black),
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelStyle: GoogleFonts.ubuntu(),
-                          hintText: 'Contoh: 2020',
-                          hintStyle: GoogleFonts.ubuntu(
-                              //   color: Colors.black
+                            const SizedBox(height: 20),
+                            Text(
+                              'Masukkan Tahun Kasus',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
                               ),
-                          border: const OutlineInputBorder(),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextFormField(
+                              controller: tahunController,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Colors.black),
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                labelStyle: GoogleFonts.ubuntu(),
+                                hintText: 'Contoh: 2020',
+                                hintStyle: GoogleFonts.ubuntu(
+                                    //   color: Colors.black
+                                    ),
+                                border: const OutlineInputBorder(),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      ),                     
                     ],
                   ),
                 ),
@@ -295,7 +304,7 @@ class _AddKeahlianState extends State<AddKeahlian> {
                   width: double.infinity,
                   height: 52,
                   margin: const EdgeInsets.only(
-                      left: 26, right: 26, top: 125, bottom: 20),
+                      left: 26, right: 26, top: 10, bottom: 20),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: GlobalColors.mainColor,
