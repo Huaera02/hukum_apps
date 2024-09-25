@@ -241,7 +241,7 @@ class _FormMitraViewState extends State<FormMitraView> {
                       );
                     },
                   );
-                  role == 'advokat'
+                  _value == 1
                       ? Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const UbahDataMitraView(),
                         ))

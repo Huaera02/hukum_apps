@@ -134,7 +134,7 @@ class _HistoryViewState extends State<HistoryView> {
                                     InkWell(
                                       onTap: () {
                                         indexKonsultasi[index]
-                                                    ['status_payment'] ==
+                                                    ['status_bayar'] ==
                                                 '1'
                                             ? Navigator.push(
                                                 context,
@@ -145,7 +145,8 @@ class _HistoryViewState extends State<HistoryView> {
                                                               indexKonsultasi[
                                                                   index]['id'],
                                                         )))
-                                            : Navigator.push(
+                                            : 
+                                            Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
@@ -168,7 +169,8 @@ class _HistoryViewState extends State<HistoryView> {
                                                           idPenjualan:
                                                               indexKonsultasi[
                                                                   index]['id'],
-                                                        )));
+                                                        )
+                                                        ));
                                         // DetailPesananView(
                                         //   idPenjualan:
                                         //       indexKonsultasi[
@@ -223,7 +225,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                   ),
                                                   Text(
                                                     indexKonsultasi[index][
-                                                                'status_payment'] ==
+                                                                'status_bayar'] ==
                                                             '1'
                                                         ? 'Lunas'
                                                         : 'Belum Lunas',
@@ -231,7 +233,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                       fontSize: 14,
                                                       color: indexKonsultasi[
                                                                       index][
-                                                                  'status_payment'] ==
+                                                                  'status_bayar'] ==
                                                               '1'
                                                           ? Colors.green
                                                           : Colors.red,

@@ -14,11 +14,51 @@ class MetodePembayaranView extends StatefulWidget {
 
 class _MetodePembayaranViewState extends State<MetodePembayaranView> {
   int _selectedValue = 0;
+  int _selectedValue1 = 0;
   bool isLoading = false;
   Repository repository = Repository();
   // List<Map<String, dynamic>> listMetodePembayaran = [];
 
   List<Map<String, dynamic>> listBank = [];
+  List<Map<String, dynamic>> listMetodeBayar = [];
+
+  getDataBayar() async {
+    setState(() {
+      isLoading = true;
+    });
+    Map<String, dynamic> response = await repository.metodeBayar(
+    );
+
+    isLoading = false;
+
+    if (response['status'] == true) {
+      listMetodeBayar = List<Map<String, dynamic>>.from(response['rekening']);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Center(
+                child: Text(
+                  response['msg'],
+                  style: GoogleFonts.ubuntu(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
+    setState(() {});
+  }
+
 
   getData() async {
     setState(() {
@@ -58,49 +98,11 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
     setState(() {});
   }
 
-  // getData() async {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   Map<String, dynamic> response = await repository.getMetodeBayar();
-
-  //   isLoading = false;
-
-  //   if (response['status'] == true) {
-  //     listMetodePembayaran =
-  //         List<Map<String, dynamic>>.from(response['metodePembayaran']);
-  //   } else {
-  //     showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return AlertDialog(
-  //           shape: RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.circular(5),
-  //           ),
-  //           title: Padding(
-  //             padding: const EdgeInsets.all(3),
-  //             child: Center(
-  //               child: Text(
-  //                 response['msg'],
-  //                 style: GoogleFonts.ubuntu(
-  //                   fontSize: 16,
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         );
-  //       },
-  //     );
-  //   }
-  //   setState(() {});
-  // }
-
-
-
   @override
   void initState() {
     super.initState();
     getData();
+    getDataBayar();
   }
 
   @override
@@ -130,13 +132,45 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Transfer Bank',
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        // Text(
+                        //   'Transfer Bank',
+                        //   style: GoogleFonts.ubuntu(
+                        //     fontSize: 14,
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        // ),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: listMetodeBayar.length,
+                            itemBuilder: (context, index) {
+                              return RadioListTile(
+                                contentPadding:
+                                    const EdgeInsets.only(right: 10, left: 10),
+                                value: index + 1,
+                                groupValue: _selectedValue1,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _selectedValue1 = value as int;
+                                  });
+                                },
+                                title: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Image.asset('assets/images/bca.png',
+                                    //     width: 30, height: 30),                                 
+                                    Text(
+                                      listMetodeBayar[index]['nama']??'',
+                                      style: GoogleFonts.ubuntu(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    )
+                                  ],
+                                ),                               
+                              );
+                            }),
+                        if (_selectedValue1 == 2)
                         ListView.builder(
                             shrinkWrap: true,
                             itemCount: listBank.length,
@@ -181,7 +215,7 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
                       backgroundColor: GlobalColors.mainColor,
                     ),
                     onPressed: () {
-                      Navigator.pop(context, listBank[_selectedValue-1]);
+                      Navigator.pop(context, {'id_metode_pembayaran':listMetodeBayar[_selectedValue1-1]['id'],...listBank[_selectedValue-1]});
                     //   Navigator.push(context,
                     // MaterialPageRoute(builder: (context) => const PembayaranView()));
                     },

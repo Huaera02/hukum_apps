@@ -113,7 +113,7 @@ class _AddKeahlianState extends State<AddKeahlian> {
         foregroundColor: Colors.white,
         backgroundColor: GlobalColors.mainColor,
         title: Text(
-          'Tambah Keahlian',
+          'Tambah Pengalaman',
           style: GoogleFonts.ubuntu(
             fontSize: 16,
             fontWeight: FontWeight.bold,

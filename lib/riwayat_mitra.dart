@@ -197,7 +197,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                   ),
                                                   Text(
                                                     indexKonsultasi[index][
-                                                                'status_payment']??'' ==
+                                                                'status_bayar'] ==
                                                             '1'
                                                         ? 'Lunas'
                                                         : 'Belum Lunas',
@@ -205,7 +205,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                       fontSize: 14,
                                                       color: indexKonsultasi[
                                                                       index][
-                                                                  'status_payment']??'' ==
+                                                                  'status_bayar'] ==
                                                               '1'
                                                           ? Colors.green
                                                           : Colors.red,

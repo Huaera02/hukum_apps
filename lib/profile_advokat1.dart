@@ -89,7 +89,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
         foregroundColor: Colors.white,
         backgroundColor: GlobalColors.mainColor,
         title: Text(
-          'Profile Advokat',
+          'Profile Mitra',
           style: GoogleFonts.ubuntu(
             fontSize: 16,
             fontWeight: FontWeight.bold,

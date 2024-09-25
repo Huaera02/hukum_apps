@@ -178,69 +178,119 @@ urutan if
                             )
                           : TabBarView(
                               children: [
-                                Column(
+                                ListView(
                                   children: [
-                                    ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: listRincian.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            margin: const EdgeInsets.only(
-                                              left: 20,
-                                              top: 10,
-                                              right: 20,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.all(10),
-                                                  // margin: const EdgeInsets.only(bottom: 10),
-                                                  width: 500,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.grey.shade100,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text('Detail Konsultasi',
-                                                          style: GoogleFonts
-                                                              .ubuntu(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 16,
-                                                          )),
-                                                      const SizedBox(
-                                                        height: 10,
+                                    Column(
+                                      children: [
+                                        ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: listRincian.length,
+                                            itemBuilder: (context, index) {
+                                              return Container(
+                                                margin: const EdgeInsets.only(
+                                                  left: 20,
+                                                  top: 10,
+                                                  right: 20,
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.all(10),
+                                                      // margin: const EdgeInsets.only(bottom: 10),
+                                                      width: 500,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.grey.shade100,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                10),
                                                       ),
-                                                      Row(
+                                                      child: Column(
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
+                                                            MainAxisAlignment.start,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
-                                                                .center,
+                                                                .start,
                                                         children: [
-                                                          Image.asset(
-                                                            'assets/images/Nur.png',
-                                                            width: 50,
-                                                            height: 70,
-                                                          ),
+                                                          Text('Detail Konsultasi',
+                                                              style: GoogleFonts
+                                                                  .ubuntu(
+                                                                fontWeight:
+                                                                    FontWeight.bold,
+                                                                fontSize: 16,
+                                                              )),
                                                           const SizedBox(
-                                                            width: 10,
+                                                            height: 10,
                                                           ),
-                                                          Column(
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Image.asset(
+                                                                'assets/images/Nur.png',
+                                                                width: 50,
+                                                                height: 70,
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                      listRincian.first[
+                                                                              'mitra']
+                                                                          ['nama'],
+                                                                      // listRincian.first[''] 'Nurmiati, S.H',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                  Text(
+                                                                      listRincian.first[
+                                                                              'mitra']
+                                                                          [
+                                                                          'tipe_kontak_nama'],
+                                                                      // 'Advokat',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w100,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                ],
+                                                              )
+                                                            ],
+                                                          ),
+                                                          Divider(
+                                                              thickness: 1.0,
+                                                              color: Colors
+                                                                  .grey.shade400),
+                                                          const SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .start,
@@ -248,63 +298,58 @@ urutan if
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Text(
-                                                                  listRincian.first[
-                                                                          'mitra']
-                                                                      ['nama'],
-                                                                  // listRincian.first[''] 'Nurmiati, S.H',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                              Text(
-                                                                  listRincian.first[
-                                                                          'mitra']
-                                                                      [
-                                                                      'tipe_kontak_nama'],
-                                                                  // 'Advokat',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w100,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
+                                                              Icon(
+                                                                Icons.email,
+                                                                color: GlobalColors
+                                                                    .mainColor,
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text('Email',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                  Text(
+                                                                      listRincian.first[
+                                                                              'mitra']
+                                                                          ['email'],
+                                                                      // 'Senin, 20 Jun 2022',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w100,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                ],
+                                                              )
                                                             ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Divider(
-                                                          thickness: 1.0,
-                                                          color: Colors
-                                                              .grey.shade400),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Icon(
-                                                            Icons.email,
-                                                            color: GlobalColors
-                                                                .mainColor,
                                                           ),
+                                                          Divider(
+                                                              thickness: 1.0,
+                                                              color: Colors
+                                                                  .grey.shade400),
                                                           const SizedBox(
-                                                            width: 10,
+                                                            height: 10,
                                                           ),
-                                                          Column(
+                                                          Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .start,
@@ -312,58 +357,57 @@ urutan if
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Text('Email',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                              Text(
-                                                                  listRincian.first[
-                                                                          'mitra']
-                                                                      ['email'],
-                                                                  // 'Senin, 20 Jun 2022',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w100,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
+                                                              Icon(
+                                                                Icons.phone_android,
+                                                                color: GlobalColors
+                                                                    .mainColor,
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text('No HP',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                  Text(
+                                                                      listRincian.first[
+                                                                              'mitra']
+                                                                          ['hp'],
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w100,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                ],
+                                                              )
                                                             ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Divider(
-                                                          thickness: 1.0,
-                                                          color: Colors
-                                                              .grey.shade400),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Icon(
-                                                            Icons.phone_android,
-                                                            color: GlobalColors
-                                                                .mainColor,
                                                           ),
+                                                          Divider(
+                                                              thickness: 1.0,
+                                                              color: Colors
+                                                                  .grey.shade400),
                                                           const SizedBox(
-                                                            width: 10,
+                                                            height: 10,
                                                           ),
-                                                          Column(
+                                                          Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .start,
@@ -371,168 +415,58 @@ urutan if
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              Text('No HP',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                              Text(
-                                                                  listRincian.first[
-                                                                          'mitra']
-                                                                      ['hp'],
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w100,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
+                                                              Icon(
+                                                                Icons.location_on,
+                                                                color: GlobalColors
+                                                                    .mainColor,
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text('Alamat',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                  Text(
+                                                                      listRincian.first[
+                                                                              'mitra']
+                                                                          [
+                                                                          'alamat'],
+                                                                      // 'Senin, 20 Jun 2022',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w100,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                ],
+                                                              )
                                                             ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Divider(
-                                                          thickness: 1.0,
-                                                          color: Colors
-                                                              .grey.shade400),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Icon(
-                                                            Icons.location_on,
-                                                            color: GlobalColors
-                                                                .mainColor,
                                                           ),
+                                                          Divider(
+                                                              thickness: 1.0,
+                                                              color: Colors
+                                                                  .grey.shade400),
                                                           const SizedBox(
-                                                            width: 10,
+                                                            height: 10,
                                                           ),
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text('Alamat',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                              Text(
-                                                                  listRincian.first[
-                                                                          'mitra']
-                                                                      [
-                                                                      'alamat'],
-                                                                  // 'Senin, 20 Jun 2022',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w100,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Divider(
-                                                          thickness: 1.0,
-                                                          color: Colors
-                                                              .grey.shade400),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Icon(
-                                                            Icons
-                                                                .date_range_outlined,
-                                                            color: GlobalColors
-                                                                .mainColor,
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text('Tanggal',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                              Text(
-                                                                  listRincian
-                                                                          .first[
-                                                                      'tanggal'],
-                                                                  // 'Senin, 20 Jun 2022',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w100,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Divider(
-                                                          thickness: 1.0,
-                                                          color: Colors
-                                                              .grey.shade400),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -543,262 +477,186 @@ urutan if
                                                             children: [
                                                               Icon(
                                                                 Icons
-                                                                    .gavel_rounded,
+                                                                    .date_range_outlined,
                                                                 color: GlobalColors
                                                                     .mainColor,
                                                               ),
                                                               const SizedBox(
                                                                 width: 10,
                                                               ),
-                                                              Text(
-                                                                  'Nama Layanan',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
+                                                              Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text('Tanggal',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                  Text(
+                                                                      listRincian
+                                                                              .first[
+                                                                          'tanggal'],
+                                                                      // 'Senin, 20 Jun 2022',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w100,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                ],
+                                                              )
                                                             ],
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 35),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              // crossAxisAlignment: CrossAxisAlignment.start,
-                                                              children: [
-                                                                Text(
-                                                                    listRincian
-                                                                            .first[
-                                                                        'produk_nama'],
-                                                                    // 'Chat / 30 Menit x1',
-                                                                    style: GoogleFonts
-                                                                        .ubuntu(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w100,
-                                                                      fontSize:
-                                                                          14,
-                                                                    )),
-                                                                Text(
-                                                                    'Rp. ${listRincian.first['produk_harga_jual']}',
-                                                                    // 'Rp.52.000',
-                                                                    style: GoogleFonts
-                                                                        .ubuntu(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontSize:
-                                                                          14,
-                                                                    )),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      // Padding(
-                                                      //   padding:
-                                                      //       const EdgeInsets.only(
-                                                      //           left: 20),
-                                                      //   child: Row(
-                                                      //     mainAxisAlignment:
-                                                      //         MainAxisAlignment
-                                                      //             .spaceBetween,
-                                                      //     // crossAxisAlignment: CrossAxisAlignment.start,
-                                                      //     children: [
-                                                      //       Text(
-                                                      //           listRincian.first[
-                                                      //               'produk_nama'],
-                                                      //           // 'Chat / 30 Menit x1',
-                                                      //           style: GoogleFonts
-                                                      //               .ubuntu(
-                                                      //             fontWeight:
-                                                      //                 FontWeight
-                                                      //                     .w100,
-                                                      //             fontSize: 14,
-                                                      //           )),
-
-                                                      //       Text(
-                                                      //           'Rp. ${listRincian.first['produk_harga_jual']}',
-                                                      //           // 'Rp.52.000',
-                                                      //           style: GoogleFonts
-                                                      //               .ubuntu(
-                                                      //             fontWeight:
-                                                      //                 FontWeight
-                                                      //                     .w500,
-                                                      //             fontSize: 14,
-                                                      //           )),
-                                                      //     ],
-                                                      //   ),
-                                                      // ),
-                                                      if (listRincian.first[
-                                                              'ref_klasifikasi_pidana_nama'] !=
-                                                          null)
-                                                        Divider(
-                                                            thickness: 1.0,
-                                                            color: Colors
-                                                                .grey.shade400),
-                                                      if (listRincian.first[
-                                                              'ref_klasifikasi_pidana_nama'] !=
-                                                          null)
-                                                        const SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                      if (listRincian.first[
-                                                              'ref_klasifikasi_pidana_nama'] !=
-                                                          null)
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Icon(
-                                                              Icons
-                                                                  .category_outlined,
-                                                              color: GlobalColors
-                                                                  .mainColor,
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 10,
-                                                            ),
-                                                            Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                    'Klasifikasi Kasus',
-                                                                    style: GoogleFonts
-                                                                        .ubuntu(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          14,
-                                                                    )),
-                                                                Text(
-                                                                    listRincian.first[
-                                                                            'ref_klasifikasi_pidana_nama'] ??
-                                                                        '',
-                                                                    // 'Pidana',
-                                                                    style: GoogleFonts
-                                                                        .ubuntu(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w100,
-                                                                      fontSize:
-                                                                          14,
-                                                                    )),
-                                                              ],
-                                                            )
-                                                          ],
-                                                        ),
-                                                      if (listRincian
-                                                              .first['judul'] !=
-                                                          null)
-                                                        Divider(
-                                                            thickness: 1.0,
-                                                            color: Colors
-                                                                .grey.shade400),
-                                                      if (listRincian
-                                                              .first['judul'] !=
-                                                          null)
-                                                        const SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                      if (listRincian
-                                                              .first['judul'] !=
-                                                          null)
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Icon(
-                                                              Icons.title,
-                                                              color: GlobalColors
-                                                                  .mainColor,
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 10,
-                                                            ),
-                                                            Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                    'Topik/Judul Masalah',
-                                                                    style: GoogleFonts
-                                                                        .ubuntu(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          14,
-                                                                    )),
-                                                                Text(
-                                                                    listRincian.first[
-                                                                            'judul'] ??
-                                                                        '',
-                                                                    // 'Pembunuhan',
-                                                                    style: GoogleFonts
-                                                                        .ubuntu(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w100,
-                                                                      fontSize:
-                                                                          14,
-                                                                    )),
-                                                              ],
-                                                            )
-                                                          ],
-                                                        ),
-                                                      Divider(
-                                                          thickness: 1.0,
-                                                          color: Colors
-                                                              .grey.shade400),
-                                                      const SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Icon(
-                                                            Icons
-                                                                .description_outlined,
-                                                            color: GlobalColors
-                                                                .mainColor,
-                                                          ),
+                                                          Divider(
+                                                              thickness: 1.0,
+                                                              color: Colors
+                                                                  .grey.shade400),
                                                           const SizedBox(
-                                                            width: 10,
+                                                            height: 10,
                                                           ),
-                                                          Expanded(
-                                                            child: Column(
+                                                          Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons
+                                                                        .gavel_rounded,
+                                                                    color: GlobalColors
+                                                                        .mainColor,
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    width: 10,
+                                                                  ),
+                                                                  Text(
+                                                                      'Nama Layanan',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                        fontSize:
+                                                                            14,
+                                                                      )),
+                                                                ],
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        left: 35),
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  // crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  children: [
+                                                                    Text(
+                                                                        listRincian
+                                                                                .first[
+                                                                            'produk_nama'],
+                                                                        // 'Chat / 30 Menit x1',
+                                                                        style: GoogleFonts
+                                                                            .ubuntu(
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .w100,
+                                                                          fontSize:
+                                                                              14,
+                                                                        )),
+                                                                    Text(
+                                                                        'Rp. ${listRincian.first['produk_harga_jual']}',
+                                                                        // 'Rp.52.000',
+                                                                        style: GoogleFonts
+                                                                            .ubuntu(
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .w500,
+                                                                          fontSize:
+                                                                              14,
+                                                                        )),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          // Padding(
+                                                          //   padding:
+                                                          //       const EdgeInsets.only(
+                                                          //           left: 20),
+                                                          //   child: Row(
+                                                          //     mainAxisAlignment:
+                                                          //         MainAxisAlignment
+                                                          //             .spaceBetween,
+                                                          //     // crossAxisAlignment: CrossAxisAlignment.start,
+                                                          //     children: [
+                                                          //       Text(
+                                                          //           listRincian.first[
+                                                          //               'produk_nama'],
+                                                          //           // 'Chat / 30 Menit x1',
+                                                          //           style: GoogleFonts
+                                                          //               .ubuntu(
+                                                          //             fontWeight:
+                                                          //                 FontWeight
+                                                          //                     .w100,
+                                                          //             fontSize: 14,
+                                                          //           )),
+                                    
+                                                          //       Text(
+                                                          //           'Rp. ${listRincian.first['produk_harga_jual']}',
+                                                          //           // 'Rp.52.000',
+                                                          //           style: GoogleFonts
+                                                          //               .ubuntu(
+                                                          //             fontWeight:
+                                                          //                 FontWeight
+                                                          //                     .w500,
+                                                          //             fontSize: 14,
+                                                          //           )),
+                                                          //     ],
+                                                          //   ),
+                                                          // ),
+                                                          if (listRincian.first[
+                                                                  'ref_klasifikasi_pidana_nama'] !=
+                                                              null)
+                                                            Divider(
+                                                                thickness: 1.0,
+                                                                color: Colors
+                                                                    .grey.shade400),
+                                                          if (listRincian.first[
+                                                                  'ref_klasifikasi_pidana_nama'] !=
+                                                              null)
+                                                            const SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                          if (listRincian.first[
+                                                                  'ref_klasifikasi_pidana_nama'] !=
+                                                              null)
+                                                            Row(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
                                                                       .start,
@@ -806,46 +664,192 @@ urutan if
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
-                                                                Text(
-                                                                    'Deskripsi Masalah',
-                                                                    style: GoogleFonts
-                                                                        .ubuntu(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontSize:
-                                                                          14,
-                                                                    )),
-                                                                Text(
-                                                                  listRincian
-                                                                          .first[
-                                                                      'deskripsi'],
-                                                                  // 'Selamat pagi, Pak/Bu Advokat. Saya sangat\nmembutuhkan bantuan Anda karena saya\nsedang mengalami masalah rumah tangga yang\ncukup rumit. Saya sudah menikah dengan suami\nsaya selama 10 tahun, dan selama lima tahun\nterakhir, pernikahan kami rasanya semakin\nmemburuk. Awalnya, kami selalu bisa\nberkomunikasi dengan baik, tapi sekarang kami\nhampir tidak pernah berbicara tanpa bertengkar.',
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w100,
-                                                                    fontSize:
-                                                                        12.5,
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .left,
+                                                                Icon(
+                                                                  Icons
+                                                                      .category_outlined,
+                                                                  color: GlobalColors
+                                                                      .mainColor,
                                                                 ),
+                                                                const SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                        'Klasifikasi Kasus',
+                                                                        style: GoogleFonts
+                                                                            .ubuntu(
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .bold,
+                                                                          fontSize:
+                                                                              14,
+                                                                        )),
+                                                                    Text(
+                                                                        listRincian.first[
+                                                                                'ref_klasifikasi_pidana_nama'] ??
+                                                                            '',
+                                                                        // 'Pidana',
+                                                                        style: GoogleFonts
+                                                                            .ubuntu(
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .w100,
+                                                                          fontSize:
+                                                                              14,
+                                                                        )),
+                                                                  ],
+                                                                )
                                                               ],
                                                             ),
-                                                          )
+                                                          if (listRincian
+                                                                  .first['judul'] !=
+                                                              null)
+                                                            Divider(
+                                                                thickness: 1.0,
+                                                                color: Colors
+                                                                    .grey.shade400),
+                                                          if (listRincian
+                                                                  .first['judul'] !=
+                                                              null)
+                                                            const SizedBox(
+                                                              height: 10,
+                                                            ),
+                                                          if (listRincian
+                                                                  .first['judul'] !=
+                                                              null)
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons.title,
+                                                                  color: GlobalColors
+                                                                      .mainColor,
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                        'Topik/Judul Masalah',
+                                                                        style: GoogleFonts
+                                                                            .ubuntu(
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .bold,
+                                                                          fontSize:
+                                                                              14,
+                                                                        )),
+                                                                    Text(
+                                                                        listRincian.first[
+                                                                                'judul'] ??
+                                                                            '',
+                                                                        // 'Pembunuhan',
+                                                                        style: GoogleFonts
+                                                                            .ubuntu(
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .w100,
+                                                                          fontSize:
+                                                                              14,
+                                                                        )),
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            ),
+                                                          Divider(
+                                                              thickness: 1.0,
+                                                              color: Colors
+                                                                  .grey.shade400),
+                                                          const SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .description_outlined,
+                                                                color: GlobalColors
+                                                                    .mainColor,
+                                                              ),
+                                                              const SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              Expanded(
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                        'Deskripsi Masalah',
+                                                                        style: GoogleFonts
+                                                                            .ubuntu(
+                                                                          fontWeight:
+                                                                              FontWeight
+                                                                                  .bold,
+                                                                          fontSize:
+                                                                              14,
+                                                                        )),
+                                                                    Text(
+                                                                      listRincian
+                                                                              .first[
+                                                                          'deskripsi'],
+                                                                      // 'Selamat pagi, Pak/Bu Advokat. Saya sangat\nmembutuhkan bantuan Anda karena saya\nsedang mengalami masalah rumah tangga yang\ncukup rumit. Saya sudah menikah dengan suami\nsaya selama 10 tahun, dan selama lima tahun\nterakhir, pernikahan kami rasanya semakin\nmemburuk. Awalnya, kami selalu bisa\nberkomunikasi dengan baik, tapi sekarang kami\nhampir tidak pernah berbicara tanpa bertengkar.',
+                                                                      style:
+                                                                          GoogleFonts
+                                                                              .ubuntu(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w100,
+                                                                        fontSize:
+                                                                            12.5,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .left,
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
                                                         ],
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
-                                          );
-                                        }),
+                                              );
+                                            }),
+                                      ],
+                                    ),
                                   ],
                                 ),
 

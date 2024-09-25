@@ -79,6 +79,8 @@ class _PembayaranViewState extends State<PembayaranView> {
         tanggal: DateTime.now().toString(),
         klasifikasi: widget.klasifikasi['id'],
         judul: widget.judul,
+        idMetodeBayar:metodeBayar['id_metode_pembayaran'],
+        idRekening:metodeBayar['id'],
         deskripsi: widget.deskripsi);
     isLoading = false;
     if (response['status'] == true) {

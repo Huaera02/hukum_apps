@@ -127,16 +127,10 @@ class _VirtualAccountViewState extends State<VirtualAccountView> {
     );
     isLoading = false;
     if (response['status'] == true) {
-      role == 'advokat' || role == 'notaris'
-          ?
-          // Navigator.popUntil(
-          //     context,
-          //     ModalRoute.withName('/RiwayatMitraView'),
-          //   );
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const RiwayatMitraView()))
-          : Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HistoryView()));
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const HistoryView()),
+          (route) => route.isFirst);
     } else {
       showDialog(
         context: context,

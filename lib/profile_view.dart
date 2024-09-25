@@ -180,62 +180,63 @@ class _ProfileViewState extends State<ProfileView> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black))),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 15),
-                      padding: const EdgeInsets.all(10),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextButton.icon(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.verified_user_rounded,
-                                color: GlobalColors.mainColor,
-                                size: 20,
-                              ),
-                              label: Text('Verifikasi Email',
-                                  style: GoogleFonts.ubuntu(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black))),
-                          Divider(thickness: 1.0, color: Colors.grey.shade400),
-                          TextButton.icon(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const NewPassView()));
-                              },
-                              icon: Icon(
-                                Icons.key,
-                                color: GlobalColors.mainColor,
-                                size: 20,
-                              ),
-                              label: Text('Ubah Kata Sandi',
-                                  style: GoogleFonts.ubuntu(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black))),
-                          Divider(thickness: 1.0, color: Colors.grey.shade400),
-                          TextButton.icon(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.delete,
-                                color: GlobalColors.mainColor,
-                                size: 20,
-                              ),
-                              label: Text('Hapus Akun',
-                                  style: GoogleFonts.ubuntu(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black))),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   margin: const EdgeInsets.only(top: 15),
+                    //   padding: const EdgeInsets.all(10),
+                    //   decoration: const BoxDecoration(
+                    //     color: Colors.white,
+                    //   ),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       TextButton.icon(
+                    //           onPressed: () {},
+                    //           icon: Icon(
+                    //             Icons.verified_user_rounded,
+                    //             color: GlobalColors.mainColor,
+                    //             size: 20,
+                    //           ),
+                    //           label: Text('Verifikasi Email',
+                    //               style: GoogleFonts.ubuntu(
+                    //                   fontSize: 16,
+                    //                   fontWeight: FontWeight.w500,
+                    //                   color: Colors.black))),
+                    //       Divider(thickness: 1.0, color: Colors.grey.shade400),
+                    //       TextButton.icon(
+                    //           onPressed: () {
+                    //             Navigator.push(
+                    //                 context,
+                    //                 MaterialPageRoute(
+                    //                     builder: (context) =>
+                    //                         const NewPassView()));
+                    //           },
+                    //           icon: Icon(
+                    //             Icons.key,
+                    //             color: GlobalColors.mainColor,
+                    //             size: 20,
+                    //           ),
+                    //           label: Text('Ubah Kata Sandi',
+                    //               style: GoogleFonts.ubuntu(
+                    //                   fontSize: 16,
+                    //                   fontWeight: FontWeight.w500,
+                    //                   color: Colors.black))),
+                    //       Divider(thickness: 1.0, color: Colors.grey.shade400),
+                    //       TextButton.icon(
+                    //           onPressed: () {},
+                    //           icon: Icon(
+                    //             Icons.delete,
+                    //             color: GlobalColors.mainColor,
+                    //             size: 20,
+                    //           ),
+                    //           label: Text('Hapus Akun',
+                    //               style: GoogleFonts.ubuntu(
+                    //                   fontSize: 16,
+                    //                   fontWeight: FontWeight.w500,
+                    //                   color: Colors.black))),
+                    //     ],
+                    //   ),
+                    // ),
+                    
                     TextButton(
                         onPressed: () async {
                           //sebelum ke splash hapus sessionya supaya dibaca tidak login

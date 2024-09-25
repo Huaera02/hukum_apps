@@ -127,7 +127,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                                   ),
                                 ),
                                 Text(
-                                  listData['email'] ?? '',
+                                  listData['nia'] ?? '',
                                   style: GoogleFonts.ubuntu(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w300,
@@ -161,266 +161,266 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                         ],
                       ),
                     ),
-                    Container(
-                      height: 320,
-                      margin: const EdgeInsets.only(top: 15),
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 160,
-                                height: 80,
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.person_3_outlined,
-                                      color: Colors.black,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '0',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          'Total Klien',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w300,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 160,
-                                height: 80,
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.edit_document,
-                                      color: Colors.black,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '0',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          'Total Kasus',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w300,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 160,
-                                height: 80,
-                                margin: const EdgeInsets.only(top: 15),
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.work_history_outlined,
-                                      color: Colors.black,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '0',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          'Total Jam Kerja',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w300,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: 160,
-                                height: 80,
-                                margin: const EdgeInsets.only(top: 15),
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.wallet_rounded,
-                                      color: Colors.black,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '0',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          'Total Transaksi',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w300,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 160,
-                                height: 80,
-                                margin: const EdgeInsets.only(top: 15),
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.grey.shade400,
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.star_border_outlined,
-                                      color: Colors.black,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '0.0',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 5),
-                                        Text(
-                                          'Rating',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w300,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   height: 320,
+                    //   margin: const EdgeInsets.only(top: 15),
+                    //   padding: const EdgeInsets.all(20),
+                    //   decoration: const BoxDecoration(
+                    //     color: Colors.white,
+                    //   ),
+                    //   child: Column(
+                    //     children: [
+                    //       Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Container(
+                    //             width: 160,
+                    //             height: 80,
+                    //             padding: const EdgeInsets.all(10),
+                    //             decoration: BoxDecoration(
+                    //               color: Colors.white,
+                    //               borderRadius: BorderRadius.circular(10),
+                    //               border: Border.all(
+                    //                 color: Colors.grey.shade400,
+                    //               ),
+                    //             ),
+                    //             child: Row(
+                    //               children: [
+                    //                 const Icon(
+                    //                   Icons.person_3_outlined,
+                    //                   color: Colors.black,
+                    //                 ),
+                    //                 const SizedBox(width: 5),
+                    //                 Column(
+                    //                   mainAxisAlignment:
+                    //                       MainAxisAlignment.center,
+                    //                   crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                   children: [
+                    //                     Text(
+                    //                       '0',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w500,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                     const SizedBox(height: 5),
+                    //                     Text(
+                    //                       'Total Klien',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 12,
+                    //                         fontWeight: FontWeight.w300,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //           Container(
+                    //             width: 160,
+                    //             height: 80,
+                    //             padding: const EdgeInsets.all(10),
+                    //             decoration: BoxDecoration(
+                    //               color: Colors.white,
+                    //               borderRadius: BorderRadius.circular(10),
+                    //               border: Border.all(
+                    //                 color: Colors.grey.shade400,
+                    //               ),
+                    //             ),
+                    //             child: Row(
+                    //               children: [
+                    //                 const Icon(
+                    //                   Icons.edit_document,
+                    //                   color: Colors.black,
+                    //                 ),
+                    //                 const SizedBox(width: 5),
+                    //                 Column(
+                    //                   mainAxisAlignment:
+                    //                       MainAxisAlignment.center,
+                    //                   crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                   children: [
+                    //                     Text(
+                    //                       '0',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w500,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                     const SizedBox(height: 5),
+                    //                     Text(
+                    //                       'Total Kasus',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 12,
+                    //                         fontWeight: FontWeight.w300,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Container(
+                    //             width: 160,
+                    //             height: 80,
+                    //             margin: const EdgeInsets.only(top: 15),
+                    //             padding: const EdgeInsets.all(10),
+                    //             decoration: BoxDecoration(
+                    //               color: Colors.white,
+                    //               borderRadius: BorderRadius.circular(10),
+                    //               border: Border.all(
+                    //                 color: Colors.grey.shade400,
+                    //               ),
+                    //             ),
+                    //             child: Row(
+                    //               children: [
+                    //                 const Icon(
+                    //                   Icons.work_history_outlined,
+                    //                   color: Colors.black,
+                    //                 ),
+                    //                 const SizedBox(width: 5),
+                    //                 Column(
+                    //                   mainAxisAlignment:
+                    //                       MainAxisAlignment.center,
+                    //                   crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                   children: [
+                    //                     Text(
+                    //                       '0',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w500,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                     const SizedBox(height: 5),
+                    //                     Text(
+                    //                       'Total Jam Kerja',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 12,
+                    //                         fontWeight: FontWeight.w300,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //           Container(
+                    //             width: 160,
+                    //             height: 80,
+                    //             margin: const EdgeInsets.only(top: 15),
+                    //             padding: const EdgeInsets.all(10),
+                    //             decoration: BoxDecoration(
+                    //               color: Colors.white,
+                    //               borderRadius: BorderRadius.circular(10),
+                    //               border: Border.all(
+                    //                 color: Colors.grey.shade400,
+                    //               ),
+                    //             ),
+                    //             child: Row(
+                    //               children: [
+                    //                 const Icon(
+                    //                   Icons.wallet_rounded,
+                    //                   color: Colors.black,
+                    //                 ),
+                    //                 const SizedBox(width: 5),
+                    //                 Column(
+                    //                   mainAxisAlignment:
+                    //                       MainAxisAlignment.center,
+                    //                   crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                   children: [
+                    //                     Text(
+                    //                       '0',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w500,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                     const SizedBox(height: 5),
+                    //                     Text(
+                    //                       'Total Transaksi',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 12,
+                    //                         fontWeight: FontWeight.w300,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //         children: [
+                    //           Container(
+                    //             width: 160,
+                    //             height: 80,
+                    //             margin: const EdgeInsets.only(top: 15),
+                    //             padding: const EdgeInsets.all(10),
+                    //             decoration: BoxDecoration(
+                    //               color: Colors.white,
+                    //               borderRadius: BorderRadius.circular(10),
+                    //               border: Border.all(
+                    //                 color: Colors.grey.shade400,
+                    //               ),
+                    //             ),
+                    //             child: Row(
+                    //               children: [
+                    //                 const Icon(
+                    //                   Icons.star_border_outlined,
+                    //                   color: Colors.black,
+                    //                 ),
+                    //                 const SizedBox(width: 5),
+                    //                 Column(
+                    //                   mainAxisAlignment:
+                    //                       MainAxisAlignment.center,
+                    //                   crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                   children: [
+                    //                     Text(
+                    //                       '0.0',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 14,
+                    //                         fontWeight: FontWeight.w500,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                     const SizedBox(height: 5),
+                    //                     Text(
+                    //                       'Rating',
+                    //                       style: GoogleFonts.ubuntu(
+                    //                         fontSize: 12,
+                    //                         fontWeight: FontWeight.w300,
+                    //                         color: Colors.black,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     Container(
                       width: 500,
                       margin: const EdgeInsets.only(top: 15),
@@ -519,81 +519,82 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 15),
-                      padding: const EdgeInsets.all(10),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextButton.icon(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.verified_user_rounded,
-                              color: GlobalColors.mainColor,
-                              size: 20,
-                            ),
-                            label: Text(
-                              'Verifikasi Email',
-                              style: GoogleFonts.ubuntu(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                          Divider(
-                            thickness: 1.0,
-                            color: Colors.grey.shade400,
-                          ),
-                          TextButton.icon(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const NewPassView(),
-                                ),
-                              );
-                            },
-                            icon: Icon(
-                              Icons.key,
-                              color: GlobalColors.mainColor,
-                              size: 20,
-                            ),
-                            label: Text(
-                              'Ubah Kata Sandi',
-                              style: GoogleFonts.ubuntu(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                          Divider(
-                            thickness: 1.0,
-                            color: Colors.grey.shade400,
-                          ),
-                          TextButton.icon(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.delete,
-                              color: GlobalColors.mainColor,
-                              size: 20,
-                            ),
-                            label: Text(
-                              'Hapus Akun',
-                              style: GoogleFonts.ubuntu(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   margin: const EdgeInsets.only(top: 15),
+                    //   padding: const EdgeInsets.all(10),
+                    //   decoration: const BoxDecoration(
+                    //     color: Colors.white,
+                    //   ),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       TextButton.icon(
+                    //         onPressed: () {},
+                    //         icon: Icon(
+                    //           Icons.verified_user_rounded,
+                    //           color: GlobalColors.mainColor,
+                    //           size: 20,
+                    //         ),
+                    //         label: Text(
+                    //           'Verifikasi Email',
+                    //           style: GoogleFonts.ubuntu(
+                    //             fontSize: 16,
+                    //             fontWeight: FontWeight.w500,
+                    //             color: Colors.black,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Divider(
+                    //         thickness: 1.0,
+                    //         color: Colors.grey.shade400,
+                    //       ),
+                    //       TextButton.icon(
+                    //         onPressed: () {
+                    //           Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //               builder: (context) => const NewPassView(),
+                    //             ),
+                    //           );
+                    //         },
+                    //         icon: Icon(
+                    //           Icons.key,
+                    //           color: GlobalColors.mainColor,
+                    //           size: 20,
+                    //         ),
+                    //         label: Text(
+                    //           'Ubah Kata Sandi',
+                    //           style: GoogleFonts.ubuntu(
+                    //             fontSize: 16,
+                    //             fontWeight: FontWeight.w500,
+                    //             color: Colors.black,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       Divider(
+                    //         thickness: 1.0,
+                    //         color: Colors.grey.shade400,
+                    //       ),
+                    //       TextButton.icon(
+                    //         onPressed: () {},
+                    //         icon: Icon(
+                    //           Icons.delete,
+                    //           color: GlobalColors.mainColor,
+                    //           size: 20,
+                    //         ),
+                    //         label: Text(
+                    //           'Hapus Akun',
+                    //           style: GoogleFonts.ubuntu(
+                    //             fontSize: 16,
+                    //             fontWeight: FontWeight.w500,
+                    //             color: Colors.black,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    
                     TextButton(
                       onPressed: () {
                         APIs.updateActiveStatus(false);

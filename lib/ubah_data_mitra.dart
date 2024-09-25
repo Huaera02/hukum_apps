@@ -500,25 +500,25 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                       const UnderlineInputBorder(),
                                                 ),
                                               ),
-                                              TextFormField(
-                                                controller: emailController,
-                                                style: const TextStyle(
-                                                    fontSize: 16,
-                                                    color: Colors.black),
-                                                keyboardType:
-                                                    TextInputType.emailAddress,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Email',
-                                                  labelStyle:
-                                                      GoogleFonts.ubuntu(),
-                                                  hintText: 'Masukkan Email',
-                                                  hintStyle: GoogleFonts.ubuntu(
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                  border:
-                                                      const UnderlineInputBorder(),
-                                                ),
-                                              ),
+                                              // TextFormField(
+                                              //   controller: emailController,
+                                              //   style: const TextStyle(
+                                              //       fontSize: 16,
+                                              //       color: Colors.black),
+                                              //   keyboardType:
+                                              //       TextInputType.emailAddress,
+                                              //   decoration: InputDecoration(
+                                              //     labelText: 'Email',
+                                              //     labelStyle:
+                                              //         GoogleFonts.ubuntu(),
+                                              //     hintText: 'Masukkan Email',
+                                              //     hintStyle: GoogleFonts.ubuntu(
+                                              //         fontWeight:
+                                              //             FontWeight.w500),
+                                              //     border:
+                                              //         const UnderlineInputBorder(),
+                                              //   ),
+                                              // ),
                                               TextFormField(
                                                 controller: nohpController,
                                                 style: const TextStyle(
