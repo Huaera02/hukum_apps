@@ -175,20 +175,22 @@ urutan if
     setState(() {});
   }
 
-  postData() async {
+  postData({bool endNow = false}) async {
     setState(() {
       isLoading = true;
     });
     //selesai (Memulai Konsultasi)
     DateTime? jamSelesai;
     try {
-      jamSelesai = DateTime.parse(listRincian.first['mulai_layanan']).add(
-        Duration(
-          minutes: int.parse(
-            listRincian.first['durasi'],
-          ),
-        ),
-      );
+      jamSelesai = endNow
+          ? DateTime.now()
+          : DateTime.parse(listRincian.first['mulai_layanan']).add(
+              Duration(
+                minutes: int.parse(
+                  listRincian.first['durasi'],
+                ),
+              ),
+            );
     } catch (e) {
       log(e.toString());
     }
@@ -426,27 +428,32 @@ urutan if
                                                   children: [
                                                     Container(
                                                       padding:
-                                                          const EdgeInsets.all(10),
+                                                          const EdgeInsets.all(
+                                                              10),
                                                       // margin: const EdgeInsets.only(bottom: 10),
                                                       width: 500,
                                                       decoration: BoxDecoration(
-                                                        color: Colors.grey.shade100,
+                                                        color: Colors
+                                                            .grey.shade100,
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                10),
+                                                            BorderRadius
+                                                                .circular(10),
                                                       ),
                                                       child: Column(
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment.start,
+                                                            MainAxisAlignment
+                                                                .start,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Text('Detail Konsultasi',
+                                                          Text(
+                                                              'Detail Konsultasi',
                                                               style: GoogleFonts
                                                                   .ubuntu(
                                                                 fontWeight:
-                                                                    FontWeight.bold,
+                                                                    FontWeight
+                                                                        .bold,
                                                                 fontSize: 16,
                                                               )),
                                                           const SizedBox(
@@ -481,12 +488,10 @@ urutan if
                                                                               .first[
                                                                           'master_kontak_nama'],
                                                                       // listRincian.first[''] 'Nurmiati, S.H',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
+                                                                            FontWeight.bold,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -495,12 +500,10 @@ urutan if
                                                                               .first[
                                                                           'master_kontak_tipe_kontak_nama'],
                                                                       // 'Advokat',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w100,
+                                                                            FontWeight.w100,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -510,8 +513,8 @@ urutan if
                                                           ),
                                                           Divider(
                                                               thickness: 1.0,
-                                                              color: Colors
-                                                                  .grey.shade400),
+                                                              color: Colors.grey
+                                                                  .shade400),
                                                           const SizedBox(
                                                             height: 10,
                                                           ),
@@ -540,12 +543,10 @@ urutan if
                                                                         .start,
                                                                 children: [
                                                                   Text('Email',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
+                                                                            FontWeight.bold,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -554,12 +555,10 @@ urutan if
                                                                               .first[
                                                                           'master_kontak_email'],
                                                                       // 'Senin, 20 Jun 2022',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w100,
+                                                                            FontWeight.w100,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -569,8 +568,8 @@ urutan if
                                                           ),
                                                           Divider(
                                                               thickness: 1.0,
-                                                              color: Colors
-                                                                  .grey.shade400),
+                                                              color: Colors.grey
+                                                                  .shade400),
                                                           const SizedBox(
                                                             height: 10,
                                                           ),
@@ -583,7 +582,8 @@ urutan if
                                                                     .start,
                                                             children: [
                                                               Icon(
-                                                                Icons.phone_android,
+                                                                Icons
+                                                                    .phone_android,
                                                                 color: GlobalColors
                                                                     .mainColor,
                                                               ),
@@ -599,12 +599,10 @@ urutan if
                                                                         .start,
                                                                 children: [
                                                                   Text('No HP',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
+                                                                            FontWeight.bold,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -613,12 +611,10 @@ urutan if
                                                                               .first[
                                                                           'master_kontak_hp'],
                                                                       // 'Senin, 20 Jun 2022',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w100,
+                                                                            FontWeight.w100,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -628,8 +624,8 @@ urutan if
                                                           ),
                                                           Divider(
                                                               thickness: 1.0,
-                                                              color: Colors
-                                                                  .grey.shade400),
+                                                              color: Colors.grey
+                                                                  .shade400),
                                                           const SizedBox(
                                                             height: 10,
                                                           ),
@@ -642,7 +638,8 @@ urutan if
                                                                     .start,
                                                             children: [
                                                               Icon(
-                                                                Icons.location_on,
+                                                                Icons
+                                                                    .location_on,
                                                                 color: GlobalColors
                                                                     .mainColor,
                                                               ),
@@ -658,12 +655,10 @@ urutan if
                                                                         .start,
                                                                 children: [
                                                                   Text('Alamat',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
+                                                                            FontWeight.bold,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -672,12 +667,10 @@ urutan if
                                                                               .first[
                                                                           'master_kontak_alamat'],
                                                                       // 'Senin, 20 Jun 2022',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w100,
+                                                                            FontWeight.w100,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -687,8 +680,8 @@ urutan if
                                                           ),
                                                           Divider(
                                                               thickness: 1.0,
-                                                              color: Colors
-                                                                  .grey.shade400),
+                                                              color: Colors.grey
+                                                                  .shade400),
                                                           const SizedBox(
                                                             height: 10,
                                                           ),
@@ -717,13 +710,12 @@ urutan if
                                                                     CrossAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Text('Tanggal',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                  Text(
+                                                                      'Tanggal',
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
+                                                                            FontWeight.bold,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -732,12 +724,10 @@ urutan if
                                                                               .first[
                                                                           'tanggal'],
                                                                       // 'Senin, 20 Jun 2022',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w100,
+                                                                            FontWeight.w100,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -747,8 +737,8 @@ urutan if
                                                           ),
                                                           Divider(
                                                               thickness: 1.0,
-                                                              color: Colors
-                                                                  .grey.shade400),
+                                                              color: Colors.grey
+                                                                  .shade400),
                                                           const SizedBox(
                                                             height: 10,
                                                           ),
@@ -779,12 +769,10 @@ urutan if
                                                                   ),
                                                                   Text(
                                                                       'Nama Layanan',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
+                                                                            FontWeight.bold,
                                                                         fontSize:
                                                                             14,
                                                                       )),
@@ -794,7 +782,8 @@ urutan if
                                                                 padding:
                                                                     const EdgeInsets
                                                                         .only(
-                                                                        left: 35),
+                                                                        left:
+                                                                            35),
                                                                 child: Row(
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
@@ -802,15 +791,13 @@ urutan if
                                                                   // crossAxisAlignment: CrossAxisAlignment.start,
                                                                   children: [
                                                                     Text(
-                                                                        listRincian
-                                                                                .first[
+                                                                        listRincian.first[
                                                                             'produk_nama'],
                                                                         // 'Chat / 30 Menit x1',
                                                                         style: GoogleFonts
                                                                             .ubuntu(
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .w100,
+                                                                              FontWeight.w100,
                                                                           fontSize:
                                                                               14,
                                                                         )),
@@ -820,8 +807,7 @@ urutan if
                                                                         style: GoogleFonts
                                                                             .ubuntu(
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .w500,
+                                                                              FontWeight.w500,
                                                                           fontSize:
                                                                               14,
                                                                         )),
@@ -836,7 +822,8 @@ urutan if
                                                             Divider(
                                                                 thickness: 1.0,
                                                                 color: Colors
-                                                                    .grey.shade400),
+                                                                    .grey
+                                                                    .shade400),
                                                           if (listRincian.first[
                                                                   'ref_klasifikasi_pidana_nama'] !=
                                                               null)
@@ -876,21 +863,18 @@ urutan if
                                                                         style: GoogleFonts
                                                                             .ubuntu(
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .bold,
+                                                                              FontWeight.bold,
                                                                           fontSize:
                                                                               14,
                                                                         )),
                                                                     Text(
-                                                                        listRincian.first[
-                                                                                'ref_klasifikasi_pidana_nama'] ??
+                                                                        listRincian.first['ref_klasifikasi_pidana_nama'] ??
                                                                             '',
                                                                         // 'Pidana',
                                                                         style: GoogleFonts
                                                                             .ubuntu(
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .w100,
+                                                                              FontWeight.w100,
                                                                           fontSize:
                                                                               14,
                                                                         )),
@@ -898,21 +882,22 @@ urutan if
                                                                 )
                                                               ],
                                                             ),
-                                                          if (listRincian
-                                                                  .first['judul'] !=
+                                                          if (listRincian.first[
+                                                                  'judul'] !=
                                                               null)
                                                             Divider(
                                                                 thickness: 1.0,
                                                                 color: Colors
-                                                                    .grey.shade400),
-                                                          if (listRincian
-                                                                  .first['judul'] !=
+                                                                    .grey
+                                                                    .shade400),
+                                                          if (listRincian.first[
+                                                                  'judul'] !=
                                                               null)
                                                             const SizedBox(
                                                               height: 10,
                                                             ),
-                                                          if (listRincian
-                                                                  .first['judul'] !=
+                                                          if (listRincian.first[
+                                                                  'judul'] !=
                                                               null)
                                                             Row(
                                                               mainAxisAlignment:
@@ -943,21 +928,18 @@ urutan if
                                                                         style: GoogleFonts
                                                                             .ubuntu(
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .bold,
+                                                                              FontWeight.bold,
                                                                           fontSize:
                                                                               14,
                                                                         )),
                                                                     Text(
-                                                                        listRincian.first[
-                                                                                'judul'] ??
+                                                                        listRincian.first['judul'] ??
                                                                             '',
                                                                         // 'Pembunuhan',
                                                                         style: GoogleFonts
                                                                             .ubuntu(
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .w100,
+                                                                              FontWeight.w100,
                                                                           fontSize:
                                                                               14,
                                                                         )),
@@ -967,8 +949,8 @@ urutan if
                                                             ),
                                                           Divider(
                                                               thickness: 1.0,
-                                                              color: Colors
-                                                                  .grey.shade400),
+                                                              color: Colors.grey
+                                                                  .shade400),
                                                           const SizedBox(
                                                             height: 10,
                                                           ),
@@ -1003,8 +985,7 @@ urutan if
                                                                         style: GoogleFonts
                                                                             .ubuntu(
                                                                           fontWeight:
-                                                                              FontWeight
-                                                                                  .bold,
+                                                                              FontWeight.bold,
                                                                           fontSize:
                                                                               14,
                                                                         )),
@@ -1013,12 +994,10 @@ urutan if
                                                                               .first[
                                                                           'deskripsi'],
                                                                       // 'Selamat pagi, Pak/Bu Advokat. Saya sangat\nmembutuhkan bantuan Anda karena saya\nsedang mengalami masalah rumah tangga yang\ncukup rumit. Saya sudah menikah dengan suami\nsaya selama 10 tahun, dan selama lima tahun\nterakhir, pernikahan kami rasanya semakin\nmemburuk. Awalnya, kami selalu bisa\nberkomunikasi dengan baik, tapi sekarang kami\nhampir tidak pernah berbicara tanpa bertengkar.',
-                                                                      style:
-                                                                          GoogleFonts
-                                                                              .ubuntu(
+                                                                      style: GoogleFonts
+                                                                          .ubuntu(
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w100,
+                                                                            FontWeight.w100,
                                                                         fontSize:
                                                                             12.5,
                                                                       ),
@@ -1052,91 +1031,93 @@ urutan if
                                           (_jamSelesai!
                                               .isBefore(DateTime.now())))
                                       ? Column(
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top: 100),
-                                                  child: Icon(
-                                                    Icons.check_circle,
-                                                    size: 160,
-                                                    color: GlobalColors
-                                                        .mainColor,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 100),
+                                                    child: Icon(
+                                                      Icons.check_circle,
+                                                      size: 160,
+                                                      color: GlobalColors
+                                                          .mainColor,
+                                                    ),
+                                                  ),
+                                                  Text('Selesai',
+                                                      style: GoogleFonts.ubuntu(
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: GlobalColors
+                                                              .mainColor)),
+                                                  const SizedBox(
+                                                    height: 50,
+                                                  ),
+                                                  Text(
+                                                    'Konsultasi anda telah berakhir, Silahkan kembali ke Beranda',
+                                                    style: GoogleFonts.ubuntu(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: GlobalColors
+                                                            .mainColor),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width: double.infinity,
+                                              height: 52,
+                                              margin: const EdgeInsets.only(
+                                                  left: 26,
+                                                  right: 26,
+                                                  top: 10,
+                                                  bottom: 20),
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      GlobalColors.mainColor,
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const BottomNavView()));
+                                                },
+                                                child: Text(
+                                                  'Kembali ke Beranda',
+                                                  style: GoogleFonts.ubuntu(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w500,
+                                                    color:
+                                                        GlobalColors.btnColor,
                                                   ),
                                                 ),
-                                               
-                                                Text('Selesai',
-                                                    style: GoogleFonts.ubuntu(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: GlobalColors
-                                                            .mainColor)),
-                                                const SizedBox(
-                                                  height: 50,
-                                                ),
-                                                Text(
-                                                  'Konsultasi anda telah berakhir, Silahkan kembali ke Beranda',
-                                                  style: GoogleFonts.ubuntu(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: GlobalColors
-                                                          .mainColor),
-                                                  textAlign:
-                                                      TextAlign.center,
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: double.infinity,
-                                            height: 52,
-                                            margin: const EdgeInsets.only(
-                                                left: 26,
-                                                right: 26,
-                                                top: 10,
-                                                bottom: 20),
-                                            child: ElevatedButton(
-                                              style:
-                                                  ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                    GlobalColors.mainColor,
-                                              ),
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const BottomNavView()));
-                                              },
-                                              child: Text(
-                                                'Kembali ke Beranda',
-                                                style: GoogleFonts.ubuntu(
-                                                  fontSize: 16,
-                                                  fontWeight:
-                                                      FontWeight.w500,
-                                                  color:
-                                                      GlobalColors.btnColor,
-                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      )
+                                          ],
+                                        )
                                       : (listRincian.first['selesai_layanan'] ==
                                               null)
                                           ? ListView(
-                                            children: [
-                                              Container(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 20, right: 20, top: 70),
+                                              children: [
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 20,
+                                                          right: 20,
+                                                          top: 70),
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.center,
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Image.asset(
                                                         'assets/images/profile 1.png',
@@ -1150,22 +1131,26 @@ urutan if
                                                         listRincian.first[
                                                             'master_kontak_nama'],
                                                         // 'Nurmiati, S.H',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontSize: 20,
-                                                            fontWeight:
-                                                                FontWeight.bold),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
                                                       ),
                                                       const SizedBox(
                                                         height: 5,
                                                       ),
                                                       Text(
-                                                        listRincian
-                                                            .first['produk_nama'],
+                                                        listRincian.first[
+                                                            'produk_nama'],
                                                         // 'Nurmiati, S.H',
-                                                        style: GoogleFonts.ubuntu(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w500),
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
                                                       ),
                                                       const SizedBox(
                                                         height: 170,
@@ -1175,25 +1160,25 @@ urutan if
                                                               null)
                                                           ? Text(
                                                               'Tolong Setting waktu layanan yang akan dimulai',
-                                                              style: GoogleFonts
-                                                                  .ubuntu(
-                                                                      fontSize: 14,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w100),
+                                                              style: GoogleFonts.ubuntu(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w100),
                                                               textAlign:
-                                                                  TextAlign.center,
+                                                                  TextAlign
+                                                                      .center,
                                                             )
                                                           : Text(
                                                               'Waktu Konsultasi akan dimulai',
-                                                              style: GoogleFonts
-                                                                  .ubuntu(
-                                                                      fontSize: 14,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w100),
+                                                              style: GoogleFonts.ubuntu(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w100),
                                                               textAlign:
-                                                                  TextAlign.center,
+                                                                  TextAlign
+                                                                      .center,
                                                             ),
                                                       const SizedBox(
                                                         height: 5,
@@ -1204,9 +1189,11 @@ urutan if
                                                         TextFormField(
                                                           controller:
                                                               mulaiLayananController,
-                                                          style: GoogleFonts.ubuntu(
-                                                              fontSize: 13,
-                                                              color: Colors.black),
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                                  fontSize: 13,
+                                                                  color: Colors
+                                                                      .black),
                                                           readOnly: true,
                                                           onTap: () async {
                                                             TimeOfDay? time =
@@ -1224,12 +1211,14 @@ urutan if
                                                           },
                                                           decoration:
                                                               InputDecoration(
-                                                            labelStyle: GoogleFonts
-                                                                .ubuntu(),
+                                                            labelStyle:
+                                                                GoogleFonts
+                                                                    .ubuntu(),
                                                             hintText:
                                                                 'Mulai Layanan',
-                                                            hintStyle: GoogleFonts
-                                                                .ubuntu(),
+                                                            hintStyle:
+                                                                GoogleFonts
+                                                                    .ubuntu(),
                                                             border:
                                                                 const OutlineInputBorder(),
                                                           ),
@@ -1237,47 +1226,47 @@ urutan if
                                                       const SizedBox(
                                                         height: 10,
                                                       ),
-                                                      (listRincian.first[
+                                                      (listRincian
+                                                                      .first[
                                                                   'mulai_layanan'] ==
                                                               null)
                                                           ? ElevatedButton(
                                                               onPressed:
                                                                   postDataMulai,
-                                                              style: ElevatedButton
-                                                                  .styleFrom(
+                                                              style:
+                                                                  ElevatedButton
+                                                                      .styleFrom(
                                                                 backgroundColor:
                                                                     GlobalColors
                                                                         .mainColor,
                                                                 fixedSize:
                                                                     const Size(
-                                                                        180, 30),
+                                                                        180,
+                                                                        30),
                                                                 shape:
                                                                     const RoundedRectangleBorder(
                                                                   borderRadius:
-                                                                      BorderRadius
-                                                                          .all(Radius
-                                                                              .circular(
-                                                                                  5)),
+                                                                      BorderRadius.all(
+                                                                          Radius.circular(
+                                                                              5)),
                                                                 ),
                                                               ),
                                                               child: Text(
                                                                 'Tetapkan Waktu',
-                                                                style: GoogleFonts
-                                                                    .ubuntu(
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w300,
-                                                                        color: Colors
-                                                                            .white),
+                                                                style: GoogleFonts.ubuntu(
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                    color: Colors
+                                                                        .white),
                                                               ),
                                                             )
                                                           : (listRincian.first[
                                                                           'mulai_layanan'] !=
                                                                       null &&
-                                                                  DateTime.parse(listRincian
-                                                                              .first[
+                                                                  DateTime.parse(listRincian.first[
                                                                           'mulai_layanan'])
                                                                       .isAfter(
                                                                           DateTime
@@ -1304,9 +1293,8 @@ urutan if
                                                               : ElevatedButton(
                                                                   onPressed:
                                                                       postData,
-                                                                  style:
-                                                                      ElevatedButton
-                                                                          .styleFrom(
+                                                                  style: ElevatedButton
+                                                                      .styleFrom(
                                                                     backgroundColor:
                                                                         GlobalColors
                                                                             .mainColor,
@@ -1318,8 +1306,7 @@ urutan if
                                                                         const RoundedRectangleBorder(
                                                                       borderRadius:
                                                                           BorderRadius.all(
-                                                                              Radius.circular(
-                                                                                  5)),
+                                                                              Radius.circular(5)),
                                                                     ),
                                                                   ),
                                                                   child: Text(
@@ -1337,14 +1324,34 @@ urutan if
                                                     ],
                                                   ),
                                                 ),
-                                            ],
-                                          )
+                                              ],
+                                            )
                                           //mulai konsul
                                           :
                                           //halaman chat
                                           Column(
                                               children: [
-                                                Time(jamSelesai: _jamSelesai),
+                                                Row(
+                                                  children: [
+                                                    Time(
+                                                        jamSelesai:
+                                                            _jamSelesai),
+                                                    Spacer(),
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        postData(endNow: true);
+                                                      },
+                                                      child: Text(
+                                                        'Selesai',
+                                                        style:
+                                                            GoogleFonts.ubuntu(
+                                                                color:
+                                                                    Colors.red,
+                                                                fontSize: 14),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
                                                 Expanded(
                                                   child: Chats(
                                                       kontakId:

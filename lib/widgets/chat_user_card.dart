@@ -34,7 +34,9 @@ class _ChatUserCardState extends State<ChatUserCard> {
     Message? _message;
     final mq = MediaQuery.of(context).size;
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: mq.width * .04, vertical: 4),
+      margin: EdgeInsets.symmetric(horizontal: mq.width * .04, 
+      vertical: 1
+      ),
       elevation: 0.5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: StreamBuilder(

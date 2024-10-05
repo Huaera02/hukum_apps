@@ -1444,8 +1444,8 @@ class Repository {
         'status': status,
         'judul': judul,
         'deskripsi': deskripsi,
-        'id_metode_pembayaran':idMetodeBayar,
-        'id_rekening':idRekening
+        'id_metode_pembayaran': idMetodeBayar,
+        'id_rekening': idRekening
       };
 
       request.body = jsonEncode(params);
@@ -2297,6 +2297,8 @@ class Repository {
     required String tanggal,
     required String status,
     required String desc,
+    required String idMetodeBayar,
+    required String idRekening,
   }) async {
     try {
       var request = http.Request(
@@ -2328,6 +2330,8 @@ class Repository {
         'tanggal': tanggal,
         'status': status,
         'deskripsi': desc,
+        'id_metode_pembayaran': idMetodeBayar,
+        'id_rekening': idRekening
       };
 
       request.body = jsonEncode(params);
@@ -2516,7 +2520,6 @@ class Repository {
     }
   }
 
-  
   //Get Layanan yang telah dibuat ole mitra
   // Future<Map<String, dynamic>> metodeBayar(
   //     {required String branchId}) async {
@@ -2786,12 +2789,10 @@ class Repository {
     }
   }
 
-  Future<Map<String, dynamic>> dashboard(
-    {
+  Future<Map<String, dynamic>> dashboard({
     // String? nama,
     String tipe = 'advokat',
-  }
-  ) async {
+  }) async {
     try {
       var request = http.Request(
         'GET', // Mengubah metode permintaan menjadi POST
@@ -2841,7 +2842,6 @@ class Repository {
     }
   }
 
-  
   //Get Layanan yang telah dibuat ole mitra
   Future<Map<String, dynamic>> metodeBayar(
       // {required String branchId}
@@ -2858,7 +2858,7 @@ class Repository {
         });
 
       var params = {
-        'table': 'ref_metode_pembayaran',       
+        'table': 'ref_metode_pembayaran',
       };
 
       request.body = jsonEncode(params);
@@ -2911,7 +2911,7 @@ class Repository {
           if (kabKota != null) "kabkota": kabKota
         },
         'like': {'nama': nama},
-        "order":{"rand()":"rand()"}
+        "order": {"rand()": "rand()"}
       };
 
       request.body = jsonEncode(params);

@@ -242,27 +242,31 @@ class _DashboardViewState extends State<DashboardView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Welcome!",
-                        style: TextStyle(
-                          color: GlobalColors.btnColor,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Welcome!",
+                          style: TextStyle(
+                            color: GlobalColors.btnColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text(
-                        listData['nama'] ?? '',
-                        style: TextStyle(
-                          color: GlobalColors.btnColor,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                           (listData['nama'] ?? '').split(' ').first,
+                          style: TextStyle(
+                            color: GlobalColors.btnColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.visible
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Image.asset(
                     'assets/images/Ilustrasi Hukum.png',
@@ -643,15 +647,15 @@ class _DashboardViewState extends State<DashboardView> {
                                                                 100, // Sesuaikan tinggi sesuai dengan tinggi container
                                                             fit: BoxFit.cover,
                                                           ),
-                                                          Positioned(
-                                                            top: 5,
-                                                            right: 5,
-                                                            child: Image.asset(
-                                                              'assets/images/Online.png', // Ganti dengan URL gambar online Anda
-                                                              width: 15,
-                                                              height: 15,
-                                                            ),
-                                                          ),
+                                                          // Positioned(
+                                                          //   top: 5,
+                                                          //   right: 5,
+                                                          //   child: Image.asset(
+                                                          //     'assets/images/Online.png', // Ganti dengan URL gambar online Anda
+                                                          //     width: 15,
+                                                          //     height: 15,
+                                                          //   ),
+                                                          // ),
                                                         ],
                                                       ),
                                                     ),
@@ -855,15 +859,15 @@ class _DashboardViewState extends State<DashboardView> {
                                                                 100, // Sesuaikan tinggi sesuai dengan tinggi container
                                                             fit: BoxFit.cover,
                                                           ),
-                                                          Positioned(
-                                                            top: 5,
-                                                            right: 5,
-                                                            child: Image.asset(
-                                                              'assets/images/Online.png', // Ganti dengan URL gambar online Anda
-                                                              width: 15,
-                                                              height: 15,
-                                                            ),
-                                                          ),
+                                                          // Positioned(
+                                                          //   top: 5,
+                                                          //   right: 5,
+                                                          //   child: Image.asset(
+                                                          //     'assets/images/Online.png', // Ganti dengan URL gambar online Anda
+                                                          //     width: 15,
+                                                          //     height: 15,
+                                                          //   ),
+                                                          // ),
                                                         ],
                                                       ),
                                                     ),

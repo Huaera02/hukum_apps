@@ -180,6 +180,8 @@ Map<String, dynamic> metodeBayar = {};
         total: widget.produk['harga_jual'],
         status: '0',
         tanggal: DateTime.now().toString(),
+        idMetodeBayar:metodeBayar['id_metode_pembayaran'],
+        idRekening:metodeBayar['id'],
         // klasifikasi: widget.klasifikasi['id'],
         // judul: widget.judul,
         desc: widget.desc);

@@ -156,7 +156,7 @@ class _MasukkanMasalahNotarisViewState
                     width: double.infinity,
                     height: 52,
                     margin: const EdgeInsets.only(
-                        left: 26, right: 26, top: 215, bottom: 20),
+                        left: 26, right: 26, top: 10, bottom: 20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,

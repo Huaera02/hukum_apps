@@ -177,7 +177,7 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
                             itemBuilder: (context, index) {
                               return RadioListTile(
                                 contentPadding:
-                                    const EdgeInsets.only(right: 10, left: 10),
+                                    const EdgeInsets.only(right: 10, left: 50),
                                 value: index + 1,
                                 groupValue: _selectedValue,
                                 onChanged: (value) {

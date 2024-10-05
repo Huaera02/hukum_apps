@@ -6,11 +6,11 @@ import 'package:loginn/bank_mitra.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/layanan_chat.dart';
 import 'package:loginn/login_view.dart';
-import 'package:loginn/newpass_view.dart';
+// import 'package:loginn/newpass_view.dart';
 import 'package:loginn/repository.dart';
-import 'package:loginn/riwayat_mitra.dart';
+// import 'package:loginn/riwayat_mitra.dart';
 import 'package:loginn/riwayat_view.dart';
-import 'package:loginn/ubah_data_mitra.dart';
+// import 'package:loginn/ubah_data_mitra.dart';
 import 'package:loginn/ubah_data_mitraNotaris.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -126,27 +126,27 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        listData['no_notaris'] ?? '',
-                                        style: GoogleFonts.ubuntu(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w300,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '/ ${listData['no_ppat']?? ''}',
-                                      // listData['no_ppat'] ?? '',
-                                      style: GoogleFonts.ubuntu(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
-                                  ],
+                                if (listData['no_notaris'] != null)
+                                Text(
+                                  listData['no_notaris'] ?? '',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                if (listData['no_ppat'] != null)
+                                Text(
+                                  listData['no_ppat'],
+                                  // listData['no_ppat'] ?? '',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
                                 Text(
                                   listData['hp'] ?? '',
@@ -486,7 +486,9 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => RekeningView(branchId: sys_branches_id,))
+                                      builder: (context) => RekeningView(
+                                            branchId: sys_branches_id,
+                                          ))
                                   // const RiwayatMitraView()),
                                   );
                             },

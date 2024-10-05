@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/api/apis.dart';
+import 'package:loginn/global_colors.dart';
 import 'package:loginn/models/chat_user.dart';
 import 'package:loginn/widgets/chat_user_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -67,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final mq = MediaQuery.of(context).size;
+    // final mq = MediaQuery.of(context).size;
     return GestureDetector(
       //for hiding keyboard when a tap is detected on screen
       onTap: FocusScope.of(context).unfocus,
@@ -88,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
           //app bar
           appBar: AppBar(
             // leading: const Icon(Icons.home),
+            backgroundColor: GlobalColors.mainColor,
             title: _isSearching
                 ? TextField(
                     decoration: const InputDecoration(
@@ -110,7 +113,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                     },
                   )
-                : const Text('Chat'),
+                : Text(
+                    'Chat',
+                    style: GoogleFonts.ubuntu(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
             actions: [
               //search user button
               IconButton(
@@ -119,7 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       _isSearching = !_isSearching;
                     });
                   },
-                  icon: Icon(_isSearching ? Icons.clear : Icons.search)),
+                  icon: Icon(_isSearching ? Icons.clear : Icons.search, 
+                  color: Colors.white,)),
 
               //more features button
               // IconButton(
@@ -176,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 itemCount: _isSearching
                                     ? _searchList.length
                                     : _list.length,
-                                padding: EdgeInsets.only(top: mq.height * .01),
+                                padding: const EdgeInsets.only(top: 1),
                                 physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   return ChatUserCard(

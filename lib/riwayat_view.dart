@@ -347,7 +347,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                                   textAlign:
                                                                       TextAlign
                                                                           .left,
-                                                                  maxLines: 2,
+                                                                  maxLines: 1,
                                                                   overflow:
                                                                       TextOverflow
                                                                           .ellipsis),
@@ -366,9 +366,9 @@ class _HistoryViewState extends State<HistoryView> {
                                                             //           FontWeight
                                                             //               .w500,
                                                             //     )),
-                                                            // const SizedBox(
-                                                            //   width: 3,
-                                                            // ),
+                                                            const SizedBox(
+                                                              width: 3,
+                                                            ),
                                                             Text(
                                                                 indexKonsultasi[
                                                                             index]
@@ -390,7 +390,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
-                                                                maxLines: 2,
+                                                                maxLines: 1,
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis),
@@ -599,7 +599,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .left,
-                                                              maxLines: 2,
+                                                              maxLines: 1,
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis),
@@ -618,9 +618,9 @@ class _HistoryViewState extends State<HistoryView> {
                                                         //           FontWeight
                                                         //               .w500,
                                                         //     )),
-                                                        // const SizedBox(
-                                                        //   width: 3,
-                                                        // ),
+                                                        const SizedBox(
+                                                          width: 3,
+                                                        ),
                                                         Text(
                                                             listRiwayat[index]
                                                                     ['judul'] ??
@@ -638,7 +638,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                             ),
                                                             textAlign:
                                                                 TextAlign.left,
-                                                            maxLines: 2,
+                                                            maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis),

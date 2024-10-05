@@ -315,7 +315,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                                   textAlign:
                                                                       TextAlign
                                                                           .left,
-                                                                  maxLines: 2,
+                                                                  maxLines: 1,
                                                                   overflow:
                                                                       TextOverflow
                                                                           .ellipsis),
@@ -334,9 +334,9 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                             //           FontWeight
                                                             //               .w500,
                                                             //     )),
-                                                            // const SizedBox(
-                                                            //   width: 3,
-                                                            // ),
+                                                            const SizedBox(
+                                                              width: 3,
+                                                            ),
                                                             Text(
                                                                 indexKonsultasi[
                                                                             index]
@@ -358,7 +358,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
-                                                                maxLines: 2,
+                                                                maxLines: 1,
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis),
@@ -537,7 +537,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .left,
-                                                              maxLines: 2,
+                                                              maxLines: 1,
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis),
@@ -556,9 +556,9 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                         //           FontWeight
                                                         //               .w500,
                                                         //     )),
-                                                        // const SizedBox(
-                                                        //   width: 3,
-                                                        // ),
+                                                        const SizedBox(
+                                                          width: 3,
+                                                        ),
                                                         Text(
                                                             listRiwayat[
                                                                         index]
@@ -577,7 +577,7 @@ class _RiwayatMitraViewState extends State<RiwayatMitraView> {
                                                             ),
                                                             textAlign:
                                                                 TextAlign.left,
-                                                            maxLines: 2,
+                                                            maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis),

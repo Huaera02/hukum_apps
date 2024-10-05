@@ -1,4 +1,4 @@
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,19 +33,43 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
     'Notaris/PPAT',
   ];
   List<String> kabupatenKota = [
-    'Makassar',
+    'Bantaeng',
+    'Barru',
+    'Bone',
+    'Bulukumba',
+    'Enrekang',
+    'Gowa',
+    'Jeneponto',
+    'Selayar',
+    'Luwu',
+    'Luwu Timur',
+    'Luwu Utara',
     'Maros',
     'Pangkep',
-    'Bone',
+    'Pinrang',
     'Sidrap',
+    'Sinjai',
     'Soppeng',
-    'Bantaeng',
-    'Gowa',
     'Takalar',
-    'Jeneponto',
-    'Bulukumba',
-    'Barru',
-    'Enrekang'
+    'Toraja',
+    'Wajo',
+    'Makassar',
+    'Pare-Pare',
+    'Palopo',
+
+    // 'Makassar',
+    // 'Maros',
+    // 'Pangkep',
+    // 'Bone',
+    // 'Sidrap',
+    // 'Soppeng',
+    // 'Bantaeng',
+    // 'Gowa',
+    // 'Takalar',
+    // 'Jeneponto',
+    // 'Bulukumba',
+    // 'Barru',
+    // 'Enrekang'
   ];
 
   // List<String> selectedBidangKeahlian = [];
@@ -558,15 +582,15 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                                             100, // Sesuaikan tinggi sesuai dengan tinggi container
                                         fit: BoxFit.cover,
                                       ),
-                                      Positioned(
-                                        top: 5,
-                                        right: 5,
-                                        child: Image.asset(
-                                          'assets/images/Online.png', // Ganti dengan URL gambar online Anda
-                                          width: 15,
-                                          height: 15,
-                                        ),
-                                      ),
+                                      // Positioned(
+                                      //   top: 5,
+                                      //   right: 5,
+                                      //   child: Image.asset(
+                                      //     'assets/images/Online.png', // Ganti dengan URL gambar online Anda
+                                      //     width: 15,
+                                      //     height: 15,
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
                                 ),

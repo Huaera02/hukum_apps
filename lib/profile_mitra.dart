@@ -125,6 +125,8 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
                                   listData['nia'] ?? '',
