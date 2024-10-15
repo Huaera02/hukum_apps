@@ -2859,6 +2859,7 @@ class Repository {
 
       var params = {
         'table': 'ref_metode_pembayaran',
+        'where':{'id':2}
       };
 
       request.body = jsonEncode(params);

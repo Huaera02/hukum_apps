@@ -332,7 +332,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                               MainAxisAlignment
                                                                   .spaceBetween,
                                                           children: [
-                                                            Expanded(
+                                                            Flexible(
                                                               child: Text(
                                                                   '${indexKonsultasi[index]['ref_klasifikasi_pidana_nama'] ?? ''}',
                                                                   style:
@@ -366,34 +366,36 @@ class _HistoryViewState extends State<HistoryView> {
                                                             //           FontWeight
                                                             //               .w500,
                                                             //     )),
-                                                            const SizedBox(
-                                                              width: 3,
+                                                            // const SizedBox(
+                                                            //   width: 3,
+                                                            // ),
+                                                            Flexible(
+                                                              child: Text(
+                                                                  indexKonsultasi[
+                                                                              index]
+                                                                          [
+                                                                          'judul'] ??
+                                                                      '',
+                                                                  // indexKonsultasi[
+                                                                  //         index]
+                                                                  //     [
+                                                                  //     'produk_nama'],
+                                                                  style:
+                                                                      GoogleFonts
+                                                                          .ubuntu(
+                                                                    fontSize: 12,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .left,
+                                                                  maxLines: 1,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis),
                                                             ),
-                                                            Text(
-                                                                indexKonsultasi[
-                                                                            index]
-                                                                        [
-                                                                        'judul'] ??
-                                                                    '',
-                                                                // indexKonsultasi[
-                                                                //         index]
-                                                                //     [
-                                                                //     'produk_nama'],
-                                                                style:
-                                                                    GoogleFonts
-                                                                        .ubuntu(
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .left,
-                                                                maxLines: 1,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis),
                                                           ],
                                                         ),
                                                       ],
@@ -586,7 +588,7 @@ class _HistoryViewState extends State<HistoryView> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Expanded(
+                                                        Flexible(
                                                           child: Text(
                                                               '${listRiwayat[index]['ref_klasifikasi_pidana_nama'] ?? ''}',
                                                               style: GoogleFonts
@@ -618,30 +620,32 @@ class _HistoryViewState extends State<HistoryView> {
                                                         //           FontWeight
                                                         //               .w500,
                                                         //     )),
-                                                        const SizedBox(
-                                                          width: 3,
+                                                        // const SizedBox(
+                                                        //   width: 3,
+                                                        // ),
+                                                        Flexible(
+                                                          child: Text(
+                                                              listRiwayat[index]
+                                                                      ['judul'] ??
+                                                                  '',
+                                                              // listRiwayat[
+                                                              //         index]
+                                                              //     [
+                                                              //     'produk_nama'],
+                                                              style: GoogleFonts
+                                                                  .ubuntu(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign.left,
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis),
                                                         ),
-                                                        Text(
-                                                            listRiwayat[index]
-                                                                    ['judul'] ??
-                                                                '',
-                                                            // listRiwayat[
-                                                            //         index]
-                                                            //     [
-                                                            //     'produk_nama'],
-                                                            style: GoogleFonts
-                                                                .ubuntu(
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                            maxLines: 1,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis),
                                                       ],
                                                     ),
                                                   ],

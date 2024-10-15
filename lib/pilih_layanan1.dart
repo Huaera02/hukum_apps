@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/global_colors.dart';
 import 'package:loginn/masukkan_masalah.dart';
+import 'package:loginn/masukkan_masalahNotaris.dart';
 import 'package:loginn/repository.dart';
 
 class PilihLayanan1View extends StatefulWidget {
@@ -184,11 +185,20 @@ class _PilihLayanan1ViewState extends State<PilihLayanan1View> {
                         backgroundColor: GlobalColors.mainColor,
                       ),
                       onPressed: () {
-                        Navigator.push(
+                        (widget.mitra['tipe_kontak_nama'] != 'Notaris')
+                        ?Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
                                  MasukkanMasalahmuView(
+                                      mitra: widget.mitra,
+                                      produk: listLayanan[_value - 1],
+                                    )))
+                                    :Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                 MasukkanMasalahNotarisView(
                                       mitra: widget.mitra,
                                       produk: listLayanan[_value - 1],
                                     )));
