@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/layanan_mitra/form_mitra.dart';
+import 'package:loginn/menu/notif_view.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/advokat/pilih_advokat.dart';
 import 'package:loginn/advokat/cari_advokat.dart';
@@ -202,22 +203,22 @@ class _DashboardViewState extends State<DashboardView> {
         backgroundColor: GlobalColors.mainColor,
         foregroundColor: Colors.white,
         leading: Image.asset(
-          'assets/images/logo2.png',
+          'assets/images/logo_hc.png',
           width: 15,
           height: 15,
         ),
-        // actions: [
-        //   IconButton(
-        //     icon:
-        //         const Icon(Icons.notifications, color: Colors.white, size: 35),
-        //     onPressed: () {
-        //       Navigator.push(
-        //           context,
-        //           MaterialPageRoute(
-        //               builder: (context) => const NotifikasiView()));
-        //     },
-        //   ),
-        // ],
+        actions: [
+          IconButton(
+            icon:
+                const Icon(Icons.notifications, color: Colors.white, size: 35),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NotifikasiView()));
+            },
+          ),
+        ],
       ),
       body: SafeArea(
           child: SingleChildScrollView(

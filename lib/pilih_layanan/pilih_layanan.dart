@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/form_detail/masukkan_masalah.dart';
-import 'package:loginn/pembuatan_surat.dart';
+// import 'package:loginn/pembuatan_surat.dart';
 // import 'package:loginn/pilih_advokat.dart';
 import 'package:loginn/repository/repository.dart';
 
@@ -183,23 +183,23 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                       ),
                       onPressed: () {
                         // listLayanan['is_judulkasus'] == '1'
-                        widget.mitra['is_judulkasus'] == '1'
-                            ? Navigator.push(
+                        // widget.mitra['is_judulkasus'] == '1'
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => MasukkanMasalahmuView(
                                           mitra: widget.mitra,
                                           produk: listLayanan[_value - 1],
-                                        )))
-                            : Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const BuatSuratView(
-                                  // mitra: widget.mitra,
-                                  // produk: widget.produk,
-                                  // klasifikasi: valuePilih ?? {},
-                                  // judul: judulController.text,
-                                  // deskripsi: deskripsiController.text,
-                                ),
-                              ));
+                                        )));
+                            // : Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) => const BuatSuratView(
+                            //       // mitra: widget.mitra,
+                            //       // produk: widget.produk,
+                            //       // klasifikasi: valuePilih ?? {},
+                            //       // judul: judulController.text,
+                            //       // deskripsi: deskripsiController.text,
+                            //     ),
+                            //   ));
                         // PilihAdvokatView(produk: listLayanan[_value-1],)));
                       },
                       child: Text('Selanjutnya',

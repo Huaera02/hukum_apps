@@ -1426,17 +1426,14 @@ class Repository {
 
       var params = {
         'id_kategori': kategori,
-        // 'id_kontak': kontakId,
-        // 'sys_branches_id': sysBranchesId,
         'table': 'produk',
         'nama': nama,
         'durasi': durasi,
         'harga_jual': hargaJual,
-        // 'is_judulkasus': isJudulKasus,
+        'deskripsi': deskripsi,
         'is_form': isForm,
-        'is_jenis_perkara':isJenisPerkara,
-        'deskripsi': deskripsi
-        // 'deskripsi': deskripsi
+        'is_jenis_perkara':isJenisPerkara,        
+        'where':{'id': id},        
       };
 
       request.body = jsonEncode(params);

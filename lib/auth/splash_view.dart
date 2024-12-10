@@ -30,7 +30,7 @@ class SplashView extends StatelessWidget {
         backgroundColor: GlobalColors.mainColor,
         body: Center(
           child: Image.asset(
-            'assets/images/logo.png',
+            'assets/images/logo_hc.png',
             height: 228,
             width: 204,
           ),
