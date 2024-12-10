@@ -575,7 +575,7 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                                   child: Stack(
                                     children: [
                                       Image.asset(
-                                        'assets/images/Nur.png',
+                                        'assets/images/anwar.png',
                                         width:
                                             90, // Sesuaikan lebar sesuai dengan lebar container
                                         height:
@@ -603,7 +603,7 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                                     Text(
                                       listData[index]['nama'] ?? '',
                                       style: GoogleFonts.ubuntu(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(height: 5),
@@ -626,16 +626,16 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                                         const SizedBox(width: 6),
                                         Text(listData[index]['kabkota'] ?? '',
                                             style: GoogleFonts.ubuntu(
-                                                fontSize: 10,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w500)),
                                       ],
                                     ),
-                                    const SizedBox(height: 5),
+                                    const SizedBox(height: 10),
                                     Text(
                                       listData[index]['profil'] ?? '',
                                       style: GoogleFonts.ubuntu(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500),
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal),
                                       textAlign: TextAlign.left,
                                       maxLines: 3,
                                       overflow: TextOverflow.ellipsis,

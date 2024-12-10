@@ -170,7 +170,8 @@ class _MetodePembayaranViewState extends State<MetodePembayaranView> {
                                 ),                               
                               );
                             }),
-                        // if (_selectedValue1 == 2)
+
+                        if (_selectedValue1 == 2)
                         ListView.builder(
                             shrinkWrap: true,
                             itemCount: listBank.length,

@@ -281,7 +281,7 @@ class _HistoryViewState extends State<HistoryView> {
                                               Row(
                                                 children: [
                                                   Image.asset(
-                                                    'assets/images/Nur.png',
+                                                    'assets/images/anwar.png',
                                                     width: 50,
                                                     height: 70,
                                                   ),
@@ -328,9 +328,9 @@ class _HistoryViewState extends State<HistoryView> {
                                                           height: 10,
                                                         ),
                                                         Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
+                                                          // mainAxisAlignment:
+                                                          //     MainAxisAlignment
+                                                          //         .spaceBetween,
                                                           children: [
                                                             Flexible(
                                                               child: Text(
@@ -369,33 +369,33 @@ class _HistoryViewState extends State<HistoryView> {
                                                             // const SizedBox(
                                                             //   width: 3,
                                                             // ),
-                                                            Flexible(
-                                                              child: Text(
-                                                                  indexKonsultasi[
-                                                                              index]
-                                                                          [
-                                                                          'judul'] ??
-                                                                      '',
-                                                                  // indexKonsultasi[
-                                                                  //         index]
-                                                                  //     [
-                                                                  //     'produk_nama'],
-                                                                  style:
-                                                                      GoogleFonts
-                                                                          .ubuntu(
-                                                                    fontSize: 12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .left,
-                                                                  maxLines: 1,
-                                                                  overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis),
-                                                            ),
+                                                            // Flexible(
+                                                            //   child: Text(
+                                                            //       indexKonsultasi[
+                                                            //                   index]
+                                                            //               [
+                                                            //               'judul'] ??
+                                                            //           '',
+                                                            //       // indexKonsultasi[
+                                                            //       //         index]
+                                                            //       //     [
+                                                            //       //     'produk_nama'],
+                                                            //       style:
+                                                            //           GoogleFonts
+                                                            //               .ubuntu(
+                                                            //         fontSize: 12,
+                                                            //         fontWeight:
+                                                            //             FontWeight
+                                                            //                 .w500,
+                                                            //       ),
+                                                            //       textAlign:
+                                                            //           TextAlign
+                                                            //               .left,
+                                                            //       maxLines: 1,
+                                                            //       overflow:
+                                                            //           TextOverflow
+                                                            //               .ellipsis),
+                                                            // ),
                                                           ],
                                                         ),
                                                       ],
@@ -543,7 +543,7 @@ class _HistoryViewState extends State<HistoryView> {
                                           Row(
                                             children: [
                                               Image.asset(
-                                                'assets/images/Nur.png',
+                                                'assets/images/anwar.png',
                                                 width: 50,
                                                 height: 70,
                                               ),

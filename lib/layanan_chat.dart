@@ -143,9 +143,15 @@ class _LayananChatViewState extends State<LayananChatView> {
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(color: Colors.black38)),
                           child: Row(
-                            children: [
+                            children: [     
+                              ((listLayanan[index]['id_kategori'] ??'') !='6') ?                                                   
                               Icon(
-                                Icons.gavel_rounded,
+                                Icons.chat_outlined,
+                                color: GlobalColors.mainColor,
+                                size: 30,
+                              ):                            
+                              Icon(
+                                Icons.description_outlined,
                                 color: GlobalColors.mainColor,
                                 size: 30,
                               ),
@@ -176,6 +182,7 @@ class _LayananChatViewState extends State<LayananChatView> {
                                           ),
                                     Row(
                                       children: [
+                                        if ((listLayanan[index]['id_kategori'] ??'') !='6')
                                         Text(
                                           'Rp.${listLayanan[index]['harga_jual']}',
                                           // listLayanan[index]['harga_jual'],
@@ -185,8 +192,7 @@ class _LayananChatViewState extends State<LayananChatView> {
                                             color: GlobalColors.mainColor,
                                           ),
                                         ),                                     
-                                        if (listLayanan[index]['durasi'] !=
-                                            null)
+                                        if ((listLayanan[index]['id_kategori'] ??'') !='6')
                                           Text(
                                             '/ ${listLayanan[index]['durasi']} Menit',                                        
                                             style: GoogleFonts.ubuntu(

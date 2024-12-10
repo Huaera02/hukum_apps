@@ -86,94 +86,95 @@ class _PilihLayanan1ViewState extends State<PilihLayanan1View> {
             Column(
               children: [
                 Expanded(
-                  child: Column(children: [
-                    Container(
-                        margin: const EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                          top: 10,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: listLayanan.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                      margin: EdgeInsets.only(top: 10),
-                                      padding: const EdgeInsets.only(
-                                          left: 20, bottom: 20, top: 20),
-                                      alignment: Alignment.centerLeft,
-                                      width: 500,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(
-                                              color: Colors.black38)),
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.gavel_rounded,
-                                            color: GlobalColors.mainColor,
-                                            size: 30,
-                                          ),
-                                          const SizedBox(
-                                            width: 20,
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(listLayanan[index]['nama'],
-                                                    style: GoogleFonts.ubuntu(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    )),
-                                                Text(
-                                                  '${listLayanan[index]['durasi']} Menit',
-                                                  style: GoogleFonts.ubuntu(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w500,
-                                                    color:
-                                                        GlobalColors.mainColor,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            'Rp.${listLayanan[index]['harga_jual']}',
-                                            style: GoogleFonts.ubuntu(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w500,
-                                              color: GlobalColors.mainColor,
-                                            ),
-                                          ),
-                                          // const SizedBox(width: 1,),
-                                          Radio(
-                                              value: index + 1,
-                                              groupValue: _value,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _value = value as int;
-                                                });
-                                              })
-                                        ],
-                                      ));
-                                })
-                          ],
-                        )),
-                  ]),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: listLayanan.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                            margin: const EdgeInsets.only(top: 10, right: 20, left: 20),
+                            padding: const EdgeInsets.only(
+                                left: 20, bottom: 20, top: 20),
+                            alignment: Alignment.centerLeft,
+                            width: 500,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.circular(10),
+                                border: Border.all(
+                                    color: Colors.black38)),
+                            child: Row(
+                              children: [
+                                ((listLayanan[index]['id_kategori'] ??'') !='6') ?                                                   
+                              Icon(
+                                Icons.chat_outlined,
+                                color: GlobalColors.mainColor,
+                                size: 30,
+                              ):                            
+                              Icon(
+                                Icons.description_outlined,
+                                color: GlobalColors.mainColor,
+                                size: 30,
+                              ),
+                                // Icon(
+                                //   Icons.gavel_rounded,
+                                //   color: GlobalColors.mainColor,
+                                //   size: 30,
+                                // ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(listLayanan[index]['nama'],
+                                          style: GoogleFonts.ubuntu(
+                                            fontSize: 14,
+                                            fontWeight:
+                                                FontWeight.w500,
+                                          )),
+
+                                      if ((listLayanan[index]['id_kategori'] ??'') !='6')
+                                      Text(
+                                        '${listLayanan[index]['durasi']} Menit',
+                                        style: GoogleFonts.ubuntu(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              GlobalColors.mainColor,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+
+                                if ((listLayanan[index]['id_kategori'] ??'') !='6')
+                                Text(
+                                  'Rp.${listLayanan[index]['harga_jual']}',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: GlobalColors.mainColor,
+                                  ),
+                                ),
+                                // const SizedBox(width: 1,),
+                                Radio(
+                                    value: index + 1,
+                                    groupValue: _value,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _value = value as int;
+                                      });
+                                    })
+                              ],
+                            ));
+                      }),
                 ),
                 Container(
                   width: double.infinity,

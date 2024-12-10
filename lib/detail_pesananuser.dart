@@ -878,75 +878,75 @@ urutan if
                                                         )
                                                       ],
                                                     ),
-                                                  if (listRincian.first[
-                                                          'judul'] !=
-                                                      null)
-                                                    Divider(
-                                                        thickness: 1.0,
-                                                        color: Colors
-                                                            .grey
-                                                            .shade400),
-                                                  if (listRincian.first[
-                                                          'judul'] !=
-                                                      null)
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                  if (listRincian.first[
-                                                          'judul'] !=
-                                                      null)
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.title,
-                                                          color: GlobalColors
-                                                              .mainColor,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                  'Topik/Judul Masalah',
-                                                                  style: GoogleFonts
-                                                                      .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight.bold,
-                                                                    fontSize:
-                                                                        14,
-                                                                  )),
-                                                              Text(
-                                                                  listRincian.first['judul'] ??
-                                                                      '',
-                                                                  // 'Pembunuhan',
-                                                                  style: GoogleFonts
-                                                                      .ubuntu(
-                                                                    fontWeight:
-                                                                        FontWeight.w100,
-                                                                    fontSize:
-                                                                        14,
-                                                                  ),
-                                                                  textAlign: TextAlign.left,
-                                                                  ),
-                                                            ],
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
+                                                  // if (listRincian.first[
+                                                  //         'judul'] !=
+                                                  //     null)
+                                                  //   Divider(
+                                                  //       thickness: 1.0,
+                                                  //       color: Colors
+                                                  //           .grey
+                                                  //           .shade400),
+                                                  // if (listRincian.first[
+                                                  //         'judul'] !=
+                                                  //     null)
+                                                  //   const SizedBox(
+                                                  //     height: 10,
+                                                  //   ),
+                                                  // if (listRincian.first[
+                                                  //         'judul'] !=
+                                                  //     null)
+                                                    // Row(
+                                                    //   mainAxisAlignment:
+                                                    //       MainAxisAlignment
+                                                    //           .start,
+                                                    //   crossAxisAlignment:
+                                                    //       CrossAxisAlignment
+                                                    //           .start,
+                                                    //   children: [
+                                                    //     Icon(
+                                                    //       Icons.title,
+                                                    //       color: GlobalColors
+                                                    //           .mainColor,
+                                                    //     ),
+                                                    //     const SizedBox(
+                                                    //       width: 10,
+                                                    //     ),
+                                                    //     Expanded(
+                                                    //       child: Column(
+                                                    //         mainAxisAlignment:
+                                                    //             MainAxisAlignment
+                                                    //                 .start,
+                                                    //         crossAxisAlignment:
+                                                    //             CrossAxisAlignment
+                                                    //                 .start,
+                                                    //         children: [
+                                                    //           Text(
+                                                    //               'Topik/Judul Masalah',
+                                                    //               style: GoogleFonts
+                                                    //                   .ubuntu(
+                                                    //                 fontWeight:
+                                                    //                     FontWeight.bold,
+                                                    //                 fontSize:
+                                                    //                     14,
+                                                    //               )),
+                                                    //           Text(
+                                                    //               listRincian.first['judul'] ??
+                                                    //                   '',
+                                                    //               // 'Pembunuhan',
+                                                    //               style: GoogleFonts
+                                                    //                   .ubuntu(
+                                                    //                 fontWeight:
+                                                    //                     FontWeight.w100,
+                                                    //                 fontSize:
+                                                    //                     14,
+                                                    //               ),
+                                                    //               textAlign: TextAlign.left,
+                                                    //               ),
+                                                    //         ],
+                                                    //       ),
+                                                    //     )
+                                                    //   ],
+                                                    // ),
                                                   Divider(
                                                       thickness: 1.0,
                                                       color: Colors.grey

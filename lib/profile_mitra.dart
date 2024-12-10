@@ -104,10 +104,10 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Image.asset(
-                            'assets/images/profile 1.png',
+                            'assets/images/anwar.png',
                             width: 80,
                             height: 80,
                           ),
@@ -145,21 +145,21 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            width: 75,
-                          ),
-                          IconButton.filledTonal(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const UbahDataMitraView()));
-                              },
-                              icon: Icon(
-                                Icons.edit,
-                                color: GlobalColors.mainColor,
-                              ))
+                          // const SizedBox(
+                          //   width: 75,
+                          // ),
+                          // IconButton.filledTonal(
+                          //     onPressed: () {
+                          //       Navigator.push(
+                          //           context,
+                          //           MaterialPageRoute(
+                          //               builder: (context) =>
+                          //                   const UbahDataMitraView()));
+                          //     },
+                          //     icon: Icon(
+                          //       Icons.edit,
+                          //       color: GlobalColors.mainColor,
+                          //     ))
                         ],
                       ),
                     ),
@@ -423,6 +423,34 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                     //     ],
                     //   ),
                     // ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 500,
+                      margin: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: TextButton.icon(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const UbahDataMitraView()));
+                          },
+                          icon: Icon(
+                            Icons.person,
+                            color: GlobalColors.mainColor,
+                            size: 20,
+                          ),
+                          label: Text('Profile Saya',
+                              style: GoogleFonts.ubuntu(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black))),
+                    ),
+
                     Container(
                       width: 500,
                       margin: const EdgeInsets.only(top: 15),

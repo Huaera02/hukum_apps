@@ -115,7 +115,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'assets/images/Nur.png',
+                                'assets/images/anwar.png',
                                 width: 150,
                                 height: 150,
                               ),
@@ -141,7 +141,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                   Text(
                                     listData['tipe_kontak_nama'] ?? '',
                                     style: GoogleFonts.ubuntu(
-                                      fontSize: 12,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -155,7 +155,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                   Text(
                                     listData['kabkota'] ?? '',
                                     style: GoogleFonts.ubuntu(
-                                      fontSize: 12,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -194,7 +194,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                               listData['profil'] ?? '',
                               style: GoogleFonts.ubuntu(
                                 fontSize: 14,
-                                fontWeight: FontWeight.w300,
+                                fontWeight: FontWeight.normal,
                               ),
                               textAlign: TextAlign.left,
                             )
@@ -233,6 +233,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                 ],
                               ),
                             ),
+                            const SizedBox(height: 5,),
                             ListView.builder(
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -247,7 +248,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                         '~ ${dataKeahlian[index]['nama_keahlian'] ?? ''}',
                                         style: GoogleFonts.ubuntu(
                                           fontSize: 14,
-                                          fontWeight: FontWeight.w300,
+                                          fontWeight: FontWeight.normal,
                                         ),
                                       ),
                                     ],
@@ -291,6 +292,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                 ],
                               ),
                             ),
+                            const SizedBox(height: 5,),
                             ListView.builder(
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -308,40 +310,40 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                                   ['nama_klasifikasi'],
                                               style: GoogleFonts.ubuntu(
                                                 fontSize: 14,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
                                               )),
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Text('-',
-                                              style: GoogleFonts.ubuntu(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                              )),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
+                                          // Text('-',
+                                          //     style: GoogleFonts.ubuntu(
+                                          //       fontSize: 14,
+                                          //       fontWeight: FontWeight.w500,
+                                          //     )),
+                                          // const SizedBox(
+                                          //   width: 5,
+                                          // ),
                                           Text(dataPengalaman[index]['catatan'],
                                               style: GoogleFonts.ubuntu(
                                                 fontSize: 14,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.normal,
                                               )),
                                         ],
                                       ),
                                       Text(dataPengalaman[index]['nokasus'],
                                           style: GoogleFonts.ubuntu(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.normal,
                                           )),
                                       Text(dataPengalaman[index]['pengadilan'],
                                           style: GoogleFonts.ubuntu(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.normal,
                                           )),
                                       Text(dataPengalaman[index]['tahun'],
                                           style: GoogleFonts.ubuntu(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.normal,
                                           )),
                                       const SizedBox(
                                         height: 5,
@@ -402,7 +404,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                                   ['jenjang'],
                                               style: GoogleFonts.ubuntu(
                                                 fontSize: 14,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
                                               )),
                                           const SizedBox(
                                             width: 5,
@@ -410,21 +412,21 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                                           Text(listDataPendidikan[index]['prodi'],
                                               style: GoogleFonts.ubuntu(
                                                 fontSize: 14,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
                                               )),
                                         ],
                                       ),
                                       Text(listDataPendidikan[index]['pt'],
                                           style: GoogleFonts.ubuntu(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w300,
+                                            fontWeight: FontWeight.normal,
                                           )),
                                       Text(
                                           listDataPendidikan[index]
                                               ['tahun_selesai'],
                                           style: GoogleFonts.ubuntu(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w100,
+                                            fontWeight: FontWeight.normal,
                                           )),
                                       const SizedBox(
                                         height: 5,

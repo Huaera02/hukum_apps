@@ -409,7 +409,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                     ]),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Container(
                                       margin: const EdgeInsets.only(right: 10),
@@ -428,7 +428,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                         child: Stack(
                                           children: [
                                             Image.asset(
-                                              'assets/images/Nur.png',
+                                              'assets/images/anwar.png',
                                               width:
                                                   90, // Sesuaikan lebar sesuai dengan lebar container
                                               height:
@@ -483,19 +483,19 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                                   listData[index]['kabkota'] ??
                                                       '',
                                                   style: GoogleFonts.ubuntu(
-                                                      fontSize: 10,
+                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w500)),
                                             ],
                                           ),
-                                          const SizedBox(height: 5),
+                                          const SizedBox(height: 10),
                                           Text(
                                             listData[index]['profil'] ?? '',
                                             style: GoogleFonts.ubuntu(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal),
                                             textAlign: TextAlign.left,
-                                            maxLines: 3,
+                                            maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ],

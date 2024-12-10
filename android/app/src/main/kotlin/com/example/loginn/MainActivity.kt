@@ -1,4 +1,4 @@
-package com.example.loginn
+package com.stg.hukumcepat
 
 import io.flutter.embedding.android.FlutterActivity
 

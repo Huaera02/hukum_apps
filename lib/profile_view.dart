@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/bantuan.dart';
 import 'package:loginn/edit_profile_view.dart';
-import 'package:loginn/form_mitra.dart';
+// import 'package:loginn/form_mitra.dart';
 import 'package:loginn/global_colors.dart';
 // import 'package:loginn/login_view.dart';
-import 'package:loginn/newpass_view.dart';
+// import 'package:loginn/newpass_view.dart';
 import 'package:loginn/repository.dart';
 import 'package:loginn/splash_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,6 +91,23 @@ class _ProfileViewState extends State<ProfileView> {
               children: [
                 Column(
                   children: [
+                    // Container(
+                    //   width: 500,
+                    //   padding: const EdgeInsets.all(10),
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.yellow.shade400,
+                    //   ),
+                    //   child: Center(
+                    //     child: Text(
+                    //       'Sedang menunggu verifikasi',
+                    //       style: GoogleFonts.ubuntu(
+                    //           fontSize: 12, fontWeight: FontWeight.normal),
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: const BoxDecoration(
@@ -135,24 +154,74 @@ class _ProfileViewState extends State<ProfileView> {
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            width: 75,
-                          ),
-                          IconButton.filledTonal(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const EditProfileView()));
-                              },
-                              icon: Icon(
-                                Icons.edit,
-                                color: GlobalColors.mainColor,
-                              ))
+                          // const SizedBox(
+                          //   width: 75,
+                          // ),
+                          // IconButton.filledTonal(
+                          //     onPressed: () {
+                          //       Navigator.push(
+                          //           context,
+                          //           MaterialPageRoute(
+                          //               builder: (context) =>
+                          //                   const EditProfileView()));
+                          //     },
+                          //     icon: Icon(
+                          //       Icons.edit,
+                          //       color: GlobalColors.mainColor,
+                          //     ))
                         ],
                       ),
                     ),
+                    // Container(
+                    //   alignment: Alignment.centerLeft,
+                    //   width: 500,
+                    //   margin: const EdgeInsets.only(top: 15),
+                    //   padding: const EdgeInsets.all(10),
+                    //   decoration: const BoxDecoration(
+                    //     color: Colors.white,
+                    //   ),
+                    //   child: TextButton.icon(
+                    //       onPressed: () {
+                    //         showDialog(
+                    //           context: context,
+                    //           builder: (context) {
+                    //             return AlertDialog(
+                    //               shape: RoundedRectangleBorder(
+                    //                 borderRadius: BorderRadius.circular(5),
+                    //               ),
+                    //               title: Padding(
+                    //                 padding: const EdgeInsets.all(3),
+                    //                 child: Center(
+                    //                   child: Text(
+                    //                     'Fitur sedang dalam mode pengembangan',
+                    //                     style: GoogleFonts.ubuntu(
+                    //                       fontSize: 16,
+                    //                     ),
+                    //                     textAlign: TextAlign.center,
+                    //                   ),
+                    //                 ),
+                    //               ),
+                    //             );
+                    //           },
+                    //         );
+                    //         // Navigator.push(
+                    //         //     context,
+                    //         //     MaterialPageRoute(
+                    //         //         builder: (context) =>
+                    //         //             const FormMitraView()));
+                    //       },
+                    //       icon: Icon(
+                    //         Icons.group_add,
+                    //         color: GlobalColors.mainColor,
+                    //         size: 20,
+                    //       ),
+                    //       label: Text('Daftar Sebagai Mitra',
+                    //           style: GoogleFonts.ubuntu(
+                    //               fontSize: 16,
+                    //               fontWeight: FontWeight.w500,
+                    //               color: Colors.black))),
+                    // ),
+
                     Container(
                       alignment: Alignment.centerLeft,
                       width: 500,
@@ -167,76 +236,165 @@ class _ProfileViewState extends State<ProfileView> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const FormMitraView()));
+                                        const EditProfileView()));
                           },
                           icon: Icon(
-                            Icons.group_add,
+                            Icons.person,
                             color: GlobalColors.mainColor,
                             size: 20,
                           ),
-                          label: Text('Daftar Sebagai Mitra',
+                          label: Text('Profile Saya',
                               style: GoogleFonts.ubuntu(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black))),
                     ),
-                    // Container(
-                    //   margin: const EdgeInsets.only(top: 15),
-                    //   padding: const EdgeInsets.all(10),
-                    //   decoration: const BoxDecoration(
-                    //     color: Colors.white,
-                    //   ),
-                    //   child: Column(
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       TextButton.icon(
-                    //           onPressed: () {},
-                    //           icon: Icon(
-                    //             Icons.verified_user_rounded,
-                    //             color: GlobalColors.mainColor,
-                    //             size: 20,
-                    //           ),
-                    //           label: Text('Verifikasi Email',
-                    //               style: GoogleFonts.ubuntu(
-                    //                   fontSize: 16,
-                    //                   fontWeight: FontWeight.w500,
-                    //                   color: Colors.black))),
-                    //       Divider(thickness: 1.0, color: Colors.grey.shade400),
-                    //       TextButton.icon(
-                    //           onPressed: () {
-                    //             Navigator.push(
-                    //                 context,
-                    //                 MaterialPageRoute(
-                    //                     builder: (context) =>
-                    //                         const NewPassView()));
-                    //           },
-                    //           icon: Icon(
-                    //             Icons.key,
-                    //             color: GlobalColors.mainColor,
-                    //             size: 20,
-                    //           ),
-                    //           label: Text('Ubah Kata Sandi',
-                    //               style: GoogleFonts.ubuntu(
-                    //                   fontSize: 16,
-                    //                   fontWeight: FontWeight.w500,
-                    //                   color: Colors.black))),
-                    //       Divider(thickness: 1.0, color: Colors.grey.shade400),
-                    //       TextButton.icon(
-                    //           onPressed: () {},
-                    //           icon: Icon(
-                    //             Icons.delete,
-                    //             color: GlobalColors.mainColor,
-                    //             size: 20,
-                    //           ),
-                    //           label: Text('Hapus Akun',
-                    //               style: GoogleFonts.ubuntu(
-                    //                   fontSize: 16,
-                    //                   fontWeight: FontWeight.w500,
-                    //                   color: Colors.black))),
-                    //     ],
-                    //   ),
-                    // ),
-                    
+
+                    Container(
+                      margin: const EdgeInsets.only(top: 15),
+                      padding: const EdgeInsets.all(10),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextButton.icon(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      title: Padding(
+                                        padding: const EdgeInsets.all(3),
+                                        child: Center(
+                                          child: Text(
+                                            'Fitur sedang dalam mode pengembangan',
+                                            style: GoogleFonts.ubuntu(
+                                              fontSize: 16,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              icon: Icon(
+                                Icons.verified_user_rounded,
+                                color: GlobalColors.mainColor,
+                                size: 20,
+                              ),
+                              label: Text('Verifikasi Email',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black))),
+                          Divider(thickness: 1.0, color: Colors.grey.shade400),
+                          TextButton.icon(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      title: Padding(
+                                        padding: const EdgeInsets.all(3),
+                                        child: Center(
+                                          child: Text(
+                                            'Fitur sedang dalam mode pengembangan',
+                                            style: GoogleFonts.ubuntu(
+                                              fontSize: 16,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             const NewPassView()));
+                              },
+                              icon: Icon(
+                                Icons.key,
+                                color: GlobalColors.mainColor,
+                                size: 20,
+                              ),
+                              label: Text('Ubah Kata Sandi',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black))),
+                          Divider(thickness: 1.0, color: Colors.grey.shade400),
+                          TextButton.icon(
+                              onPressed: () {                                
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const BantuanView()));
+                              },
+                              icon: Icon(
+                                Icons.phone,
+                                color: GlobalColors.mainColor,
+                                size: 20,
+                              ),
+                              label: Text('Bantuan',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black))),
+                          Divider(thickness: 1.0, color: Colors.grey.shade400),
+                          TextButton.icon(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      title: Padding(
+                                        padding: const EdgeInsets.all(3),
+                                        child: Center(
+                                          child: Text(
+                                            'Fitur sedang dalam mode pengembangan',
+                                            style: GoogleFonts.ubuntu(
+                                              fontSize: 16,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );                                                            
+                              },
+                              icon: Icon(
+                                Icons.delete,
+                                color: GlobalColors.mainColor,
+                                size: 20,
+                              ),
+                              label: Text('Hapus Akun',
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black))),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 150),
                     TextButton(
                         onPressed: () async {
                           //sebelum ke splash hapus sessionya supaya dibaca tidak login

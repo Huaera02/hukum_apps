@@ -718,7 +718,9 @@ class Repository {
               'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
         });
 
-      var params = {'table': 'ref_klasifikasi_pidana'};
+      var params = {
+        'table': 'ref_klasifikasi_pidana',
+        'where':{'status': 1}};
 
       request.body = jsonEncode(params);
       var response = await http.Response.fromStream(await request.send());
@@ -2859,7 +2861,7 @@ class Repository {
 
       var params = {
         'table': 'ref_metode_pembayaran',
-        'where':{'id':2}
+        // 'where':{'id':2}
       };
 
       request.body = jsonEncode(params);

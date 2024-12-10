@@ -172,39 +172,39 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                                 height: 20,
                               ),
                               // if (widget.produk['is_judulkasus'] == '1')
-                              Text(
-                                'Masukkan Topik Masalah',
-                                style: GoogleFonts.ubuntu(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
+                              // Text(
+                              //   'Masukkan Topik Masalah',
+                              //   style: GoogleFonts.ubuntu(
+                              //     fontSize: 12,
+                              //     fontWeight: FontWeight.w500,
+                              //   ),
+                              // ),
+                              // const SizedBox(
+                              //   height: 5,
+                              // ),
                               // if (widget.produk['is_judulkasus'] == '1')
-                              Form(
-                                key: _formState,
-                                child: TextFormField(
-                                  validator: (value) {
-                                    if (value == '') {
-                                      return "Kolom topik masalah tidak boleh kosong";
-                                    }
-                                  },
-                                  controller: judulController,
-                                  style: const TextStyle(
-                                      fontSize: 14, color: Colors.black),
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(
-                                    labelStyle: GoogleFonts.ubuntu(),
-                                    hintText: 'Masukkan Topik Masalah',
-                                    hintStyle:
-                                        GoogleFonts.ubuntu(color: Colors.black),
-                                    border: const OutlineInputBorder(),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 20),
+                              // Form(
+                              //   key: _formState,
+                              //   child: TextFormField(
+                              //     validator: (value) {
+                              //       if (value == '') {
+                              //         return "Kolom topik masalah tidak boleh kosong";
+                              //       }
+                              //     },
+                              //     controller: judulController,
+                              //     style: const TextStyle(
+                              //         fontSize: 14, color: Colors.black),
+                              //     keyboardType: TextInputType.text,
+                              //     decoration: InputDecoration(
+                              //       labelStyle: GoogleFonts.ubuntu(),
+                              //       hintText: 'Masukkan Topik Masalah',
+                              //       hintStyle:
+                              //           GoogleFonts.ubuntu(color: Colors.black),
+                              //       border: const OutlineInputBorder(),
+                              //     ),
+                              //   ),
+                              // ),
+                              // const SizedBox(height: 20),
                               //  if (widget.produk['is_judulkasus'] == '1')
                               Text(
                                 'Masukkan Deskripsi Masalah',
@@ -216,24 +216,32 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                               const SizedBox(
                                 height: 5,
                               ),
-                              // if (widget.produk['is_judulkasus'] == '1')
+                              if (widget.produk['is_judulkasus'] == '1')
                               SizedBox(
                                 height: 200,
-                                child: TextFormField(
-                                  controller: deskripsiController,
-                                  style: const TextStyle(
-                                      fontSize: 14, color: Colors.black),
-                                  keyboardType: TextInputType.text,
-                                  textAlignVertical: TextAlignVertical.top,
-                                  decoration: InputDecoration(
-                                    labelStyle: GoogleFonts.ubuntu(),
-                                    hintText: 'Ceritakan Masalahmu..',
-                                    hintStyle:
-                                        GoogleFonts.ubuntu(color: Colors.black),
-                                    border: const OutlineInputBorder(),
+                                child: Form(
+                                  key: _formState,
+                                  child: TextFormField(
+                                    validator: (value) {
+                                    if (value == '') {
+                                      return "Kolom deskripsi masalah tidak boleh kosong";
+                                    }
+                                  },
+                                    controller: deskripsiController,
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Colors.black),
+                                    keyboardType: TextInputType.text,
+                                    textAlignVertical: TextAlignVertical.top,
+                                    decoration: InputDecoration(
+                                      labelStyle: GoogleFonts.ubuntu(),
+                                      hintText: 'Ceritakan Masalahmu..',
+                                      hintStyle:
+                                          GoogleFonts.ubuntu(color: Colors.black),
+                                      border: const OutlineInputBorder(),
+                                    ),
+                                    maxLines: null,
+                                    expands: true,
                                   ),
-                                  maxLines: null,
-                                  expands: true,
                                 ),
                               )
                             ],

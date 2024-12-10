@@ -346,7 +346,7 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                     child: Column(
                       children: [
                         Image.asset(
-                          'assets/images/profile 1.png',
+                          'assets/images/anwar.png',
                           width: 150,
                           height: 150,
                         ),
@@ -817,6 +817,7 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                           shrinkWrap: true,
                                           itemCount: dataKlasifikasi.length,
                                           itemBuilder: (context, index) {
+                                            // if((dataKlasifikasi[index]['status']) == 1){
                                             return CheckboxListTile(
                                                 dense: true,
                                                 contentPadding:
@@ -848,7 +849,13 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                     });
                                                   }
                                                 });
-                                          }),
+                                          // }
+                                          // else {
+                                                // return const Text('data');
+                                                // }
+                                        }
+                                                // SizedBox(height: 0,); }}
+                                          ),
                                     ),
                                     // Container(
                                     //   width: double.infinity,
@@ -936,17 +943,17 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                           const SizedBox(
                                                             width: 5,
                                                           ),
-                                                          Text('-',
-                                                              style: GoogleFonts
-                                                                  .ubuntu(
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              )),
-                                                          const SizedBox(
-                                                            width: 5,
-                                                          ),
+                                                          // Text('-',
+                                                          //     style: GoogleFonts
+                                                          //         .ubuntu(
+                                                          //       fontSize: 14,
+                                                          //       fontWeight:
+                                                          //           FontWeight
+                                                          //               .w500,
+                                                          //     )),
+                                                          // const SizedBox(
+                                                          //   width: 5,
+                                                          // ),
                                                           Text(
                                                               listDataPengalaman[
                                                                   i]['catatan'],
