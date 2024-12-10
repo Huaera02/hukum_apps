@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/form_detail/masukkan_masalah.dart';
-import 'package:loginn/form_detail/masukkan_masalahNotaris.dart';
+import 'package:loginn/form_detail/masukkan_masalah_notaris.dart';
 import 'package:loginn/repository/repository.dart';
+import 'package:loginn/warna/global_colors.dart';
 
 class PilihLayanan1View extends StatefulWidget {
   final  Map<String,dynamic> mitra;

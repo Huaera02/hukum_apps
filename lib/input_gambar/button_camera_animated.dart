@@ -8,11 +8,11 @@ class AnimatedCameraButton extends StatefulWidget {
 
   const AnimatedCameraButton({
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _AnimatedCameraButtonState createState() => _AnimatedCameraButtonState();
+  State<AnimatedCameraButton> createState() => _AnimatedCameraButtonState();
 }
 
 class _AnimatedCameraButtonState extends State<AnimatedCameraButton> with SingleTickerProviderStateMixin {
@@ -39,13 +39,13 @@ class _AnimatedCameraButtonState extends State<AnimatedCameraButton> with Single
     return GestureDetector(
       onTap: () {
         _controller.forward();
-        Future<dynamic>.delayed(Duration(milliseconds: 200), () {
+        Future<dynamic>.delayed(const Duration(milliseconds: 200), () {
           _controller.reverse();
         });
         widget.onPressed();
       },
       child: Container(
-        padding: EdgeInsets.all(2),
+        padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 0.75)),
         child: ScaleTransition(
           scale: Tween<double>(

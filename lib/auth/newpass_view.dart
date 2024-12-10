@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/menu/bottomnav.dart';
 // import 'package:loginn/dash_view.dart';
 import 'package:loginn/warna/global_colors.dart';
 

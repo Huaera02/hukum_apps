@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:loginn/advokat/cari_advokat.dart';
+import 'package:loginn/chats/api/apis.dart';
+import 'package:loginn/chats/screens/home_screen.dart';
 // import 'package:loginn/chtadvokat1.dart';
 import 'package:loginn/menu/dash_view.dart';
-import 'package:loginn/warna/global_colors.dart';
 // import 'package:loginn/pesan.dart';
 import 'package:loginn/profile/profile_mitra.dart';
-import 'package:loginn/profile/profile_mitraNotaris.dart';
-// import 'package:loginn/profile_mitraNotaris.dart';
+import 'package:loginn/profile/profile_mitra_notaris.dart';
 import 'package:loginn/profile/profile_view.dart';
 import 'package:loginn/riwayat/riwayat_mitra.dart';
-// import 'package:loginn/riwayat_mitraNotaris.dart';
 import 'package:loginn/riwayat/riwayat_view.dart';
-import 'package:loginn/chats/screens/home_screen.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:loginn/chats/api/apis.dart';
 
 class BottomNavView extends StatefulWidget {
   const BottomNavView({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/checkout/bayar%20notarisppat.dart';
-import 'package:loginn/warna/global_colors.dart';
+import 'package:loginn/checkout/bayar_notaris_ppat.dart';
 // import 'package:loginn/masukkan_masalah.dart';
-import 'package:loginn/form_detail/masukkan_masalahNotaris.dart';
+import 'package:loginn/form_detail/masukkan_masalah_notaris.dart';
 // import 'package:loginn/ppat.dart';
 import 'package:loginn/repository/repository.dart';
+import 'package:loginn/warna/global_colors.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class PilihLayanan2View extends StatefulWidget {
@@ -112,7 +112,7 @@ class _PilihLayanan2ViewState extends State<PilihLayanan2View> {
                                 itemCount: listLayanan.length,
                                 itemBuilder: (context, index) {
                                   return Container(
-                                      margin: EdgeInsets.only(top: 10),
+                                      margin: const EdgeInsets.only(top: 10),
                                       padding: const EdgeInsets.only(
                                           left: 20, bottom: 20, top: 20),
                                       alignment: Alignment.centerLeft,

@@ -31,7 +31,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
 
   @override
   Widget build(BuildContext context) {
-    Message? _message;
+    Message? message;
     final mq = MediaQuery.of(context).size;
     return Card(
       margin: EdgeInsets.symmetric(horizontal: mq.width * .04, 
@@ -49,7 +49,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
             return Container();
           }
 
-          _message = list[0];
+          message = list[0];
 
           return InkWell(
             onTap: () {
@@ -84,17 +84,17 @@ class _ChatUserCardState extends State<ChatUserCard> {
 
               //last message
               subtitle: Text(
-                  _message != null
-                      ? _message!.type == Type.image
+                  message != null
+                      ? message!.type == Type.image
                           ? 'image'
-                          : _message!.msg
+                          : message!.msg
                       : widget.user.about,
                   maxLines: 1),
 
               //last message time
-              trailing: _message == null
+              trailing: message == null
                   ? null //show nothing when no message is sent
-                  : _message!.read.isEmpty && _message!.fromId != idKontak
+                  : message!.read.isEmpty && message!.fromId != idKontak
                       ?
                       //show for unread message
                       Container(
@@ -108,7 +108,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                       //message sent time
                       Text(
                           MyDateUtil.getLastMessageTime(
-                              context: context, time: _message!.sent),
+                              context: context, time: message!.sent),
                           style: const TextStyle(color: Colors.black54),
                         ),
             ),

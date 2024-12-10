@@ -11,7 +11,6 @@ class IsiPesanView extends StatefulWidget {
 class _IsiPesanViewState extends State<IsiPesanView> {
   @override
   Widget build(BuildContext context) {
-    final mq = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -37,7 +36,6 @@ class _IsiPesanViewState extends State<IsiPesanView> {
 
   // app bar widget
   Widget _appBar() {
-    final mq = MediaQuery.of(context).size;
     return SafeArea(
       child: InkWell(
           onTap: () {},

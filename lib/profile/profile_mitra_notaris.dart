@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/chats/api/apis.dart';
-import 'package:loginn/metode_bayar/bank_mitra.dart';
-import 'package:loginn/warna/global_colors.dart';
-import 'package:loginn/layanan_mitra/layanan_chat.dart';
 import 'package:loginn/auth/login_view.dart';
+import 'package:loginn/chats/api/apis.dart';
+// import 'package:loginn/ubah_data_mitra.dart';
+import 'package:loginn/edit_profile/ubah_data_mitra_notaris.dart';
+import 'package:loginn/layanan_mitra/layanan_chat.dart';
+import 'package:loginn/metode_bayar/bank_mitra.dart';
 // import 'package:loginn/newpass_view.dart';
 import 'package:loginn/repository/repository.dart';
 // import 'package:loginn/riwayat_mitra.dart';
 import 'package:loginn/riwayat/riwayat_view.dart';
-// import 'package:loginn/ubah_data_mitra.dart';
-import 'package:loginn/edit_profile/ubah_data_mitraNotaris.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileMitraNotarisView extends StatefulWidget {
   const ProfileMitraNotarisView({super.key});
 
   @override
-  State<ProfileMitraNotarisView> createState() =>
-      _ProfileMitraNotarisViewState();
+  State<ProfileMitraNotarisView> createState() => _ProfileMitraNotarisViewState();
 }
 
 class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
   bool isLoading = false;
   Repository repository = Repository();
   Map<String, dynamic> listData = {};
-  var sys_branches_id;
+  String? sysBranchesId;
 
   getData() async {
     setState(() {
@@ -35,9 +33,8 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     var kontakId = pref.getString("id_kontak");
-    sys_branches_id = pref.getString("sys_branches_id");
-    Map<String, dynamic> response =
-        await repository.getProfileAdvokat(idAdvokat: kontakId ?? '');
+    sysBranchesId = pref.getString("sys_branches_id");
+    Map<String, dynamic> response = await repository.getProfileAdvokat(idAdvokat: kontakId ?? '');
 
     isLoading = false;
 
@@ -130,24 +127,24 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 if (listData['no_notaris'] != null)
-                                Text(
-                                  listData['no_notaris'] ?? '',
-                                  style: GoogleFonts.ubuntu(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
+                                  Text(
+                                    listData['no_notaris'] ?? '',
+                                    style: GoogleFonts.ubuntu(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
                                 if (listData['no_ppat'] != null)
-                                Text(
-                                  listData['no_ppat'],
-                                  // listData['no_ppat'] ?? '',
-                                  style: GoogleFonts.ubuntu(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w300,
+                                  Text(
+                                    listData['no_ppat'],
+                                    // listData['no_ppat'] ?? '',
+                                    style: GoogleFonts.ubuntu(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                                   ),
-                                ),
                                 Text(
                                   listData['hp'] ?? '',
                                   style: GoogleFonts.ubuntu(
@@ -163,11 +160,7 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                           ),
                           IconButton.filledTonal(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const UbahDataMitraNotarisView()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const UbahDataMitraNotarisView()));
                               },
                               icon: Icon(
                                 Icons.edit,
@@ -458,9 +451,7 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LayananChatView()),
+                                MaterialPageRoute(builder: (context) => const LayananChatView()),
                               );
                             },
                             icon: Icon(
@@ -483,14 +474,16 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                           ),
                           TextButton.icon(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RekeningView(
-                                            branchId: sys_branches_id,
-                                          ))
-                                  // const RiwayatMitraView()),
-                                  );
+                              if (sysBranchesId != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RekeningView(
+                                              branchId: sysBranchesId!,
+                                            ))
+                                    // const RiwayatMitraView()),
+                                    );
+                              }
                             },
                             icon: Icon(
                               Icons.card_membership,
@@ -512,10 +505,7 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                           ),
                           TextButton.icon(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const HistoryView())
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const HistoryView())
                                   // const RiwayatMitraView()),
                                   );
                             },
@@ -616,8 +606,7 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                         APIs.updateActiveStatus(false);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginView()),
+                          MaterialPageRoute(builder: (context) => const LoginView()),
                         );
                       },
                       child: Text(

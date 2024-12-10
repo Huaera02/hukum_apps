@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,7 +49,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -104,7 +106,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -155,7 +157,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -236,7 +238,7 @@ class Repository {
         'refklasifikasi': listKlasifikasi //daftar refklasifikasi
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -312,7 +314,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -372,7 +374,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -433,7 +435,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -488,7 +490,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -541,7 +543,7 @@ class Repository {
   //       };
   //     }
   //   } catch (e) {
-  //     print('Exception: $e');
+  //     log('Exception: $e');
   //     return {'status': false, 'msg': 'Terjadi kesalahan di server'};
   //   }
   // }
@@ -595,7 +597,7 @@ class Repository {
   //       };
   //     }
   //   } catch (e) {
-  //     print('Exception: $e');
+  //     log('Exception: $e');
   //     return {'status': false, 'msg': 'Terjadi kesalahan di server'};
   //   }
   // }
@@ -648,7 +650,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -700,7 +702,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -748,7 +750,7 @@ class Repository {
         'klasifikasi': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -811,7 +813,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -868,7 +870,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -923,7 +925,7 @@ class Repository {
         'data': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -975,7 +977,7 @@ class Repository {
         'data': responseBody['mitra'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1060,7 +1062,7 @@ class Repository {
         // 'refklasifikasi': listKlasifikasi //daftar refklasifikasi
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1106,7 +1108,7 @@ class Repository {
         'kategori': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1172,7 +1174,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1225,7 +1227,7 @@ class Repository {
         'kategori': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1282,7 +1284,7 @@ class Repository {
         'kategori': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1338,7 +1340,7 @@ class Repository {
         'kategori': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1393,7 +1395,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1463,7 +1465,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1522,7 +1524,7 @@ class Repository {
       };
 
       request.body = jsonEncode(params);
-      print(request.body);
+      log(request.body);
       var response = await http.Response.fromStream(await request.send());
       var responseBody = jsonDecode(response.body);
       if (response.statusCode == 200) {
@@ -1547,7 +1549,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1604,7 +1606,7 @@ class Repository {
         'namaPelanggan': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1652,7 +1654,7 @@ class Repository {
         'metodePembayaran': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1755,7 +1757,7 @@ class Repository {
         'riwayat': riwayat, //daftar riwayat
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1860,7 +1862,7 @@ class Repository {
         'riwayat': riwayat, //daftar riwayat
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -1966,7 +1968,7 @@ class Repository {
         'riwayat': riwayat, //daftar riwayat
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2072,7 +2074,7 @@ class Repository {
         'riwayat': riwayat, //daftar riwayat
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2181,7 +2183,7 @@ class Repository {
         'rincian': riwayat, //daftar riwayat
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2290,7 +2292,7 @@ class Repository {
         'rincian': riwayat, //daftar riwayat
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2351,7 +2353,7 @@ class Repository {
         'status': true, //daftar riwayat
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2408,7 +2410,7 @@ class Repository {
       };
 
       request.body = jsonEncode(params);
-      print(request.body);
+      log(request.body);
       var response = await http.Response.fromStream(await request.send());
       var responseBody = jsonDecode(response.body);
       if (response.statusCode == 200) {
@@ -2433,7 +2435,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2491,7 +2493,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2537,7 +2539,7 @@ class Repository {
         'bank': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2588,7 +2590,7 @@ class Repository {
         'rekening': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2640,7 +2642,7 @@ class Repository {
   //       'rekening': responseBody['data'], //daftar pendidikan
   //     };
   //   } catch (e) {
-  //     print('Exception: $e');
+  //     log('Exception: $e');
   //     return {'status': false, 'msg': 'Terjadi kesalahan di server'};
   //   }
   // }
@@ -2695,7 +2697,7 @@ class Repository {
         };
       }
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2749,7 +2751,7 @@ class Repository {
         'rekening': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2808,7 +2810,7 @@ class Repository {
         'rekening': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2857,7 +2859,7 @@ class Repository {
         'pembayaran': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2910,7 +2912,7 @@ class Repository {
         'data': responseBody['mitra'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -2961,7 +2963,7 @@ class Repository {
         'rekening': responseBody['data'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
@@ -3014,7 +3016,7 @@ class Repository {
         'data': responseBody['mitra'], //daftar pendidikan
       };
     } catch (e) {
-      print('Exception: $e');
+      log('Exception: $e');
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }

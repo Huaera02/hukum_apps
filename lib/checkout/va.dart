@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/repository/repository.dart';
-import 'package:loginn/riwayat/riwayat_mitra.dart';
 import 'package:loginn/riwayat/riwayat_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

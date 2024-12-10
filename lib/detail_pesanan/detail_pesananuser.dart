@@ -10,8 +10,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:loginn/chats/api/apis.dart';
 import 'package:loginn/menu/bottomnav.dart';
-import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/repository/repository.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../chats/models/message.dart';
@@ -39,7 +39,7 @@ class _DetailPesananUserViewState extends State<DetailPesananUserView> {
 
   DateTime? _jamSelesai;
 
-  var kontakId;
+  String? kontakId;
 
   //if (_jamSelesai != null && _jamSelesai!.isBefore(DateTime.now())) //if setelah habis waktu selesai
   //if(listRincian.first['mulai_layanan']!=null && DateTime.parse(listRincian.first['mulai_layanan']).isAfter(DateTime.now())) //if sebelum waktu dimulai
@@ -1332,7 +1332,7 @@ urutan if
                                                     Time(
                                                         jamSelesai:
                                                             _jamSelesai),
-                                                    Spacer(),
+                                                    const Spacer(),
                                                     TextButton(
                                                       onPressed: () {
                                                         postData(endNow: true);

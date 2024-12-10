@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/repository/repository.dart';
@@ -209,8 +208,7 @@ class _LayananChatViewState extends State<LayananChatView> {
                               const SizedBox(width: 10),
                               IconButton(
                                   onPressed: () async {
-                                    if (index != null &&
-                                        index >= 0 &&
+                                    if (index >= 0 &&
                                         index < listLayanan.length) {
                                       await deleteDataLayanan(index);
                                     }
