@@ -1120,6 +1120,7 @@ class Repository {
       required String hargaJual,
       required String kategori,
       required String isForm,
+      required String isJenisPerkara,
       required String deskripsi}) async {
     try {
       var request = http.Request(
@@ -1145,6 +1146,7 @@ class Repository {
         'durasi': durasi,
         'harga_jual': hargaJual,
          'is_form': isForm,
+         'is_jenis_perkara':isJenisPerkara,   
         // 'is_judulkasus': isJudulKasus,
         'deskripsi': deskripsi
         // 'deskripsi': deskripsi

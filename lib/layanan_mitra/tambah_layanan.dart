@@ -13,6 +13,7 @@ class TambahLayanaView extends StatefulWidget {
 
 class _TambahLayanaViewState extends State<TambahLayanaView> {
   bool? isCheck = false;
+  bool? isCheck1 = false;
   bool isLoading = false;
   Repository repository = Repository();
   final namaController = TextEditingController();
@@ -33,7 +34,9 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
         durasi: durasiController.text,
         hargaJual: hargaController.text,
         deskripsi: deskripsiController.text,
-        isForm: isCheck == false ? '0' : '1');
+        isForm: isCheck == false ? '0' : '1',
+        isJenisPerkara: isCheck1 == false ? '0' : '1');
+        
     isLoading = false;
     if (response['status'] == true) {
       Navigator.of(context).pop(true);
@@ -311,9 +314,36 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                           Checkbox(
                               value: isCheck,
                               activeColor: GlobalColors.mainColor,
-                              onChanged: (isJudulKasus) {
+                              onChanged: (isJenisPerkara) {
                                 setState(() {
-                                  isCheck = isJudulKasus;
+                                  isCheck1 = isJenisPerkara;
+                                });
+                              }),
+                          Expanded(
+                            child: Text(
+                              'Centang jika Untuk Menambahkan Harga Surat',
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(
+                        left: 10,
+                      ),
+                      child: Row(
+                        children: [
+                          Checkbox(
+                              value: isCheck,
+                              activeColor: GlobalColors.mainColor,
+                              onChanged: (isForm) {
+                                setState(() {
+                                  isCheck = isForm;
                                 });
                               }),
                           Expanded(
@@ -341,13 +371,7 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: GlobalColors.mainColor,
                     ),
-                    onPressed: postProdukLayanan,
-                    // () {
-                    //   Navigator.push(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //           builder: (context) => const LayananChatView()));
-                    // },
+                    onPressed: postProdukLayanan,               
                     child: Text('Simpan',
                         style: GoogleFonts.ubuntu(
                           fontSize: 16,
