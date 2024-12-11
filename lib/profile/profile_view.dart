@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/profile/bantuan.dart';
+import 'package:loginn/auth/splash_view.dart';
 import 'package:loginn/edit_profile/edit_profile_view.dart';
-// import 'package:loginn/form_mitra.dart';
-import 'package:loginn/warna/global_colors.dart';
+import 'package:loginn/profile/bantuan.dart';
 // import 'package:loginn/login_view.dart';
 // import 'package:loginn/newpass_view.dart';
 import 'package:loginn/repository/repository.dart';
-import 'package:loginn/auth/splash_view.dart';
+// import 'package:loginn/form_mitra.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../_helpers/background_function.dart';
 import '../chats/api/apis.dart';
 
 class ProfileView extends StatefulWidget {
@@ -397,9 +398,7 @@ class _ProfileViewState extends State<ProfileView> {
                     TextButton(
                         onPressed: () async {
                           //sebelum ke splash hapus sessionya supaya dibaca tidak login
-                          SharedPreferences pref =
-                              await SharedPreferences.getInstance();
-                          await pref.clear(); //utk hapus session
+                          await BackgroundFunction.clearSession(); //utk hapus session
                           APIs.updateActiveStatus(false);
                           Navigator.pushAndRemoveUntil(
                             context,

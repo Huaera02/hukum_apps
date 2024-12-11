@@ -9,6 +9,7 @@ import 'package:loginn/riwayat/riwayat_view.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../_helpers/background_function.dart';
 import '../chats/api/apis.dart';
 
 class ProfileMitraView extends StatefulWidget {
@@ -613,8 +614,9 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                     // ),
 
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async{
                         APIs.updateActiveStatus(false);
+                        await BackgroundFunction.clearSession();
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const LoginView()),

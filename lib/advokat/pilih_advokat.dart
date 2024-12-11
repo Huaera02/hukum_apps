@@ -1,10 +1,10 @@
+import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
-import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/warna/global_colors.dart';
 // import 'package:loginn/masukkan_masalah.dart';
 import 'package:loginn/pilih_layanan/pilih_layanan.dart';
 import 'package:loginn/repository/repository.dart';
+import 'package:loginn/warna/global_colors.dart';
 
 class PilihAdvokatView extends StatefulWidget {
   // final Map<String,dynamic> produk;
@@ -128,10 +128,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
           child: AppBar(
             flexibleSpace: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 10.0,
-                    left: 70,
-                    right: 10), // Padding atas untuk status bar
+                padding: const EdgeInsets.only(top: 10.0, left: 70, right: 10), // Padding atas untuk status bar
                 child: Row(
                   children: [
                     Expanded(
@@ -167,9 +164,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                               ),
                             ),
                             prefixIcon: const Icon(Icons.search),
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical:
-                                    10.0), // Sesuaikan padding vertikal agar teks berada di tengah
+                            contentPadding: const EdgeInsets.symmetric(vertical: 10.0), // Sesuaikan padding vertikal agar teks berada di tengah
                           ),
                         ),
                       ),
@@ -181,8 +176,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                         showModalBottomSheet(
                             context: context,
                             builder: (BuildContext context) {
-                              return StatefulBuilder(builder:
-                                  (BuildContext context, StateSetter setState) {
+                              return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                                 return SizedBox(
                                   // color: Colors.grey[300],
                                   height: 600,
@@ -195,8 +189,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                             Container(
                                               padding: const EdgeInsets.all(20),
                                               child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   // Text('Pilih Mitra',
                                                   //     style: GoogleFonts.ubuntu(
@@ -241,52 +234,34 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                                   //   ],
                                                   // ),
                                                   // const SizedBox(height: 20),
-                                                  Text('Kabupaten/Kota',
-                                                      style: GoogleFonts.ubuntu(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.bold)),
+                                                  Text('Kabupaten/Kota', style: GoogleFonts.ubuntu(fontSize: 14, fontWeight: FontWeight.bold)),
                                                   ChipsChoice<String>.single(
                                                     value: tagKabkota ?? '',
                                                     onChanged: (val) {
                                                       if (val == tagKabkota) {
-                                                        setState(() =>
-                                                            tagKabkota = null);
+                                                        setState(() => tagKabkota = null);
                                                       } else {
-                                                        setState(() =>
-                                                            tagKabkota = val);
+                                                        setState(() => tagKabkota = val);
                                                       }
                                                     },
-                                                    choiceItems:
-                                                        C2Choice.listFrom(
+                                                    choiceItems: C2Choice.listFrom(
                                                       source: kabupatenKota,
                                                       value: (i, v) => v,
                                                       label: (i, v) => v,
                                                     ),
-                                                    choiceActiveStyle: C2ChoiceStyle(
-                                                        color: GlobalColors
-                                                            .mainColor,
-                                                        borderColor:
-                                                            GlobalColors
-                                                                .mainColor,
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .all(
-                                                                Radius.circular(
-                                                                    5))),
-                                                    choiceStyle:
-                                                        const C2ChoiceStyle(
-                                                            color: Colors.black,
-                                                            borderColor:
-                                                                Colors.black38,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            5))),
+                                                    // choiceActiveStyle: C2ChoiceStyle(
+                                                    //     color: GlobalColors.mainColor,
+                                                    //     borderColor: GlobalColors.mainColor,
+                                                    //     borderRadius: const BorderRadius.all(Radius.circular(5))),
+                                                    choiceStyle: const C2ChipStyle(
+                                                      backgroundColor: Colors.black,
+                                                      borderColor: Colors.black38,
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(5),
+                                                      ),
+                                                    ),
                                                     wrapped: true,
-                                                    textDirection:
-                                                        TextDirection.ltr,
+                                                    textDirection: TextDirection.ltr,
                                                   ),
 
                                                   // ChipsChoice<String>.multiple(
@@ -334,15 +309,10 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                       Container(
                                         width: double.infinity,
                                         height: 52,
-                                        margin: const EdgeInsets.only(
-                                            left: 26,
-                                            right: 26,
-                                            top: 10,
-                                            bottom: 10),
+                                        margin: const EdgeInsets.only(left: 26, right: 26, top: 10, bottom: 10),
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                GlobalColors.mainColor,
+                                            backgroundColor: GlobalColors.mainColor,
                                           ),
                                           onPressed: () {
                                             Navigator.pop(context);
@@ -379,11 +349,7 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                   child: ListView.builder(
                     itemBuilder: (context, index) {
                       return Container(
-                        padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 20,
-                            right:
-                                20), // Menambahkan padding di sekitar TextFormField
+                        padding: const EdgeInsets.only(top: 10, left: 20, right: 20), // Menambahkan padding di sekitar TextFormField
                         child: Column(
                           children: [
                             InkWell(
@@ -397,15 +363,12 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                               splashColor: GlobalColors.btnColor,
                               child: Container(
                                 padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Colors.black38,
-                                        blurRadius: 6,
-                                      )
-                                    ]),
+                                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    blurRadius: 6,
+                                  )
+                                ]),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -422,16 +385,13 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                         ),
                                       ),
                                       child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                            5), // Menyelaraskan border radius gambar dengan container
+                                        borderRadius: BorderRadius.circular(5), // Menyelaraskan border radius gambar dengan container
                                         child: Stack(
                                           children: [
                                             Image.asset(
                                               'assets/images/anwar.png',
-                                              width:
-                                                  90, // Sesuaikan lebar sesuai dengan lebar container
-                                              height:
-                                                  100, // Sesuaikan tinggi sesuai dengan tinggi container
+                                              width: 90, // Sesuaikan lebar sesuai dengan lebar container
+                                              height: 100, // Sesuaikan tinggi sesuai dengan tinggi container
                                               fit: BoxFit.cover,
                                             ),
                                             // Positioned(
@@ -449,16 +409,12 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                     ),
                                     Expanded(
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Text(
                                             listData[index]['nama'] ?? '',
-                                            style: GoogleFonts.ubuntu(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold),
+                                            style: GoogleFonts.ubuntu(fontSize: 14, fontWeight: FontWeight.bold),
                                           ),
                                           const SizedBox(height: 5),
                                           Row(
@@ -473,26 +429,16 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                               //         fontSize: 10,
                                               //         fontWeight: FontWeight.w500)),
                                               // const SizedBox(width: 20),
-                                              Image.asset(
-                                                  'assets/images/location.png',
-                                                  height: 15,
-                                                  width: 15),
+                                              Image.asset('assets/images/location.png', height: 15, width: 15),
                                               const SizedBox(width: 6),
-                                              Text(
-                                                  listData[index]['kabkota'] ??
-                                                      '',
-                                                  style: GoogleFonts.ubuntu(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500)),
+                                              Text(listData[index]['kabkota'] ?? '',
+                                                  style: GoogleFonts.ubuntu(fontSize: 14, fontWeight: FontWeight.w500)),
                                             ],
                                           ),
                                           const SizedBox(height: 10),
                                           Text(
                                             listData[index]['profil'] ?? '',
-                                            style: GoogleFonts.ubuntu(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal),
+                                            style: GoogleFonts.ubuntu(fontSize: 14, fontWeight: FontWeight.normal),
                                             textAlign: TextAlign.left,
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
@@ -522,18 +468,13 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                 Container(
                   width: double.infinity,
                   height: 52,
-                  margin: const EdgeInsets.only(
-                      left: 26, right: 26, top: 10, bottom: 20),
+                  margin: const EdgeInsets.only(left: 26, right: 26, top: 10, bottom: 20),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PilihLayananView(
-                                    mitra: listData[_value - 1])));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => PilihLayananView(mitra: listData[_value - 1])));
                         // MasukkanMasalahmuView(produk: widget.produk, mitra: listData[_value-1],)));
                       },
                       child: Text('Selanjutnya',
