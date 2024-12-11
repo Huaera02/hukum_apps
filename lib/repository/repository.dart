@@ -3078,6 +3078,160 @@ class Repository {
       return {'status': false, 'msg': 'Terjadi kesalahan di server'};
     }
   }
+
+  //Get Pilih jenis perkara
+  Future<Map<String, dynamic>> getPerkara() async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      var params = {'table': 'ref_jenis_perkara'};
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'perkara': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      log('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  //Get ProdukJenisPerkara
+  Future<Map<String, dynamic>> getProdukPerkara() async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      var params = {
+        'table': 'produk_jenis_perkara',
+        "join": {
+          "ref_jenis_perkara":
+              "ref_jenis_perkara.id=produk_jenis_perkara.id_jenis_perkara"
+        }
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'produkPerkara': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      log('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  // Menghapus Produk Perkara
+  Future<Map<String, dynamic>> deleteProdukPerkara({
+    required String id,
+  }) async {
+    try {
+      var request = http.Request(
+        'DELETE', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      // SharedPreferences pref = await SharedPreferences.getInstance();
+      // var sysBranchesId = pref.getString("sys_branches_id");
+
+      var params = {
+        "table": "produk_jenis_perkara",
+        "join": {
+          "ref_jenis_perkara":
+              "ref_jenis_perkara.id=produk_jenis_perkara.id_jenis_perkara"
+        },
+        "where": {"id": id}
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        if (responseBody['status'] == true) {
+          return {
+            'status': true,
+            'msg': responseBody['msg'],
+          };
+        } else {
+          return {
+            'status': false,
+            'msg': responseBody['error'] ?? responseBody['msg']
+          };
+        }
+      } else {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+    } catch (e) {
+      log('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
 }
 
 
