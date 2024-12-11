@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 // import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/checkout/bayar.dart';
-import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/repository/repository.dart';
+import 'package:loginn/warna/global_colors.dart';
 
 class MasukkanMasalahmuView extends StatefulWidget {
   final Map<String, dynamic> mitra;
@@ -226,6 +227,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                                     if (value == '') {
                                       return "Kolom deskripsi masalah tidak boleh kosong";
                                     }
+                                    return null;
                                   },
                                     controller: deskripsiController,
                                     style: const TextStyle(
@@ -261,10 +263,10 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                       ),
                       onPressed: () {
                         if (_formState.currentState!.validate()) {
-                          print('validasi sukses');
+                          log('validasi sukses');
                           postDataMasalah();
                         } else {
-                          print('validasi gagal');
+                          log('validasi gagal');
                         }
                       },
                       child: Text(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:loginn/edit_datamitra.dart';
-import 'package:loginn/warna/global_colors.dart';
+import 'package:loginn/edit_profile/ubah_data_mitra.dart';
+import 'package:loginn/edit_profile/ubah_data_mitra_notaris.dart';
 // import 'package:loginn/profile_mitra.dart';
 import 'package:loginn/repository/repository.dart';
-import 'package:loginn/edit_profile/ubah_data_mitra.dart';
-import 'package:loginn/edit_profile/ubah_data_mitraNotaris.dart';
+// import 'package:loginn/edit_datamitra.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class FormMitraView extends StatefulWidget {

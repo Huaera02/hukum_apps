@@ -14,8 +14,8 @@ import 'package:native_shutter_sound/native_shutter_sound.dart';
 class CameraPage extends StatefulWidget {
   const CameraPage({
     required this.cameras,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final List<CameraDescription> cameras;
 
@@ -121,8 +121,8 @@ class _CameraPageState extends State<CameraPage> {
             if (widget.cameras.isEmpty)
               Container(
                 color: Colors.black,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Center(
                     child: Text(
                       'Kamera tidak ditemukan pada perangkat ini',
@@ -135,8 +135,8 @@ class _CameraPageState extends State<CameraPage> {
             else if (cameraError)
               Container(
                 color: Colors.black,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Center(
                     child: Text(
                       'Terjadi kesalahan pada kamera',
@@ -149,8 +149,8 @@ class _CameraPageState extends State<CameraPage> {
             else if (cameraDenied)
               Container(
                 color: Colors.black,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Center(
                     child: Text(
                       'Kamera belum dapat digunakan, silahkan izinkan akses kamera aplikasi ini',
@@ -163,8 +163,8 @@ class _CameraPageState extends State<CameraPage> {
             else if (audioDenied)
               Container(
                 color: Colors.black,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Center(
                     child: Text(
                       'Kamera belum dapat digunakan, silahkan izinkan akses microphone aplikasi ini',
@@ -181,7 +181,7 @@ class _CameraPageState extends State<CameraPage> {
             else
               Container(
                 color: Colors.black,
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(),
                 ),
               ),
@@ -197,7 +197,7 @@ class _CameraPageState extends State<CameraPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     if (Platform.isIOS)
-                      Expanded(child: BackButton(color: Colors.white))
+                      const Expanded(child: BackButton(color: Colors.white))
                     else
                       const Spacer(),
                     Expanded(

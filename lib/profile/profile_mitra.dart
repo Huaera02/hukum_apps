@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/metode_bayar/bank_mitra.dart';
-import 'package:loginn/warna/global_colors.dart';
-import 'package:loginn/layanan_mitra/layanan_chat.dart';
 import 'package:loginn/auth/login_view.dart';
-import 'package:loginn/auth/newpass_view.dart';
-import 'package:loginn/repository/repository.dart';
-import 'package:loginn/riwayat/riwayat_mitra.dart';
-import 'package:loginn/riwayat/riwayat_view.dart';
 import 'package:loginn/edit_profile/ubah_data_mitra.dart';
+import 'package:loginn/layanan_mitra/layanan_chat.dart';
+import 'package:loginn/metode_bayar/bank_mitra.dart';
+import 'package:loginn/repository/repository.dart';
+import 'package:loginn/riwayat/riwayat_view.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../chats/api/apis.dart';
@@ -25,7 +22,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
   bool isLoading = false;
   Repository repository = Repository();
   Map<String, dynamic> listData = {};
-  var sys_branches_id;
+  String? sysBranchesId;
 
   getData() async {
     setState(() {
@@ -34,9 +31,8 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     var kontakId = pref.getString("id_kontak");
-    sys_branches_id = pref.getString("sys_branches_id");
-    Map<String, dynamic> response =
-        await repository.getProfileAdvokat(idAdvokat: kontakId ?? '');
+    sysBranchesId = pref.getString("sys_branches_id");
+    Map<String, dynamic> response = await repository.getProfileAdvokat(idAdvokat: kontakId ?? '');
 
     isLoading = false;
 
@@ -433,22 +429,14 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                       ),
                       child: TextButton.icon(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const UbahDataMitraView()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const UbahDataMitraView()));
                           },
                           icon: Icon(
                             Icons.person,
                             color: GlobalColors.mainColor,
                             size: 20,
                           ),
-                          label: Text('Profile Saya',
-                              style: GoogleFonts.ubuntu(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black))),
+                          label: Text('Profile Saya', style: GoogleFonts.ubuntu(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black))),
                     ),
 
                     Container(
@@ -473,9 +461,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LayananChatView()),
+                                MaterialPageRoute(builder: (context) => const LayananChatView()),
                               );
                             },
                             icon: Icon(
@@ -498,12 +484,16 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                           ),
                           TextButton.icon(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RekeningView(branchId: sys_branches_id,))
-                                  // const RiwayatMitraView()),
-                                  );
+                              if (sysBranchesId != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RekeningView(
+                                              branchId: sysBranchesId!,
+                                            ))
+                                    // const RiwayatMitraView()),
+                                    );
+                              }
                             },
                             icon: Icon(
                               Icons.card_membership,
@@ -525,10 +515,7 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                           ),
                           TextButton.icon(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const HistoryView())
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const HistoryView())
                                   // const RiwayatMitraView()),
                                   );
                             },
@@ -624,14 +611,13 @@ class _ProfileMitraViewState extends State<ProfileMitraView> {
                     //     ],
                     //   ),
                     // ),
-                    
+
                     TextButton(
                       onPressed: () {
                         APIs.updateActiveStatus(false);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginView()),
+                          MaterialPageRoute(builder: (context) => const LoginView()),
                         );
                       },
                       child: Text(

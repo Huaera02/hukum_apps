@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/layanan_mitra/edit_layanan.dart';
 import 'package:loginn/warna/global_colors.dart';
@@ -132,102 +131,94 @@ class _LayananChatViewState extends State<LayananChatView> {
                     shrinkWrap: true,
                     itemCount: listLayanan.length,
                     itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const EditLayananView()));
-                        },
-                        child: Container(
-                            margin: const EdgeInsets.only(
-                                top: 10, left: 20, right: 20),
-                            padding: const EdgeInsets.only(
-                                top: 10, left: 20, bottom: 10),
-                            alignment: Alignment.centerLeft,
-                            width: 500,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.black38)),
-                            child: Row(
-                              children: [     
-                                ((listLayanan[index]['id_kategori'] ??'') !='6') ?                                                   
-                                Icon(
-                                  Icons.chat_outlined,
-                                  color: GlobalColors.mainColor,
-                                  size: 30,
-                                ):                            
-                                Icon(
-                                  Icons.description_outlined,
-                                  color: GlobalColors.mainColor,
-                                  size: 30,
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      // Text(listLayanan[index]['nama'],
-                                      Text(listLayanan[index]['nama'],
-                                          // 'Chat',
-                                          style: GoogleFonts.ubuntu(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          )),
-                                          if (listLayanan[index]['deskripsi'] !=
-                                              null)
-                                            Text(
-                                              listLayanan[index]['deskripsi'],                                        
-                                              style: GoogleFonts.ubuntu(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500,
-                                                // color: GlobalColors.mainColor,
-                                              ),
-                                            ),
-                                      Row(
-                                        children: [
-                                          if ((listLayanan[index]['id_kategori'] ??'') !='6')
+                      return Container(
+                          margin: const EdgeInsets.only(
+                              top: 10, left: 20, right: 20),
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 20, bottom: 10),
+                          alignment: Alignment.centerLeft,
+                          width: 500,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.black38)),
+                          child: Row(
+                            children: [     
+                              ((listLayanan[index]['id_kategori'] ??'') !='6') ?                                                   
+                              Icon(
+                                Icons.chat_outlined,
+                                color: GlobalColors.mainColor,
+                                size: 30,
+                              ):                            
+                              Icon(
+                                Icons.description_outlined,
+                                color: GlobalColors.mainColor,
+                                size: 30,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Text(listLayanan[index]['nama'],
+                                    Text(listLayanan[index]['nama'],
+                                        // 'Chat',
+                                        style: GoogleFonts.ubuntu(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        )),
+                                        if (listLayanan[index]['deskripsi'] !=
+                                            null)
                                           Text(
-                                            'Rp.${listLayanan[index]['harga_jual']}',
-                                            // listLayanan[index]['harga_jual'],
+                                            listLayanan[index]['deskripsi'],                                        
+                                            style: GoogleFonts.ubuntu(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w500,
+                                              // color: GlobalColors.mainColor,
+                                            ),
+                                          ),
+                                    Row(
+                                      children: [
+                                        if ((listLayanan[index]['id_kategori'] ??'') !='6')
+                                        Text(
+                                          'Rp.${listLayanan[index]['harga_jual']}',
+                                          // listLayanan[index]['harga_jual'],
+                                          style: GoogleFonts.ubuntu(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w500,
+                                            color: GlobalColors.mainColor,
+                                          ),
+                                        ),                                     
+                                        if ((listLayanan[index]['id_kategori'] ??'') !='6')
+                                          Text(
+                                            '/ ${listLayanan[index]['durasi']} Menit',                                        
                                             style: GoogleFonts.ubuntu(
                                               fontSize: 13,
                                               fontWeight: FontWeight.w500,
                                               color: GlobalColors.mainColor,
                                             ),
-                                          ),                                     
-                                          if ((listLayanan[index]['id_kategori'] ??'') !='6')
-                                            Text(
-                                              '/ ${listLayanan[index]['durasi']} Menit',                                        
-                                              style: GoogleFonts.ubuntu(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500,
-                                                color: GlobalColors.mainColor,
-                                              ),
-                                            ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                                          ),
+                                      ],
+                                    )
+                                  ],
                                 ),
-                                const SizedBox(width: 10),
-                                IconButton(
-                                    onPressed: () async {
-                                      if (index != null &&
-                                          index >= 0 &&
-                                          index < listLayanan.length) {
-                                        await deleteDataLayanan(index);
-                                      }
-                                    },
-                                    // onPressed: () {},
-                                    icon: const Icon(Icons.delete))
-                              ],
-                            )),
-                      );
+                              ),
+                              const SizedBox(width: 10),
+                              IconButton(
+                                  onPressed: () async {
+                                    if (index != null &&
+                                        index >= 0 &&
+                                        index < listLayanan.length) {
+                                      await deleteDataLayanan(index);
+                                    }
+                                  },
+                                  // onPressed: () {},
+                                  icon: const Icon(Icons.delete))
+                            ],
+                          ));
                     },
                   ),
                 ),

@@ -25,7 +25,7 @@ class _Notarisppat2ViewState extends State<Notarisppat2View> {
     List<String> selectedPengalaman = [];
     List<String> selectedKabupatenKota = [];
 
-    int _value = 1;
+    int value = 1;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -303,10 +303,10 @@ class _Notarisppat2ViewState extends State<Notarisppat2View> {
                           const SizedBox(width: 35,),
                           Radio(
                             value: 1, 
-                            groupValue: _value, 
+                            groupValue: value, 
                             onChanged: (value){
                               setState(() {
-                                _value = value as int;
+                                value = value as int;
                               });
                             })
                       ],
@@ -416,10 +416,10 @@ class _Notarisppat2ViewState extends State<Notarisppat2View> {
                           const SizedBox(width: 30,),
                           Radio(
                             value: 2, 
-                            groupValue: _value, 
+                            groupValue: value, 
                             onChanged: (value){
                               setState(() {
-                                _value = value as int;
+                                value = value as int;
                               });
                             })
                       ],

@@ -1,15 +1,11 @@
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:loginn/chats/api/apis.dart';
 import 'package:loginn/chats/helper/my_date_util.dart';
 import 'package:loginn/chats/models/chat_user.dart';
 import 'package:loginn/chats/models/message.dart';
 import 'package:loginn/chats/widgets/message_card.dart';
-import 'package:loginn/warna/global_colors.dart';
 // import 'package:loginn/global_colors.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -29,7 +25,7 @@ class _ChatScreenState extends State<ChatScreen> {
   //showEmoji -- for storing value of showing or hiding emoji
   //isUploading -- for checking if image is uploading or not?
   // bool _showEmoji = false, 
-  bool _isUploading = false;
+  final bool _isUploading = false;
 
   @override
   Widget build(BuildContext context) {

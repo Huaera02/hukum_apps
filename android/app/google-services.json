@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "508942352685",
-    "project_id": "chat-b5d49",
-    "storage_bucket": "chat-b5d49.appspot.com"
+    "project_number": "332466963260",
+    "project_id": "hukum-cepat",
+    "storage_bucket": "hukum-cepat.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:508942352685:android:3b990c10659ab7396fd3a4",
+        "mobilesdk_app_id": "1:332466963260:android:03cb0cfc7cb52780179439",
         "android_client_info": {
           "package_name": "com.stg.hukumcepat"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCt21VR_pgoDWttOBeNRLbFeTxu4yYnC8A"
+          "current_key": "AIzaSyCJA9VuLg0dn7hSS4WX_vsRoOg7zrPOk0w"
         }
       ],
       "services": {

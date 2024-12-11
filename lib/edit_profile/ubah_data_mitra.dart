@@ -1,9 +1,5 @@
-import 'dart:convert';
-import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/chats/api/apis.dart';
 import 'package:loginn/menu/bottomnav.dart';
@@ -789,8 +785,7 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                               const SizedBox(width: 10),
                                               IconButton(
                                                   onPressed: () async {
-                                                    if (i != null &&
-                                                        i >= 0 &&
+                                                    if (i >= 0 &&
                                                         i < listData.length) {
                                                       await deleteData(i);
                                                     }
@@ -999,8 +994,7 @@ class _UbahDataMitraViewState extends State<UbahDataMitraView> {
                                                 const SizedBox(width: 10),
                                                 IconButton(
                                                     onPressed: () async {
-                                                      if (i != null &&
-                                                          i >= 0 &&
+                                                      if (i >= 0 &&
                                                           i <
                                                               listDataPengalaman
                                                                   .length) {

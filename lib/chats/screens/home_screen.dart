@@ -1,11 +1,12 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/chats/api/apis.dart';
-import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/chats/models/chat_user.dart';
 import 'package:loginn/chats/widgets/chat_user_card.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
     //pause  -- inactive or offline
     SystemChannels.lifecycle.setMessageHandler((message) async {
       log("Message: $message");
-      print("Message: $message");
 
       if (message != null) {
         if (message.contains('resumed')) {
