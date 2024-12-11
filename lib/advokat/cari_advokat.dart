@@ -1,6 +1,6 @@
 // import 'dart:developer';
 
-import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
+import 'package:chips_choice/chips_choice.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/profile/profile_advokat1.dart';
@@ -282,14 +282,15 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                                                           value: (i, v) => i,
                                                           label: (i, v) => v,
                                                         ),
-                                                        choiceActiveStyle: C2ChoiceStyle(
-                                                            color: GlobalColors.mainColor,
-                                                            borderColor: GlobalColors.mainColor,
-                                                            borderRadius: const BorderRadius.all(Radius.circular(5))),
-                                                        choiceStyle: const C2ChoiceStyle(
-                                                            color: Colors.black,
-                                                            borderColor: Colors.black38,
-                                                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                                                        // choiceActiveStyle: C2ChoiceStyle(
+                                                        //     color: GlobalColors.mainColor,
+                                                        //     borderColor: GlobalColors.mainColor,
+                                                        //     borderRadius: const BorderRadius.all(Radius.circular(5))),
+                                                        choiceStyle: const C2ChipStyle(
+                                                          backgroundColor: Colors.black,
+                                                          borderColor: Colors.black38,
+                                                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                                                        ),
                                                         // wrapped: true,
                                                       ),
                                                     ],
@@ -355,12 +356,12 @@ class _CariAdvokatViewState extends State<CariAdvokatView> {
                                                       value: (i, v) => v,
                                                       label: (i, v) => v,
                                                     ),
-                                                    choiceActiveStyle: C2ChoiceStyle(
-                                                        color: GlobalColors.mainColor,
-                                                        borderColor: GlobalColors.mainColor,
-                                                        borderRadius: const BorderRadius.all(Radius.circular(5))),
-                                                    choiceStyle: const C2ChoiceStyle(
-                                                        color: Colors.black,
+                                                    // choiceActiveStyle: C2ChoiceStyle(
+                                                    //     color: GlobalColors.mainColor,
+                                                    //     borderColor: GlobalColors.mainColor,
+                                                    //     borderRadius: const BorderRadius.all(Radius.circular(5))),
+                                                    choiceStyle: const C2ChipStyle(
+                                                        backgroundColor: Colors.black,
                                                         borderColor: Colors.black38,
                                                         borderRadius: BorderRadius.all(Radius.circular(5))),
                                                     wrapped: true,

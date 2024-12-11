@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:loginn/auth/splash_view.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-import 'firebase_options.dart';
+import '_helpers/background_function.dart';
+import '_helpers/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await BackgroundFunction.initializeFirebaseIfNeeded();
+  BackgroundFunction.getFCMToken();
+  await NotificationService().init();
+  
   runApp(const MyApp());
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/_helpers/background_function.dart';
 import 'package:loginn/auth/login_view.dart';
 import 'package:loginn/chats/api/apis.dart';
 // import 'package:loginn/ubah_data_mitra.dart';
@@ -602,8 +603,9 @@ class _ProfileMitraNotarisViewState extends State<ProfileMitraNotarisView> {
                     //   ),
                     // ),
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async{
                         APIs.updateActiveStatus(false);
+                        await BackgroundFunction.clearSession();
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const LoginView()),

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/chats/api/apis.dart';
 import 'package:loginn/menu/bottomnav.dart';
-import 'package:loginn/warna/global_colors.dart';
-import 'package:loginn/repository/repository.dart';
 // import 'package:loginn/tambah_keahlian.dart';
 import 'package:loginn/profile/tambah_pendidikan.dart';
+import 'package:loginn/repository/repository.dart';
+import 'package:loginn/warna/global_colors.dart';
 
 class UbahDataMitraNotarisView extends StatefulWidget {
   const UbahDataMitraNotarisView({super.key});

@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -53,10 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCt21VR_pgoDWttOBeNRLbFeTxu4yYnC8A',
-    appId: '1:508942352685:android:3b990c10659ab7396fd3a4',
-    messagingSenderId: '508942352685',
-    projectId: 'chat-b5d49',
-    storageBucket: 'chat-b5d49.appspot.com',
+    apiKey: 'AIzaSyCJA9VuLg0dn7hSS4WX_vsRoOg7zrPOk0w',
+    appId: '1:332466963260:android:03cb0cfc7cb52780179439',
+    messagingSenderId: '332466963260',
+    projectId: 'hukum-cepat',
+    storageBucket: 'hukum-cepat.firebasestorage.app',
   );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyB8EBCrCFHBj_zF0bKAbCdzaXz54WZ2kQo',
+    appId: '1:332466963260:ios:95adba8313ab9d5f179439',
+    messagingSenderId: '332466963260',
+    projectId: 'hukum-cepat',
+    storageBucket: 'hukum-cepat.firebasestorage.app',
+    iosBundleId: 'com.stg.hukumcepat',
+  );
+
 }
