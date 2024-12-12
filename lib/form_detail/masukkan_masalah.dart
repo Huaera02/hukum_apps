@@ -30,12 +30,24 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
   Map<String, dynamic>? valuePilih;
   List<Map<String, dynamic>> dataKlasifikasi = [];
 
-  postDataMasalah() async {
+  postDataMasalah({bool skip = false}) async {
+    if (skip) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => PembayaranView(
+          mitra: widget.mitra,
+          produk: widget.produk,
+          klasifikasi: valuePilih ?? {'id': ''},
+          judul: judulController.text,
+          deskripsi: deskripsiController.text,
+        ),
+      ));
+      return;
+    }
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => PembayaranView(
         mitra: widget.mitra,
         produk: widget.produk,
-        klasifikasi: valuePilih ?? {},
+        klasifikasi: valuePilih ?? {'id': ''},
         judul: judulController.text,
         deskripsi: deskripsiController.text,
       ),
@@ -51,8 +63,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
     isLoading = false;
 
     if (response['status'] == true) {
-      dataKlasifikasi =
-          List<Map<String, dynamic>>.from(response['klasifikasi']);
+      dataKlasifikasi = List<Map<String, dynamic>>.from(response['klasifikasi']);
       valuePilih = dataKlasifikasi.first;
     } else {
       showDialog(
@@ -84,7 +95,10 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
   void initState() {
     super.initState();
     if (widget.produk['is_form'] == '0') {
-      postDataMasalah();
+      Future.delayed(
+        const Duration(milliseconds: 100),
+        () => postDataMasalah(skip: true),
+      );
     } else {
       getData();
     }
@@ -114,8 +128,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                     child: ListView(
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(
-                              top: 20, right: 20, left: 20),
+                          margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -153,10 +166,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                                   iconSize: 36,
                                   isExpanded: true,
                                   underline: const SizedBox(),
-                                  style: GoogleFonts.ubuntu(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w300),
+                                  style: GoogleFonts.ubuntu(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w300),
                                   onChanged: (newValue1) {
                                     setState(() {
                                       valuePilih = newValue1;
@@ -234,15 +244,13 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                                       return null;
                                     },
                                     controller: deskripsiController,
-                                    style: const TextStyle(
-                                        fontSize: 14, color: Colors.black),
+                                    style: const TextStyle(fontSize: 14, color: Colors.black),
                                     keyboardType: TextInputType.text,
                                     textAlignVertical: TextAlignVertical.top,
                                     decoration: InputDecoration(
                                       labelStyle: GoogleFonts.ubuntu(),
                                       hintText: 'Ceritakan Masalahmu..',
-                                      hintStyle: GoogleFonts.ubuntu(
-                                          color: Colors.black),
+                                      hintStyle: GoogleFonts.ubuntu(color: Colors.black),
                                       border: const OutlineInputBorder(),
                                     ),
                                     maxLines: null,
@@ -259,8 +267,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                   Container(
                     width: double.infinity,
                     height: 52,
-                    margin: const EdgeInsets.only(
-                        left: 26, right: 26, top: 10, bottom: 20),
+                    margin: const EdgeInsets.only(left: 26, right: 26, top: 10, bottom: 20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,

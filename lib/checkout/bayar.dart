@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/warna/global_colors.dart';
-import 'package:loginn/repository/repository.dart';
 import 'package:loginn/checkout/va.dart';
 import 'package:loginn/metode_bayar/pilih_metode_pembayaran.dart';
+import 'package:loginn/repository/repository.dart';
+import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:loginn/sambungkan_ewalet.dart';
 
@@ -349,11 +349,14 @@ class _PembayaranViewState extends State<PembayaranView> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    Text(
-                                      widget.mitra['email'] ?? '',
-                                      style: GoogleFonts.ubuntu(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
+                                    Expanded(
+                                      child: Text(
+                                        widget.mitra['email'] ?? '',
+                                        style: GoogleFonts.ubuntu(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                        textAlign: TextAlign.end,
                                       ),
                                     ),
                                   ],
