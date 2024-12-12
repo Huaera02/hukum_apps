@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/checkout/bayar_notaris_ppat.dart';
+import 'package:loginn/checkout/bayar_surat.dart';
 import 'package:loginn/repository/repository.dart';
 // import 'package:loginn/bayar.dart';
 import 'package:loginn/warna/global_colors.dart';

@@ -15,15 +15,7 @@ class PilihAdvokatView extends StatefulWidget {
 }
 
 class _PilihAdvokatViewState extends State<PilihAdvokatView> {
-  // List<String> bidangKeahlian = ['Perceraian', 'Sengketa', 'Gono Gini', 'Warisan'];
-  // List<String> pengalaman = ['<5 tahun', '5 tahun', '> 5 tahun'];
-  // List<String> kabupatenKota = ['Makassar', 'Maros', 'Bone', 'Sidrap', 'Soppeng'];
 
-  // List<String> selectedBidangKeahlian = [];
-  // List<String> selectedPengalaman = [];
-  // List<String> selectedKabupatenKota = [];
-
-  // List<String> tags = [];
   String? tagKabkota;
   List<String> kabupatenKota = [
     'Bantaeng',
@@ -49,20 +41,6 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
     'Makassar',
     'Pare-Pare',
     'Palopo',
-
-    // 'Makassar',
-    // 'Maros',
-    // 'Pangkep',
-    // 'Bone',
-    // 'Sidrap',
-    // 'Soppeng',
-    // 'Bantaeng',
-    // 'Gowa',
-    // 'Takalar',
-    // 'Jeneponto',
-    // 'Bulukumba',
-    // 'Barru',
-    // 'Enrekang'
   ];
 
   int _value = 1;
@@ -417,22 +395,16 @@ class _PilihAdvokatViewState extends State<PilihAdvokatView> {
                                             style: GoogleFonts.ubuntu(fontSize: 14, fontWeight: FontWeight.bold),
                                           ),
                                           const SizedBox(height: 5),
-                                          Row(
-                                            // mainAxisAlignment:
-                                            // MainAxisAlignment.spaceAround,
-                                            children: [
-                                              // Image.asset('assets/images/icon_pengalaman.png',
-                                              //     height: 15, width: 15),
-                                              // const SizedBox(width: 10),
-                                              // Text('5 Tahun',
-                                              //     style: GoogleFonts.ubuntu(
-                                              //         fontSize: 10,
-                                              //         fontWeight: FontWeight.w500)),
-                                              // const SizedBox(width: 20),
-                                              Image.asset('assets/images/location.png', height: 15, width: 15),
+                                          Row(                                                                                 
+                                            children: [                                             
+                                              Image.asset('assets/images/location.png', 
+                                              height: 15, 
+                                              width: 15),
                                               const SizedBox(width: 6),
                                               Text(listData[index]['kabkota'] ?? '',
-                                                  style: GoogleFonts.ubuntu(fontSize: 14, fontWeight: FontWeight.w500)),
+                                                  style: GoogleFonts.ubuntu(
+                                                    fontSize: 14, 
+                                                    fontWeight: FontWeight.w500)),
                                             ],
                                           ),
                                           const SizedBox(height: 10),

@@ -219,7 +219,7 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                   ),
                   Tab(
                     child: Text(
-                      'Daftar Dokumen Surat',
+                      'Daftar Surat Perkara',
                       style: GoogleFonts.ubuntu(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -425,11 +425,11 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                                   child: Row(
                                     children: [
                                       Checkbox(
-                                          value: isCheck1,
+                                          value: isCheck,
                                           activeColor: GlobalColors.mainColor,
                                           onChanged: (isForm) {
                                             setState(() {
-                                              isCheck1 = isForm;
+                                              isCheck = isForm;
                                             });
                                           }),
                                       Expanded(
@@ -452,11 +452,11 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                                   child: Row(
                                     children: [
                                       Checkbox(
-                                          value: isCheck,
+                                          value: isCheck1,
                                           activeColor: GlobalColors.mainColor,
                                           onChanged: (isJenisPerkara) {
                                             setState(() {
-                                              isCheck = isJenisPerkara;
+                                              isCheck1 = isJenisPerkara;
                                             });
                                           }),
                                       Expanded(
@@ -471,36 +471,37 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                                       )
                                     ],
                                   ),
-                                )
+                                ),
+
+                                if(isCheck1??false)                              
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  margin: const EdgeInsets.only(left: 50),
+                                  child: TextButton.icon(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    TambahPerkaraView(
+                                                      idProduk:
+                                                          valuePilih1?['id'],
+                                                    )));
+                                      },
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: GlobalColors.mainColor,
+                                        size: 20,
+                                      ),
+                                      label: Text('Tambah Surat Perkara',
+                                          style: GoogleFonts.ubuntu(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black))),
+                                ),
                               ],
                             ),
-                          ),
-                          
-                          Container(
-                            width: double.infinity,
-                            height: 52,
-                            margin: const EdgeInsets.only(
-                                left: 26, right: 26, top: 10, bottom: 20),
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: GlobalColors.mainColor,
-                                ),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              TambahPerkaraView(
-                                                idProduk: valuePilih1?['id'],
-                                              )));
-                                },
-                                child: Text('Tambah Surat',
-                                    style: GoogleFonts.ubuntu(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: GlobalColors.btnColor,
-                                    ))),
-                          ),
+                          ),                         
                           Container(
                             width: double.infinity,
                             height: 52,
@@ -562,21 +563,22 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                                                 MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                            children: [                                        
-                                              Text(listData[index]['ref_jenis_perkara_nama'],                                       
+                                            children: [
+                                              Text(
+                                                  listData[index][
+                                                      'ref_jenis_perkara_nama'],
                                                   style: GoogleFonts.ubuntu(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w500,
-                                                  )),                                            
-                                                Text(
-                                                  listData[index]
-                                                      ['harga_jual'],
-                                                  style: GoogleFonts.ubuntu(
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.w500,
-                                                    // color: GlobalColors.mainColor,
-                                                  ),
-                                                ),                                             
+                                                  )),
+                                              Text(
+                                                listData[index]['harga_jual'],
+                                                style: GoogleFonts.ubuntu(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w500,
+                                                  // color: GlobalColors.mainColor,
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),

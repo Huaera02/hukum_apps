@@ -13,14 +13,14 @@ class PembayaranView extends StatefulWidget {
   final Map<String, dynamic> klasifikasi;
   final String judul;
   final String deskripsi;
-  const PembayaranView(
-      {super.key,
-      required this.mitra,
-      required this.produk,
-      required this.klasifikasi,
-      required this.judul,
-      required this.deskripsi,
-      });
+  const PembayaranView({
+    super.key,
+    required this.mitra,
+    required this.produk,
+    required this.klasifikasi,
+    required this.judul,
+    required this.deskripsi,
+  });
 
   @override
   State<PembayaranView> createState() => _PembayaranViewState();
@@ -75,10 +75,10 @@ class _PembayaranViewState extends State<PembayaranView> {
         total: widget.produk['harga_jual'],
         status: '0',
         tanggal: DateTime.now().toString(),
-        klasifikasi: widget.klasifikasi['id'],
+        klasifikasi: widget.klasifikasi['id'] ?? '',
         judul: widget.judul,
-        idMetodeBayar:metodeBayar['id_metode_pembayaran'],
-        idRekening:metodeBayar['id'],
+        idMetodeBayar: metodeBayar['id_metode_pembayaran'],
+        idRekening: metodeBayar['id'],
         deskripsi: widget.deskripsi);
     isLoading = false;
     if (response['status'] == true) {
@@ -87,10 +87,10 @@ class _PembayaranViewState extends State<PembayaranView> {
         builder: (context) => VirtualAccountView(
           idPenjualan: response['data'],
           total: widget.produk['harga_jual'],
-          createdAt:  DateTime.now(),
-          branchId:widget.mitra['sys_branches_id'],
-          bankId: metodeBayar['ref_bank_id'], 
-          ),
+          createdAt: DateTime.now(),
+          branchId: widget.mitra['sys_branches_id'],
+          bankId: metodeBayar['ref_bank_id'],
+        ),
       ));
     } else {
       showDialog(
@@ -122,7 +122,7 @@ class _PembayaranViewState extends State<PembayaranView> {
     setState(() {
       isLoading = true;
     });
-      
+
     SharedPreferences pref = await SharedPreferences.getInstance();
 
     nama = pref.getString("nama") ?? '';
@@ -226,74 +226,76 @@ class _PembayaranViewState extends State<PembayaranView> {
                             ),
                           ],
                         )),
-                    Container(
-                        alignment: Alignment.topLeft,
-                        margin: const EdgeInsets.only(top: 10),
-                        padding: const EdgeInsets.all(15),
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color.fromARGB(96, 63, 35, 35),
-                                blurRadius: 6,
-                              ),
-                            ]),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.description_outlined,
-                                  color: GlobalColors.mainColor,
+                    if (widget.klasifikasi['nama'] != null)
+                      Container(
+                          alignment: Alignment.topLeft,
+                          margin: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.all(15),
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(96, 63, 35, 35),
+                                  blurRadius: 6,
                                 ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  'Informasi Kasus',
-                                  style: GoogleFonts.ubuntu(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
+                              ]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.description_outlined,
+                                    color: GlobalColors.mainColor,
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        widget.klasifikasi['nama'],
-                                        style: GoogleFonts.ubuntu(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    'Informasi Kasus',
+                                    style: GoogleFonts.ubuntu(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          widget.klasifikasi['nama'] ?? '',
+                                          style: GoogleFonts.ubuntu(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Text(
-                                      widget.judul,
-                                      style: GoogleFonts.ubuntu(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w300,
+                                      Text(
+                                        widget.judul,
+                                        style: GoogleFonts.ubuntu(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w300,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            )
-                          ],
-                        )),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          )),
                     Container(
                         alignment: Alignment.topLeft,
                         margin: const EdgeInsets.only(top: 10),
@@ -341,14 +343,14 @@ class _PembayaranViewState extends State<PembayaranView> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      widget.mitra['nama'],
+                                      widget.mitra['nama'] ?? '',
                                       style: GoogleFonts.ubuntu(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     Text(
-                                      widget.mitra['email'],
+                                      widget.mitra['email'] ?? '',
                                       style: GoogleFonts.ubuntu(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w300,
@@ -407,7 +409,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      widget.produk['nama'],
+                                      widget.produk['nama'] ?? '',
                                       style: GoogleFonts.ubuntu(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -415,7 +417,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                     ),
                                     // const SizedBox(height: 5),
                                     Text(
-                                      'Rp. ${widget.produk['harga_jual']}',
+                                      'Rp. ${widget.produk['harga_jual'] ?? ''}',
                                       style: GoogleFonts.ubuntu(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w300,
@@ -470,7 +472,9 @@ class _PembayaranViewState extends State<PembayaranView> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                MetodePembayaranView(branchId:widget.mitra['sys_branches_id'])),
+                                                MetodePembayaranView(
+                                                    branchId: widget.mitra[
+                                                        'sys_branches_id'])),
                                       );
                                       if (result != null) {
                                         setState(() {
@@ -525,7 +529,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                 ),
                               ),
                               Text(
-                                'Rp. ${widget.produk['harga_jual']}',
+                                'Rp. ${widget.produk['harga_jual'] ?? ''}',
                                 style: GoogleFonts.ubuntu(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w300,

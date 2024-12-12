@@ -24,7 +24,8 @@ class _PilihLayananViewState extends State<PilihLayananView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getLayananMitra(idKontak: widget.mitra['id']);
+    Map<String, dynamic> response = await repository.getLayananMitra(
+      idKontak: widget.mitra['id']);
 
     isLoading = false;
 
@@ -170,26 +171,14 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,
                       ),
-                      onPressed: () {
-                        // listLayanan['is_judulkasus'] == '1'
-                        // widget.mitra['is_judulkasus'] == '1'
+                      onPressed: () {                  
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => MasukkanMasalahmuView(
                                           mitra: widget.mitra,
                                           produk: listLayanan[_value - 1],
-                                        )));
-                            // : Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) => const BuatSuratView(
-                            //       // mitra: widget.mitra,
-                            //       // produk: widget.produk,
-                            //       // klasifikasi: valuePilih ?? {},
-                            //       // judul: judulController.text,
-                            //       // deskripsi: deskripsiController.text,
-                            //     ),
-                              // ));
-                        // PilihAdvokatView(produk: listLayanan[_value-1],)));
+                                        )));                            
                       },
                       child: Text('Selanjutnya',
                           style: GoogleFonts.ubuntu(

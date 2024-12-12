@@ -83,7 +83,11 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
   @override
   void initState() {
     super.initState();
-    getData();
+    if (widget.produk['is_form'] == '0') {
+      postDataMasalah();
+    } else {
+      getData();
+    }
   }
 
   @override
@@ -217,18 +221,18 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                               const SizedBox(
                                 height: 5,
                               ),
-                              if (widget.produk['is_judulkasus'] == '1')
+                              // if (widget.produk['is_judulkasus'] == '1')
                               SizedBox(
                                 height: 200,
                                 child: Form(
                                   key: _formState,
                                   child: TextFormField(
                                     validator: (value) {
-                                    if (value == '') {
-                                      return "Kolom deskripsi masalah tidak boleh kosong";
-                                    }
-                                    return null;
-                                  },
+                                      if (value == '') {
+                                        return "Kolom deskripsi masalah tidak boleh kosong";
+                                      }
+                                      return null;
+                                    },
                                     controller: deskripsiController,
                                     style: const TextStyle(
                                         fontSize: 14, color: Colors.black),
@@ -237,8 +241,8 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                                     decoration: InputDecoration(
                                       labelStyle: GoogleFonts.ubuntu(),
                                       hintText: 'Ceritakan Masalahmu..',
-                                      hintStyle:
-                                          GoogleFonts.ubuntu(color: Colors.black),
+                                      hintStyle: GoogleFonts.ubuntu(
+                                          color: Colors.black),
                                       border: const OutlineInputBorder(),
                                     ),
                                     maxLines: null,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/checkout/bayar_notaris_ppat.dart';
+import 'package:loginn/checkout/bayar_surat.dart';
 // import 'package:loginn/masukkan_masalah.dart';
 import 'package:loginn/form_detail/masukkan_masalah_notaris.dart';
 // import 'package:loginn/ppat.dart';
