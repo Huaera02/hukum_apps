@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginn/warna/global_colors.dart';
-// import 'package:loginn/layanan_chat.dart';
 import 'package:loginn/repository/repository.dart';
-// import 'package:loginn/ubah_data_mitra.dart';
+
 
 class AddPendidikan extends StatefulWidget {
   const AddPendidikan({super.key});

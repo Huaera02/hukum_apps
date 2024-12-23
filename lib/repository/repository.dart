@@ -1292,6 +1292,64 @@ class Repository {
     }
   }
 
+  //Get Layanan yang telah dibuat ole mitra
+  Future<Map<String, dynamic>> getSemuaLayananMitra1(
+      {required String id}) async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      var kontakId = pref.getString("id_kontak");
+      // var sysBranchesId = pref.getString("sys_branches_id");
+
+      var params = {
+        'table': 'produk',
+        'where': {
+          'id': id
+          // 'sys_branches_id': sysBranchesId,
+          // 'is_judulkasus!=': '1'
+        }
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'data': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      log('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
   //Get Layanan yang telah dibuat ole mitra notaris
   Future<Map<String, dynamic>> getLayananMitraNotaris(
       {required String idKontak}) async {
@@ -1410,8 +1468,8 @@ class Repository {
       required String hargaJual,
       required String kategori,
       // required String isJudulKasus,
-      required String isForm,
-      required String isJenisPerkara,
+      // required String isForm,
+      // required String isJenisPerkara,
       required String id,
       required String deskripsi}) async {
     try {
@@ -1425,19 +1483,20 @@ class Repository {
               'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
         });
 
-      // SharedPreferences pref = await SharedPreferences.getInstance();
+      SharedPreferences pref = await SharedPreferences.getInstance();
       // var sysBranchesId = pref.getString("sys_branches_id");
-      // var kontakId = pref.getString("id_kontak");
+      var kontakId = pref.getString("id_kontak");
 
       var params = {
         'id_kategori': kategori,
         'table': 'produk',
+        'id_kontak': kontakId,
         'nama': nama,
         'durasi': durasi,
         'harga_jual': hargaJual,
         'deskripsi': deskripsi,
-        'is_form': isForm,
-        'is_jenis_perkara': isJenisPerkara,
+        // 'is_form': isForm,
+        // 'is_jenis_perkara': isJenisPerkara,
         'where': {'id': id},
       };
 
@@ -3125,8 +3184,71 @@ class Repository {
     }
   }
 
+  //Get Pilih jenis perkara
+  Future<Map<String, dynamic>> getPerkara1(
+    {
+      required String idProduk,
+    }
+  ) async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      // var sysBranchesId = pref.getString("sys_branches_id");
+      var kontakId = pref.getString("id_kontak");
+
+      var params = {
+        "table": "produk_jenis_perkara",
+        "join": {
+          "ref_jenis_perkara":
+              "ref_jenis_perkara.id=produk_jenis_perkara.id_jenis_perkara",
+          "produk": "produk.id=produk_jenis_perkara.id_produk"
+        },
+        "where": {"id_kontak": kontakId, "id_produk": idProduk}
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'perkara': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      log('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
   //Get ProdukJenisPerkara
-  Future<Map<String, dynamic>> getProdukPerkara() async {
+  Future<Map<String, dynamic>> getProdukPerkara(
+      {required String idProduk}) async {
     try {
       var request = http.Request(
         'GET', // Mengubah metode permintaan menjadi POST
@@ -3142,8 +3264,65 @@ class Repository {
         'table': 'produk_jenis_perkara',
         "join": {
           "ref_jenis_perkara":
-              "ref_jenis_perkara.id=produk_jenis_perkara.id_jenis_perkara"
-        }
+              "ref_jenis_perkara.id=produk_jenis_perkara.id_jenis_perkara",
+          "produk": "produk.id=produk_jenis_perkara.id_produk"
+        },
+        "where": {"id_produk": idProduk}
+      };
+
+      request.body = jsonEncode(params);
+      var response = await http.Response.fromStream(await request.send());
+      var responseBody = jsonDecode(response.body);
+      //request ke 1 gagal
+      if (response.statusCode != 200) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ??
+              responseBody['msg'] ??
+              'Terjadi kesalahan di server'
+        };
+      }
+
+      if (responseBody['status'] != true) {
+        return {
+          'status': false,
+          'msg': responseBody['error'] ?? responseBody['msg']
+        };
+      }
+
+      // berhasil semua
+      return {
+        'status': true,
+        'produkPerkara': responseBody['data'], //daftar pendidikan
+      };
+    } catch (e) {
+      log('Exception: $e');
+      return {'status': false, 'msg': 'Terjadi kesalahan di server'};
+    }
+  }
+
+  //Get ProdukJenisPerkara
+  Future<Map<String, dynamic>> getProdukPerkara1(
+      {required String idPerkara}) async {
+    try {
+      var request = http.Request(
+        'GET', // Mengubah metode permintaan menjadi POST
+        Uri.parse("$baseUrl/api/ws"),
+      )..headers.addAll({
+          'Content-Type': 'application/json',
+          'HUKUMONLINE-API-KEY': 'r2398hr2h9',
+          'Authorization':
+              'Bearer YlJkZm45T2psWUNVSExIQU9KUTVNckVJbjYrR3RPT2ZvL2RUYjFFQ01sVjFibFc1NTB4M0VRc1Z1SWNqWjBCNzV3a2tCUndmR2p0Z0pKVEJLUHg2VHc9PQ==',
+        });
+
+      var params = {
+        'table': 'produk_jenis_perkara',
+        "join": {
+          "ref_jenis_perkara":
+              "ref_jenis_perkara.id=produk_jenis_perkara.id_jenis_perkara",
+          "produk": "produk.id=produk_jenis_perkara.id_produk"
+        },
+        "where": {"id_jenis_perkara": idPerkara}
       };
 
       request.body = jsonEncode(params);

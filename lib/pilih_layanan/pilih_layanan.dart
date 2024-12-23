@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/form_detail/form.dart';
 import 'package:loginn/form_detail/masukkan_masalah.dart';
-// import 'package:loginn/pembuatan_surat.dart';
-// import 'package:loginn/pilih_advokat.dart';
 import 'package:loginn/repository/repository.dart';
 import 'package:loginn/warna/global_colors.dart';
 
@@ -24,8 +23,8 @@ class _PilihLayananViewState extends State<PilihLayananView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.getLayananMitra(
-      idKontak: widget.mitra['id']);
+    Map<String, dynamic> response =
+        await repository.getLayananMitra(idKontak: widget.mitra['id']);
 
     isLoading = false;
 
@@ -89,15 +88,21 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                       itemCount: listLayanan.length,
                       itemBuilder: (context, index) {
                         return Container(
-                            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                            padding: const EdgeInsets.only(left: 20, bottom: 20, top: 20),
+                            margin: const EdgeInsets.only(
+                                top: 10, left: 20, right: 20),
+                            padding: const EdgeInsets.only(
+                              left: 20,
+                            ),
                             alignment: Alignment.centerLeft,
                             width: 500,
                             decoration: BoxDecoration(
-                                color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.black38)),
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Colors.black38)),
                             child: Row(
                               children: [
-                                ((listLayanan[index]['id_kategori'] ?? '') != '6')
+                                ((listLayanan[index]['id_kategori'] ?? '') !=
+                                        '11')
                                     ? Icon(
                                         Icons.chat_outlined,
                                         color: GlobalColors.mainColor,
@@ -119,14 +124,17 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(listLayanan[index]['nama'],
                                           style: GoogleFonts.ubuntu(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
                                           )),
-                                      if ((listLayanan[index]['id_kategori'] ?? '') != '6')
+                                      if ((listLayanan[index]['id_kategori'] ??
+                                              '') !=
+                                          '11')
                                         Text(
                                           '${listLayanan[index]['durasi']} Menit',
                                           style: GoogleFonts.ubuntu(
@@ -141,7 +149,8 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                if ((listLayanan[index]['id_kategori'] ?? '') != '6')
+                                if ((listLayanan[index]['id_kategori'] ?? '') !=
+                                    '11')
                                   Text(
                                     'Rp.${listLayanan[index]['harga_jual']}',
                                     style: GoogleFonts.ubuntu(
@@ -166,19 +175,30 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                 Container(
                   width: double.infinity,
                   height: 52,
-                  margin: const EdgeInsets.only(left: 26, right: 26, top: 10, bottom: 20),
+                  margin: const EdgeInsets.only(
+                      left: 26, right: 26, top: 10, bottom: 20),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.mainColor,
                       ),
-                      onPressed: () {                  
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MasukkanMasalahmuView(
-                                          mitra: widget.mitra,
-                                          produk: listLayanan[_value - 1],
-                                        )));                            
+                      onPressed: () {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => MasukkanMasalahmuView(
+                        //               mitra: widget.mitra,
+                        //               produk: listLayanan[_value - 1],
+                        //               type: listLayanan[_value - 1]
+                        //                       ['is_jenis_perkara']??'',
+                        //             )));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MasukkanMasalahmuView(
+                                      mitra: widget.mitra,
+                                      produk: listLayanan[_value - 1],
+                                      type:listLayanan[_value-1]['is_jenis_perkara'],                                      
+                                    )));
                       },
                       child: Text('Selanjutnya',
                           style: GoogleFonts.ubuntu(

@@ -6,28 +6,28 @@ import 'package:loginn/repository/repository.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PembayaranView extends StatefulWidget {
+class CheckView extends StatefulWidget {
   final Map<String, dynamic> mitra;
   final Map<String, dynamic> produk;
   final Map<String, dynamic> klasifikasi;
-  final Map<String, dynamic> jenisPerkara;
   final String judul;
   final String deskripsi;
-  const PembayaranView({
+  const CheckView({
     super.key,
     required this.mitra,
     required this.produk,
     required this.klasifikasi,
-    required this.jenisPerkara,
     required this.judul,
     required this.deskripsi,
+    // required this.perkara,
+    // this.tipe = '0',
   });
 
   @override
-  State<PembayaranView> createState() => _PembayaranViewState();
+  State<CheckView> createState() => _CheckViewState();
 }
 
-class _PembayaranViewState extends State<PembayaranView> {
+class _CheckViewState extends State<CheckView> {
   Map<String, dynamic> metodeBayar = {};
   bool isLoading = false;
   Repository repository = Repository();
@@ -132,48 +132,10 @@ class _PembayaranViewState extends State<PembayaranView> {
     setState(() {});
   }
 
-  getData1() async {
-    setState(() {
-      isLoading = true;
-    });
-    Map<String, dynamic> response = await repository.getProdukPerkara1(
-        idPerkara: widget.jenisPerkara['id']);
-
-    isLoading = false;
-
-    if (response['status'] == true) {
-      listData = List<Map<String, dynamic>>.from(response['produkPerkara']);
-    } else {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-            title: Padding(
-              padding: const EdgeInsets.all(3),
-              child: Center(
-                child: Text(
-                  response['msg'],
-                  style: GoogleFonts.ubuntu(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      );
-    }
-    setState(() {});
-  }
-
   @override
   void initState() {
     super.initState();
     getData();
-    getData1();
   }
 
   @override
@@ -197,7 +159,9 @@ class _PembayaranViewState extends State<PembayaranView> {
             children: [
               Expanded(
                 child: ListView(
-                  children: [
+                  children: [                    
+                    //widget 0
+                    // if(widget.produk['is_jenis_perkara']==0)
                     Container(
                         alignment: Alignment.topLeft,
                         padding: const EdgeInsets.all(15),
@@ -264,7 +228,8 @@ class _PembayaranViewState extends State<PembayaranView> {
                               ],
                             ),
                           ],
-                        )),                  
+                        )),
+                    if (widget.klasifikasi['nama'] != null)
                       Container(
                           alignment: Alignment.topLeft,
                           margin: const EdgeInsets.only(top: 10),
@@ -291,7 +256,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                     width: 5,
                                   ),
                                   Text(
-                                    'Informasi Surat',
+                                    'Informasi Kasus',
                                     style: GoogleFonts.ubuntu(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -314,7 +279,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          widget.jenisPerkara['ref_jenis_perkara_nama'] ?? '',
+                                          widget.klasifikasi['nama'] ?? '',
                                           style: GoogleFonts.ubuntu(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
@@ -322,7 +287,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                         ),
                                       ),
                                       Text(
-                                        widget.jenisPerkara['harga_jual'],
+                                        widget.judul,
                                         style: GoogleFonts.ubuntu(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w300,
@@ -440,23 +405,51 @@ class _PembayaranViewState extends State<PembayaranView> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text(
-                                  widget.produk['nama'] ??'',
-                                  style: GoogleFonts.ubuntu(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                // Text(
-                                //   'Rp. ${widget.produk['harga_jual'] ?? ''}',
-                                //   style: GoogleFonts.ubuntu(
-                                //     fontSize: 14,
-                                //     fontWeight: FontWeight.w300,
-                                //   ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      widget.produk['nama'] ?? '',
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),                                                           
+                                    Text(
+                                      'Rp. ${widget.produk['harga_jual'] ?? ''}',
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ],
+                                ),                               
+                                // Row(
+                                //   crossAxisAlignment: CrossAxisAlignment.start,
+                                //   mainAxisAlignment:
+                                //       MainAxisAlignment.spaceBetween,
+                                //   children: [                                     
+                                //     Text(
+                                //       widget.jenisPerkara['ref_jenis_perkara_nama'] ?? '',
+                                //       style: GoogleFonts.ubuntu(
+                                //         fontSize: 14,
+                                //         fontWeight: FontWeight.w500,
+                                //       ),
+                                //     ),                           
+                                //     Text(
+                                //       'Rp. ${widget.jenisPerkara['harga_jual'] ?? ''}',
+                                //       style: GoogleFonts.ubuntu(
+                                //         fontSize: 14,
+                                //         fontWeight: FontWeight.w300,
+                                //       ),
+                                //     ),
+                                //   ],
                                 // ),
                               ],
                             )
@@ -562,7 +555,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                 ),
                               ),
                               Text(
-                                'Rp. ${widget.jenisPerkara['harga_jual'] ?? ''}',
+                                'Rp. ${widget.produk['harga_jual'] ?? ''}',
                                 style: GoogleFonts.ubuntu(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w300,
@@ -604,7 +597,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                 ),
                               ),
                               Text(
-                                'Rp. ${widget.jenisPerkara['harga_jual']}',
+                                'Rp. ${widget.produk['harga_jual']}',
                                 style: GoogleFonts.ubuntu(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -635,7 +628,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                           ),
                         ),
                         Text(
-                          'Rp. ${widget.jenisPerkara['harga_jual']}',
+                          'Rp. ${widget.produk['harga_jual']}',
                           style: GoogleFonts.ubuntu(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
