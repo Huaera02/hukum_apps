@@ -31,8 +31,8 @@ class SplashView extends StatelessWidget {
         body: Center(
           child: Image.asset(
             'assets/images/logo_hc.png',
-            height: 228,
-            width: 204,
+            height: 250,
+            width: 250,
           ),
         ));
   }

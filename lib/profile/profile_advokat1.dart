@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/pilih_layanan/pilih_layanan.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/pilih_layanan/pilih_layanan1.dart';
 import 'package:loginn/repository/repository.dart';
@@ -454,7 +455,7 @@ class _ProfileAdvokat1ViewState extends State<ProfileAdvokat1View> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => PilihLayanan1View(
+                              builder: (context) => PilihLayananView(
                                     mitra: listData,
                                   )));
                     },

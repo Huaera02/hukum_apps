@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/form_detail/form.dart';
+// import 'package:loginn/form_detail/form.dart';
 import 'package:loginn/form_detail/masukkan_masalah.dart';
 import 'package:loginn/repository/repository.dart';
 import 'package:loginn/warna/global_colors.dart';
