@@ -32,6 +32,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
   int _value = 1;
 
   Map<String, dynamic>? valuePilih;
+  Map<String, dynamic>? valuePerkara;
   List<Map<String, dynamic>> dataKlasifikasi = [];
 
   postDataMasalah({bool skip = false}) async {
@@ -81,7 +82,7 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
     if (response['status'] == true) {
       dataKlasifikasi =
           List<Map<String, dynamic>>.from(response['klasifikasi']);
-      // valuePilih = dataKlasifikasi.first;
+      valuePilih = dataKlasifikasi.first;
     } else {
       showDialog(
         context: context,
@@ -220,121 +221,192 @@ class _MasukkanMasalahmuViewState extends State<MasukkanMasalahmuView> {
                     child: ListView(
                       children: [
                         if (widget.type == '1')
-                          SizedBox(                          
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: perkara.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                      margin: const EdgeInsets.only(
-                                          top: 10, left: 20, right: 20),
-                                      padding: const EdgeInsets.only(
-                                        left: 20,
+                          Container(
+                            margin: const EdgeInsets.only(
+                                top: 20, right: 20, left: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                // if (widget.produk['is_judulkasus'] == '1')
+                                Text(
+                                  'Pilih Jenis Perkara',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                // if (widget.produk['is_judulkasus'] == '1')
+                                Container(
+                                  height: 60,
+                                  padding: const EdgeInsets.only(left: 10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color: Colors.grey.shade700,
+                                      )),
+                                  alignment: Alignment.center,
+                                  child: DropdownButton<Map<String, dynamic>>(
+                                    value: valuePerkara,
+                                    hint: Text(
+                                      'Jenis Perkara',
+                                      style: GoogleFonts.ubuntu(
+                                          // color: Colors.black
+                                          ),
+                                    ),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    iconSize: 36,
+                                    isExpanded: true,
+                                    underline: const SizedBox(),
+                                    style: GoogleFonts.ubuntu(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w300),
+                                    onChanged: (newValue2) {
+                                      setState(() {
+                                        valuePerkara = newValue2;
+                                      });
+                                    },
+                                    items: perkara.map((valueItem2) {
+                                      return DropdownMenuItem(
+                                        value: valueItem2,
+                                        child: Text(
+                                          valueItem2['ref_jenis_perkara_nama'],
+                                          style:
+                                              GoogleFonts.ubuntu(fontSize: 14),
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),                               
+                                Text(
+                                  'Masukkan Deskripsi Masalah',
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                // if (widget.produk['is_judulkasus'] == '1')
+                                SizedBox(
+                                  height: 200,
+                                  child: Form(
+                                    key: _formState,
+                                    child: TextFormField(
+                                      // validator: (value) {
+                                      //   if (value == '') {
+                                      //     return "Kolom deskripsi masalah tidak boleh kosong";
+                                      //   }
+                                      //   return null;
+                                      // },
+                                      controller: deskripsiController,
+                                      style: const TextStyle(
+                                          fontSize: 14, color: Colors.black),
+                                      keyboardType: TextInputType.text,
+                                      textAlignVertical: TextAlignVertical.top,
+                                      decoration: InputDecoration(
+                                        labelStyle: GoogleFonts.ubuntu(),
+                                        hintText: 'Ceritakan Masalahmu..',
+                                        hintStyle: GoogleFonts.ubuntu(
+                                            color: Colors.black),
+                                        border: const OutlineInputBorder(),
                                       ),
-                                      alignment: Alignment.centerLeft,
-                                      width: 500,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(
-                                              color: Colors.black38)),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [                                     
-                                          Expanded(
-                                            child: Row(
-                                              children: [
-                                                // Teks pertama dengan Expanded agar fleksibel
-                                                Expanded(
-                                                  child: Text(
-                                                    perkara[index][
-                                                            'ref_jenis_perkara_nama'] ??
-                                                        '',
-                                                    style: GoogleFonts.ubuntu(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                    overflow: TextOverflow
-                                                        .ellipsis, // Menambahkan ellipsis jika teks terlalu panjang
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                    width:
-                                                        16), // Spasi kecil antar teks
-                                                // Teks kedua dengan Expanded agar fleksibel
-                                                Expanded(
-                                                  child: Text(
-                                                    perkara[index]
-                                                            ['harga_jual'] ??
-                                                        '',
-                                                    style: GoogleFonts.ubuntu(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                    overflow: TextOverflow
-                                                        .ellipsis, // Menambahkan ellipsis jika teks terlalu panjang
-                                                    textAlign: TextAlign
-                                                        .right, // Teks rata kanan
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          // Radio button
-                                          Radio(
-                                            value: index + 1,
-                                            groupValue: _value,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                _value = value as int;
-                                              });
-                                            },
-                                          ),
-                                        ],
-                                      ));
-                                  // child: Row(
-                                  //   mainAxisAlignment:
-                                  //       MainAxisAlignment.spaceBetween,
-                                  //   children: [
-                                  //     Row(
-                                  //       mainAxisAlignment: MainAxisAlignment.start,
-                                  //       children: [
-                                  //         Text(
-                                  //           perkara[index][
-                                  //                   'ref_jenis_perkara_nama'] ??
-                                  //               '',
-                                  //           style: GoogleFonts.ubuntu(
-                                  //             fontSize: 14,
-                                  //             fontWeight: FontWeight.w500,
-                                  //           ),
-                                  //         ),
-                                  //         const SizedBox(width: 180,),
-                                  //         Text(
-                                  //           perkara[index]['harga_jual'] ??
-                                  //               '',
-                                  //           style: GoogleFonts.ubuntu(
-                                  //             fontSize: 14,
-                                  //             fontWeight: FontWeight.w500,
-                                  //           ),
-                                  //         ),
-                                  //       ],
-                                  //     ),
-                                  //     Radio(
-                                  //         value: index + 1,
-                                  //         groupValue: _value,
-                                  //         onChanged: (value) {
-                                  //           setState(() {
-                                  //             _value = value as int;
-                                  //           });
-                                  //         })
-                                  //   ],
-                                  // ));
-                                }),
+                                      maxLines: null,
+                                      expands: true,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
+
+                        // if (widget.type == '1')
+                        //   SizedBox(                          
+                        //     child: ListView.builder(
+                        //         shrinkWrap: true,
+                        //         itemCount: perkara.length,
+                        //         itemBuilder: (context, index) {
+                        //           return Container(
+                        //               margin: const EdgeInsets.only(
+                        //                   top: 10, left: 20, right: 20),
+                        //               padding: const EdgeInsets.only(
+                        //                 left: 20,
+                        //               ),
+                        //               alignment: Alignment.centerLeft,
+                        //               width: 500,
+                        //               decoration: BoxDecoration(
+                        //                   color: Colors.white,
+                        //                   borderRadius:
+                        //                       BorderRadius.circular(10),
+                        //                   border: Border.all(
+                        //                       color: Colors.black38)),
+                        //               child: Row(
+                        //                 mainAxisAlignment:
+                        //                     MainAxisAlignment.spaceBetween,
+                        //                 children: [                                     
+                        //                   Expanded(
+                        //                     child: Row(
+                        //                       children: [
+                        //                         // Teks pertama dengan Expanded agar fleksibel
+                        //                         Expanded(
+                        //                           child: Text(
+                        //                             perkara[index][
+                        //                                     'ref_jenis_perkara_nama'] ??
+                        //                                 '',
+                        //                             style: GoogleFonts.ubuntu(
+                        //                               fontSize: 14,
+                        //                               fontWeight:
+                        //                                   FontWeight.w500,
+                        //                             ),
+                        //                             overflow: TextOverflow
+                        //                                 .ellipsis, // Menambahkan ellipsis jika teks terlalu panjang
+                        //                           ),
+                        //                         ),
+                        //                         const SizedBox(
+                        //                             width:
+                        //                                 16), // Spasi kecil antar teks
+                        //                         // Teks kedua dengan Expanded agar fleksibel
+                        //                         Expanded(
+                        //                           child: Text(
+                        //                             perkara[index]
+                        //                                     ['harga_jual'] ??
+                        //                                 '',
+                        //                             style: GoogleFonts.ubuntu(
+                        //                               fontSize: 14,
+                        //                               fontWeight:
+                        //                                   FontWeight.w500,
+                        //                             ),
+                        //                             overflow: TextOverflow
+                        //                                 .ellipsis, // Menambahkan ellipsis jika teks terlalu panjang
+                        //                             textAlign: TextAlign
+                        //                                 .right, // Teks rata kanan
+                        //                           ),
+                        //                         ),
+                        //                       ],
+                        //                     ),
+                        //                   ),
+                        //                   // Radio button
+                        //                   Radio(
+                        //                     value: index + 1,
+                        //                     groupValue: _value,
+                        //                     onChanged: (value) {
+                        //                       setState(() {
+                        //                         _value = value as int;
+                        //                       });
+                        //                     },
+                        //                   ),
+                        //                 ],
+                        //               ));                          
+                        //         }),
+                        //   ),
                         // Container(
                         //   margin: const EdgeInsets.only(
                         //       top: 20, right: 20, left: 20),

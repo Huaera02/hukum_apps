@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/layanan_mitra/tambah_perkara.dart';
+// import 'package:loginn/layanan_mitra/tambah_perkara.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/repository/repository.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -441,32 +441,32 @@ class _TambahLayanaViewState extends State<TambahLayanaView> {
                               ),
                             ),
                   
-                            if(isCheck1??false)                              
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              margin: const EdgeInsets.only(left: 50),
-                              child: TextButton.icon(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                TambahPerkaraView(
-                                                  idProduk:
-                                                      valuePilih1?['id'],
-                                                )));
-                                  },
-                                  icon: Icon(
-                                    Icons.add,
-                                    color: GlobalColors.mainColor,
-                                    size: 20,
-                                  ),
-                                  label: Text('Tambah Surat Perkara',
-                                      style: GoogleFonts.ubuntu(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black))),
-                            ),
+                            // if(isCheck1??false)                              
+                            // Container(
+                            //   alignment: Alignment.centerLeft,
+                            //   margin: const EdgeInsets.only(left: 50),
+                            //   child: TextButton.icon(
+                            //       onPressed: () {
+                            //         Navigator.push(
+                            //             context,
+                            //             MaterialPageRoute(
+                            //                 builder: (context) =>
+                            //                     TambahPerkaraView(
+                            //                       idProduk:
+                            //                           valuePilih1?['id'],
+                            //                     )));
+                            //       },
+                            //       icon: Icon(
+                            //         Icons.add,
+                            //         color: GlobalColors.mainColor,
+                            //         size: 20,
+                            //       ),
+                            //       label: Text('Tambah Surat Perkara',
+                            //           style: GoogleFonts.ubuntu(
+                            //               fontSize: 12,
+                            //               fontWeight: FontWeight.w500,
+                            //               color: Colors.black))),
+                            // ),
                           ],
                         ),
                       ),                         

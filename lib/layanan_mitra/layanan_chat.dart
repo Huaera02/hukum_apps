@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loginn/layanan_mitra/edit_chat.dart';
 import 'package:loginn/layanan_mitra/edit_layanan.dart';
 // import 'package:loginn/layanan_mitra/edit_layanan.dart';
 import 'package:loginn/warna/global_colors.dart';
@@ -134,8 +135,15 @@ class _LayananChatViewState extends State<LayananChatView> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
+                          (listLayanan[index]['id_kategori']=='11')
+                          ?Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => EditLayanaView(
+                              id: listLayanan[index]['id'],
+                            )
+                          ))
+                          :
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EditLayanaChatView(
                               id: listLayanan[index]['id'],
                             )
                           ));
@@ -194,9 +202,9 @@ class _LayananChatViewState extends State<LayananChatView> {
                                       Row(
                                         children: [
                                           if ((listLayanan[index]
-                                                      ['id_kategori'] ??
+                                                      ['harga_jual'] ??
                                                   '') !=
-                                              '11')
+                                              '0')
                                             Text(
                                               'Rp.${listLayanan[index]['harga_jual']}',
                                               // listLayanan[index]['harga_jual'],
@@ -207,9 +215,9 @@ class _LayananChatViewState extends State<LayananChatView> {
                                               ),
                                             ),
                                           if ((listLayanan[index]
-                                                      ['id_kategori'] ??
+                                                      ['durasi'] ??
                                                   '') !=
-                                              '11')
+                                              '0')
                                             Text(
                                               '/ ${listLayanan[index]['durasi']} Menit',
                                               style: GoogleFonts.ubuntu(

@@ -132,9 +132,9 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
                                           )),
-                                      if ((listLayanan[index]['id_kategori'] ??
+                                      if ((listLayanan[index]['durasi'] ??
                                               '') !=
-                                          '11')
+                                          '0')
                                         Text(
                                           '${listLayanan[index]['durasi']} Menit',
                                           style: GoogleFonts.ubuntu(
@@ -149,8 +149,8 @@ class _PilihLayananViewState extends State<PilihLayananView> {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                if ((listLayanan[index]['id_kategori'] ?? '') !=
-                                    '11')
+                                if ((listLayanan[index]['harga_jual'] ?? '') !=
+                                    '0')
                                   Text(
                                     'Rp.${listLayanan[index]['harga_jual']}',
                                     style: GoogleFonts.ubuntu(

@@ -38,7 +38,7 @@ class _EditLayanaViewState extends State<EditLayanaView> {
 
     isLoading = false;
 
-    if (response['status'] == true) {
+    if (response['status'] == true) {      
       namaController.text = response['data'][0]['nama'] ?? '';
       durasiController.text = response['data'][0]['durasi'] ?? '';
       hargaController.text = response['data'][0]['harga_jual'] ?? '';
@@ -243,7 +243,7 @@ class _EditLayanaViewState extends State<EditLayanaView> {
             foregroundColor: Colors.white,
             backgroundColor: GlobalColors.mainColor,
             title: Text(
-              'Tambah Dokumen Surat',
+              'Edit Layanan',
               style: GoogleFonts.ubuntu(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -542,34 +542,34 @@ class _EditLayanaViewState extends State<EditLayanaView> {
                                           ],
                                         ),
                                       ),
-                                      if (isCheck1 ?? false)
-                                        Container(
-                                          alignment: Alignment.centerLeft,
-                                          margin:
-                                              const EdgeInsets.only(left: 50),
-                                          child: TextButton.icon(
-                                              onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            TambahPerkaraView(
-                                                                idProduk: widget
-                                                                    .id)));
-                                              },
-                                              icon: Icon(
-                                                Icons.add,
-                                                color: GlobalColors.mainColor,
-                                                size: 20,
-                                              ),
-                                              label: Text(
-                                                  'Tambah Surat Perkara',
-                                                  style: GoogleFonts.ubuntu(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: Colors.black))),
-                                        ),
+                                      // if (isCheck1 ?? false)
+                                      //   Container(
+                                      //     alignment: Alignment.centerLeft,
+                                      //     margin:
+                                      //         const EdgeInsets.only(left: 50),
+                                      //     child: TextButton.icon(
+                                      //         onPressed: () {
+                                      //           Navigator.push(
+                                      //               context,
+                                      //               MaterialPageRoute(
+                                      //                   builder: (context) =>
+                                      //                       TambahPerkaraView(
+                                      //                           idProduk: widget
+                                      //                               .id)));
+                                      //         },
+                                      //         icon: Icon(
+                                      //           Icons.add,
+                                      //           color: GlobalColors.mainColor,
+                                      //           size: 20,
+                                      //         ),
+                                      //         label: Text(
+                                      //             'Tambah Surat Perkara',
+                                      //             style: GoogleFonts.ubuntu(
+                                      //                 fontSize: 12,
+                                      //                 fontWeight:
+                                      //                     FontWeight.w500,
+                                      //                 color: Colors.black))),
+                                      //   ),
                                     ],
                                   ),
                                 ),
@@ -605,6 +605,7 @@ class _EditLayanaViewState extends State<EditLayanaView> {
                         ),
 
                         // konten kedua
+                        if(namaController.text != 0)
                         Stack(
                           children: [
                             Column(
@@ -686,30 +687,31 @@ class _EditLayanaViewState extends State<EditLayanaView> {
                                     },
                                   ),
                                 ),
-                                // Container(
-                                //   width: double.infinity,
-                                //   height: 52,
-                                //   margin: const EdgeInsets.only(
-                                //       left: 26, right: 26, top: 10, bottom: 20),
-                                //   child: ElevatedButton(
-                                //       style: ElevatedButton.styleFrom(
-                                //         backgroundColor: GlobalColors.mainColor,
-                                //       ),
-                                //       onPressed: () async {
-                                //         var result = await Navigator.push(
-                                //             context,
-                                //             MaterialPageRoute(
-                                //                 builder: (context) =>
-                                //                     const TambahLayanaView()));
-                                //         if (result != null) getData();
-                                //       },
-                                //       child: Text('Buat Layanan',
-                                //           style: GoogleFonts.ubuntu(
-                                //             fontSize: 16,
-                                //             fontWeight: FontWeight.w500,
-                                //             color: GlobalColors.btnColor,
-                                //           ))),
-                                // )
+                                Container(
+                                  width: double.infinity,
+                                  height: 52,
+                                  margin: const EdgeInsets.only(
+                                      left: 26, right: 26, top: 10, bottom: 20),
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: GlobalColors.mainColor,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            TambahPerkaraView(
+                                                                idProduk: widget
+                                                                    .id)));
+                                      },
+                                      child: Text('Tambah Perkara',
+                                          style: GoogleFonts.ubuntu(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: GlobalColors.btnColor,
+                                          ))),
+                                )
                               ],
                             ),
                             Visibility(

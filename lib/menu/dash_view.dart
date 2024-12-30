@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginn/layanan_mitra/form_mitra.dart';
+// import 'package:loginn/layanan_mitra/form_mitra.dart';
 import 'package:loginn/menu/notif_view.dart';
 import 'package:loginn/warna/global_colors.dart';
 import 'package:loginn/advokat/pilih_advokat.dart';
@@ -203,9 +203,9 @@ class _DashboardViewState extends State<DashboardView> {
         backgroundColor: GlobalColors.mainColor,
         foregroundColor: Colors.white,
         leading: Image.asset(
-          'assets/images/logo_hc.png',
-          width: 15,
-          height: 15,
+          'assets/images/logo_hc2.png',
+          width: 5,
+          height: 5,
         ),
         actions: [
           IconButton(

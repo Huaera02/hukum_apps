@@ -65,7 +65,7 @@ class _PembayaranViewState extends State<PembayaranView> {
     setState(() {
       isLoading = true;
     });
-    Map<String, dynamic> response = await repository.postDetailMasalah(
+    Map<String, dynamic> response = await repository.postDetailMasalah1(
         idMitra: widget.mitra['id'],
         idProduk: widget.produk['id'],
         harga: widget.produk['harga_jual'],
@@ -80,7 +80,8 @@ class _PembayaranViewState extends State<PembayaranView> {
         judul: widget.judul,
         idMetodeBayar: metodeBayar['id_metode_pembayaran'],
         idRekening: metodeBayar['id'],
-        deskripsi: widget.deskripsi);
+        deskripsi: widget.deskripsi,
+        idJenisPerkara: widget.jenisPerkara['id']);
     isLoading = false;
     if (response['status'] == true) {
       // Navigator.of(context).pop(true);
@@ -322,7 +323,7 @@ class _PembayaranViewState extends State<PembayaranView> {
                                         ),
                                       ),
                                       Text(
-                                        widget.jenisPerkara['harga_jual'],
+                                        'Rp. ${widget.jenisPerkara['harga_jual']}',                                     
                                         style: GoogleFonts.ubuntu(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w300,
